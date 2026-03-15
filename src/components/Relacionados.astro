@@ -5,13 +5,19 @@ const currentPath = Astro.url.pathname;
 // Busca todos os arquivos .astro na pasta pages
 const allPosts = await Astro.glob('../pages/**/*.astro');
 
+const normalizePath = (path: string) => {
+    if (!path) return '';
+    if (path === '/') return '/';
+    return path.endsWith('/') ? path.slice(0, -1) : path;
+};
+
 // Filtra posts da mesma categoria, excluindo o post atual
 const relacionados = allPosts.filter(post => {
     const postTitle = post.frontmatter?.title || post.title;
     const postCategoria = post.frontmatter?.categoria || post.categoria;
-    const isSameCategory = postCategoria === categoria;
-    const isNotCurrent = post.url !== currentPath && (post.url + '/') !== currentPath;
-    const isNotIndex = post.url && !post.url.endsWith('/');
+    const isSameCategory = String(postCategoria ?? '').toLowerCase() === String(categoria ?? '').toLowerCase();
+    const isNotCurrent = normalizePath(post.url) !== normalizePath(currentPath);
+    const isNotIndex = post.url && !post.file.endsWith('index.astro');
     return isSameCategory && isNotCurrent && postTitle && isNotIndex;
 }).slice(0, 12);
 ---
