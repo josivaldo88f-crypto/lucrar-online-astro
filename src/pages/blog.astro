@@ -7,7 +7,7 @@ const blogPosts = posts
     .filter(post => {
         const title = post.title || post.frontmatter?.title;
         // Deve ter título, URL e não ser uma página de índice
-        return post.url && title && !post.url.endsWith('/') && !post.url.endsWith('/index');
+        return post.url && title && !post.file.endsWith('index.astro');
     })
     .sort((a, b) => {
         const dateA = new Date(a.date || a.frontmatter?.date || '0').getTime();

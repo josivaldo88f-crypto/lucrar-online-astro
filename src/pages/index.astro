@@ -3,14 +3,24 @@ import MainLayout from '../layouts/MainLayout.astro';
 import PostCard from '../components/PostCard.astro';
 
 const posts = await Astro.glob('./**/*.astro');
+
 const latestPosts = posts
     .filter(post => {
         const title = post.title || post.frontmatter?.title;
-        // Ignora páginas de índice e páginas sem título/url
-        if (!post.url || !title) return false;
-        // Ignora a própria home e qualquer outra página de índice
-        if (post.url === '/' || post.url.endsWith('/index') || post.url.endsWith('/')) return false;
-        return true;
+        const url = post.url;
+
+        if (!url || !title) return false;
+        
+        // Verifica se a URL aponta para um arquivo index (que são as páginas de categoria)
+        // No Astro, arquivos src/pages/categoria/index.astro geram a URL /categoria/
+        // Enquanto arquivos src/pages/post.astro geram a URL /post/
+        
+        // A lógica correta é: se o arquivo termina em /index.astro, ele é uma página de categoria
+        const isIndexFile = post.file.endsWith('index.astro');
+        
+        // Além disso, a home é o arquivo src/pages/index.astro
+        // Queremos apenas os posts reais
+        return !isIndexFile;
     })
     .sort((a, b) => {
         const dateA = new Date(a.date || a.frontmatter?.date || '0').getTime();
