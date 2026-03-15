@@ -1,0 +1,274 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+
+export const title = "Calculadora de Porcentagem Online";
+export const description = "Calculadora de porcentagem online gratuita! Calcule porcentagens facilmente, descubra proporções, aumentos e reduções percentuais. Guia completo com exemplos práticos e explicações detalhadas sobre como calcular porcentagem em diferentes situações do dia a dia.";
+export const categoria = "ferramentas";
+export const date = "2025-01-01";
+---
+
+<MainLayout title={title} description={description} categoria={categoria}>
+    <style>
+        .calculator-card, .guide-card {
+            background: #fff;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+        .calculator-section {
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid #eee;
+        }
+        .calculator-section:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        .calculator-section h2 {
+            color: #2563eb;
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+        }
+        .example {
+            color: #6b7280;
+            font-size: 0.875rem;
+            margin-bottom: 1.5rem;
+        }
+        .input-group {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        .input-field label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            font-size: 0.875rem;
+        }
+        .input-wrapper {
+            display: flex;
+            align-items: center;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 0.5rem;
+            background: #fff;
+        }
+        .input-wrapper input {
+            border: none;
+            width: 100%;
+            padding: 0.25rem;
+            outline: none;
+            font-size: 1rem;
+        }
+        .input-wrapper span {
+            padding: 0 0.5rem;
+            color: #666;
+            font-weight: 600;
+        }
+        .auto-calc-info {
+            font-size: 0.75rem;
+            color: #9ca3af;
+            margin-bottom: 1rem;
+        }
+        .clear-btn {
+            padding: 0.5rem 1rem;
+            background: #f3f4f6;
+            border: none;
+            border-radius: 4px;
+            color: #4b5563;
+            cursor: pointer;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        .formula {
+            background: #f3f4f6;
+            padding: 1rem;
+            text-align: center;
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin: 1.5rem 0;
+            border-radius: 4px;
+        }
+    </style>
+
+    <div class="calculator-card">
+        <h1>CALCULADORA DE PORCENTAGEM</h1>
+        
+        <div class="calculator-section">
+            <h2>CÁLCULO DE PORCENTAGEM</h2>
+            <p class="example">Exemplo: 15% de R$ 300 é quanto?</p>
+            <div class="input-group">
+                <div class="input-field">
+                    <label>Quanto é</label>
+                    <div class="input-wrapper">
+                        <input type="number" id="percentageValue" value="" />
+                        <span>%</span>
+                    </div>
+                </div>
+                
+                <div class="input-field">
+                    <label>De (valor)</label>
+                    <div class="input-wrapper">
+                        <input type="number" id="baseValue" value="" />
+                    </div>
+                </div>
+                
+                <div class="input-field">
+                    <label>Resultado</label>
+                    <div class="input-wrapper">
+                        <input type="number" id="resultValue" readonly />
+                    </div>
+                </div>
+            </div>
+            <p class="auto-calc-info">Os cálculos são realizados automaticamente ao digitar os valores</p>
+            <button class="clear-btn" id="clear-percentage">LIMPAR</button>
+        </div>
+
+        <div class="calculator-section">
+            <h2>PROPORÇÃO</h2>
+            <p class="example">Exemplo: R$ 300 equivalem a quantos por cento de R$ 5.000?</p>
+            <div class="input-group">
+                <div class="input-field">
+                    <label>O valor</label>
+                    <div class="input-wrapper">
+                        <input type="number" id="proportionValue" value="" />
+                    </div>
+                </div>
+                
+                <div class="input-field">
+                    <label>é qual porcentagem de</label>
+                    <div class="input-wrapper">
+                        <input type="number" id="proportionTotal" value="" />
+                    </div>
+                </div>
+                
+                <div class="input-field">
+                    <label>Resultado</label>
+                    <div class="input-wrapper">
+                        <input type="number" id="proportionResult" readonly />
+                        <span>%</span>
+                    </div>
+                </div>
+            </div>
+            <p class="auto-calc-info">Os cálculos são realizados automaticamente ao digitar os valores</p>
+            <button class="clear-btn" id="clear-proportion">LIMPAR</button>
+        </div>
+
+        <div class="calculator-section">
+            <h2>AUMENTO PERCENTUAL</h2>
+            <p class="example">Exemplo: R$ 1.500 com aumento de 10% resulta em?</p>
+            <div class="input-group">
+                <div class="input-field">
+                    <label>Um valor de</label>
+                    <div class="input-wrapper">
+                        <input type="number" id="increaseInitial" value="" />
+                    </div>
+                </div>
+                
+                <div class="input-field">
+                    <label>Que AUMENTOU para</label>
+                    <div class="input-wrapper">
+                        <input type="number" id="increaseFinal" value="" />
+                    </div>
+                </div>
+                
+                <div class="input-field">
+                    <label>Qual foi o aumento percentual?</label>
+                    <div class="input-wrapper">
+                        <input type="number" id="increaseResult" readonly />
+                        <span>%</span>
+                    </div>
+                </div>
+            </div>
+            <p class="auto-calc-info">Os cálculos são realizados automaticamente ao digitar os valores</p>
+            <button class="clear-btn" id="clear-increase">LIMPAR</button>
+        </div>
+
+        <div class="calculator-section">
+            <h2>REDUÇÃO PERCENTUAL</h2>
+            <p class="example">Exemplo: Redução de R$ 1.500 para R$ 1.000 - qual o desconto?</p>
+            <div class="input-group">
+                <div class="input-field">
+                    <label>Um valor de</label>
+                    <div class="input-wrapper">
+                        <input type="number" id="decreaseInitial" value="" />
+                    </div>
+                </div>
+                
+                <div class="input-field">
+                    <label>Que DIMINUIU para</label>
+                    <div class="input-wrapper">
+                        <input type="number" id="decreaseFinal" value="" />
+                    </div>
+                </div>
+                
+                <div class="input-field">
+                    <label>Qual foi a diminuição percentual?</label>
+                    <div class="input-wrapper">
+                        <input type="number" id="decreaseResult" readonly />
+                        <span>%</span>
+                    </div>
+                </div>
+            </div>
+            <p class="auto-calc-info">Os cálculos são realizados automaticamente ao digitar os valores</p>
+            <button class="clear-btn" id="clear-decrease">LIMPAR</button>
+        </div>
+    </div>
+
+    <div class="guide-card">
+        <h2>COMO USAR A CALCULADORA</h2>
+        <div class="guide-steps">
+            <div class="guide-step">
+                <h3>1. Cálculo de Porcentagem Básico</h3>
+                <p>Digite o percentual desejado e o valor base para descobrir quanto representa aquela porcentagem do valor.</p>
+            </div>
+            <div class="guide-step">
+                <h3>2. Proporção Percentual</h3>
+                <p>Descubra qual porcentagem um valor representa de outro.</p>
+            </div>
+            <div class="guide-step">
+                <h3>3. Aumento Percentual</h3>
+                <p>Calcule qual foi o percentual de aumento entre dois valores.</p>
+            </div>
+            <div class="guide-step">
+                <h3>4. Redução Percentual</h3>
+                <p>Descubra o percentual de redução entre dois valores.</p>
+            </div>
+        </div>
+
+        <h2>Entendendo Porcentagem</h2>
+        <div class="guide-content">
+            <h3>O que é Porcentagem?</h3>
+            <p>Porcentagem, representada pelo símbolo %, é uma forma de expressar uma proporção em relação a 100.</p>
+            <p class="formula">Resultado = (Valor × Percentual) ÷ 100</p>
+        </div>
+    </div>
+
+    <script is:inline src="/ferramentas/porcentagem.js"></script>
+    <script is:inline>
+        // Lógica de limpeza adaptada para o Astro
+        document.getElementById('clear-percentage')?.addEventListener('click', () => {
+            document.getElementById('percentageValue').value = '';
+            document.getElementById('baseValue').value = '';
+            document.getElementById('resultValue').value = '';
+        });
+        document.getElementById('clear-proportion')?.addEventListener('click', () => {
+            document.getElementById('proportionValue').value = '';
+            document.getElementById('proportionTotal').value = '';
+            document.getElementById('proportionResult').value = '';
+        });
+        document.getElementById('clear-increase')?.addEventListener('click', () => {
+            document.getElementById('increaseInitial').value = '';
+            document.getElementById('increaseFinal').value = '';
+            document.getElementById('increaseResult').value = '';
+        });
+        document.getElementById('clear-decrease')?.addEventListener('click', () => {
+            document.getElementById('decreaseInitial').value = '';
+            document.getElementById('decreaseFinal').value = '';
+            document.getElementById('decreaseResult').value = '';
+        });
+    </script>
+</MainLayout>

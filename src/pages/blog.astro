@@ -1,0 +1,37 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import PostCard from '../components/PostCard.astro';
+
+const posts = await Astro.glob('./post/*.astro');
+const blogPosts = posts
+    .filter(post => post.url && !post.url.endsWith('/') && post.title)
+    .sort((a, b) => new Date(b.date || '0').getTime() - new Date(a.date || '0').getTime());
+
+const title = "Blog - Lucrar Online";
+const description = "Blog sobre como lucrar online, dicas e estratégias para ganhar dinheiro na internet";
+const categoria = "blog";
+---
+
+<MainLayout title={title} description={description} categoria={categoria}>
+    <h1 class="page-title" style="margin-bottom: 2rem; color: #2563eb;">Blog</h1>
+    
+    <div class="posts-grid">
+        {blogPosts.map(post => (
+            <PostCard 
+                title={post.title}
+                description={post.description}
+                url={post.url}
+                image={post.image || '/images/default-post.webp'}
+                date={post.date}
+            />
+        ))}
+    </div>
+
+    <nav aria-label="breadcrumb" style="margin-top: 2rem;">
+        <ol class="breadcrumb" style="display: flex; list-style: none; gap: 0.5rem; padding: 0; color: #6b7280; font-size: 0.875rem;">
+            <li><a href="/" style="color: #2563eb; text-decoration: none;">Início</a></li>
+            <li>/</li>
+            <li>Blog</li>
+        </ol>
+    </nav>
+</MainLayout>

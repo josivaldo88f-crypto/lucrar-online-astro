@@ -1,0 +1,60 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+
+export const title = "X WORLD App Para ganhar Dinheiro no pagbank e pix";
+export const description = "x world app é um aplicativo que paga no pagbank e pix baixe aplicativos e jogos e realize tarefas parra ganhar BUILD.";
+export const categoria = "GANHAR DINHEIRO";
+export const date = "2025-04-20";
+export const image = "/images/x-world.webp";
+---
+
+<MainLayout title={title} description={description} categoria={categoria}>
+    <article class="post-full">
+        <h1>{title}</h1>
+        <time class="post-date">Atualizado 20 de Abril de 2025</time>
+        
+        <img src="/images/x-world.webp" alt="x world" class="post-image-full" />
+        
+        <div class="post-content-full">
+            <p>x world app é um aplicativo que paga no pagbank e pix
+
+
+                baixe aplicativos e jogos e realize tarefas parra ganhar BUILD
+                
+                
+                BUILD é a moeda do aplicativo que pode ser trada pela criptomoeda USDT e sacada em real para conta via pagbank e pix o valor minimo para saque é de 0.1 USDT cerca de  660 BUILD esse valor pode variar já que são criptomoeda</p>
+                <img src="/images/print-x-world.avif" alt="print x world" style="display: block; margin: 0 auto; margin-bottom: 2%;" />
+                <p>esse joguinho da imagem acima está pagando 3,8k de BUILD apenas parra subir de nivel no joguinho.
+
+
+                    baixe o aplicativo e aproveite para fazer uma renda extra online
+                    </p>
+
+                     <div class="code-container" style="text-align: center; margin: 1rem auto; max-width: 300px; background: #f3f4f6; padding: 1rem; border-radius: 8px;">
+                        <div class="code" id="codigo-x-world" style="font-size: 1.5rem; font-weight: bold; margin-bottom: 0.5rem;">74TYN9</div>
+                        <button class="btn-copy" id="copy-btn-xworld" style="background: #2563eb; color: white; border: none; padding: 0.5rem 1rem; border-radius: 4px; cursor: pointer;">Copiar</button>
+                    </div>
+                    <div class="button-container" style="margin: 2rem 0;">
+                        <a href="https://xworlds.live/pt-BR/newYearGift/land?userId=300021027" target="_blank" class="action-button">Baixar App x World</a>
+                    </div> 
+        </div>
+    </article>
+
+    <script is:inline>
+        const copyBtnXworld = document.getElementById('copy-btn-xworld');
+        if (copyBtnXworld) {
+            copyBtnXworld.addEventListener('click', () => {
+                const code = document.getElementById('codigo-x-world').textContent;
+                navigator.clipboard.writeText(code).then(() => {
+                    const originalText = copyBtnXworld.textContent;
+                    copyBtnXworld.textContent = 'Copiado!';
+                    copyBtnXworld.classList.add('success');
+                    setTimeout(() => {
+                        copyBtnXworld.textContent = originalText;
+                        copyBtnXworld.classList.remove('success');
+                    }, 2000);
+                });
+            });
+        }
+    </script>
+</MainLayout>

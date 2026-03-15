@@ -1,0 +1,271 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+
+export const title = "Calculadora de Juros Compostos Online";
+export const description = "Descubra como os juros compostos podem multiplicar seu dinheiro! Use nossa calculadora de juros compostos, entenda a fórmula, compare com juros simples e aprenda a investir com eficiência. Aprenda tudo sobre esse poderoso conceito financeiro e comece a planejar seu futuro hoje!";
+export const categoria = "ferramentas";
+export const date = "2025-01-01";
+---
+
+<MainLayout title={title} description={description} categoria={categoria}>
+    <style>
+        .calculator-card, .results-card, .chart-card, .table-card, .guide-card {
+            background: #fff;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+        .input-group {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .input-field label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+        .input-wrapper {
+            display: flex;
+            align-items: center;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 0.5rem;
+        }
+        .input-wrapper span {
+            padding: 0 0.5rem;
+            color: #666;
+        }
+        .input-wrapper input {
+            border: none;
+            width: 100%;
+            padding: 0.5rem;
+            outline: none;
+        }
+        .input-wrapper select {
+            border: none;
+            background: #f3f4f6;
+            padding: 0.5rem;
+            border-radius: 4px;
+            margin-left: 0.5rem;
+        }
+        .button-group {
+            display: flex;
+            gap: 1rem;
+        }
+        .btn-calcular, .btn-limpar {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+        .btn-calcular {
+            background: #2563eb;
+            color: #fff;
+            flex-grow: 2;
+        }
+        .btn-limpar {
+            background: #e5e7eb;
+            color: #4b5563;
+            flex-grow: 1;
+        }
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+        }
+        .result-box {
+            text-align: center;
+            padding: 1rem;
+            background: #f9fafb;
+            border-radius: 4px;
+        }
+        .result-box h3 {
+            font-size: 0.875rem;
+            color: #6b7280;
+            margin-bottom: 0.5rem;
+        }
+        .result-box p {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #2563eb;
+        }
+        .table-container {
+            overflow-x: auto;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 0.75rem;
+            text-align: left;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        th {
+            background: #f9fafb;
+        }
+        .formula {
+            background: #f3f4f6;
+            padding: 1rem;
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 1.5rem 0;
+            border-radius: 4px;
+        }
+        @media (max-width: 768px) {
+            .input-group, .results-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+
+    <div class="calculator-card">
+        <h1>CALCULADORA DE JUROS COMPOSTOS</h1>
+        
+        <div class="input-group">
+            <div class="input-field">
+                <label>Valor Inicial</label>
+                <div class="input-wrapper">
+                    <span>R$</span>
+                    <input type="number" id="valorInicial" value="" />
+                </div>
+            </div>
+            
+            <div class="input-field">
+                <label>Taxa de Juros</label>
+                <div class="input-wrapper">
+                    <input type="number" id="taxaJuros" value="" />
+                    <span>%</span>
+                    <select id="periodoTaxa">
+                        <option value="anual" selected>ANUAL</option>
+                        <option value="mensal">MENSAL</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="input-group">
+            <div class="input-field">
+                <label>Período</label>
+                <div class="input-wrapper">
+                    <input type="number" id="periodo" value="" />
+                    <select id="tipoPeriodo">
+                        <option value="anos" selected>ANOS</option>
+                        <option value="meses">MESES</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="input-field">
+                <label>Investimento Mensal</label>
+                <div class="input-wrapper">
+                    <span>R$</span>
+                    <input type="number" id="investimentoMensal" value="" />
+                </div>
+            </div>
+        </div>
+
+        <div class="button-group">
+            <button id="limpar" class="btn-limpar">LIMPAR</button>
+            <button id="calcular" class="btn-calcular">CALCULAR</button>
+        </div>
+    </div>
+
+    <div class="results-card" id="resultado" style="display: none;">
+        <h2>RESULTADO:</h2>
+        <div class="results-grid">
+            <div class="result-box">
+                <h3>Total em Juros</h3>
+                <p id="totalJuros">R$ 0,00</p>
+            </div>
+            <div class="result-box">
+                <h3>Valor Total Investido</h3>
+                <p id="totalInvestido">R$ 0,00</p>
+            </div>
+            <div class="result-box">
+                <h3>Valor Total Final</h3>
+                <p id="totalFinal">R$ 0,00</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="chart-card" id="grafico" style="display: none;">
+        <h2>GRÁFICO</h2>
+        <div class="charts-container">
+            <div class="pie-chart" id="pieChart"></div>
+            <div class="bar-chart" id="barChart"></div>
+        </div>
+    </div>
+
+    <div class="table-card" id="tabela" style="display: none;">
+        <h2>TABELA</h2>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Meses</th>
+                        <th>Juros</th>
+                        <th>Total Investido</th>
+                        <th>Total Juros</th>
+                        <th>Acumulado</th>
+                    </tr>
+                </thead>
+                <tbody id="tabelaResultados"></tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="guide-card">
+        <h2>COMO USAR A CALCULADORA</h2>
+        <div class="guide-steps">
+            <div class="guide-step">
+                <h3>1. Valor Inicial</h3>
+                <p>Digite o valor que você já tem guardado ou pretende investir inicialmente. Por exemplo: R$ 1.000,00</p>
+            </div>
+            
+            <div class="guide-step">
+                <h3>2. Taxa de Juros</h3>
+                <p>Insira a taxa de juros do seu investimento e selecione se é anual ou mensal. Por exemplo: 12% ao ano</p>
+            </div>
+            
+            <div class="guide-step">
+                <h3>3. Período</h3>
+                <p>Defina por quanto tempo você vai manter o investimento, escolhendo entre anos ou meses. Por exemplo: 5 anos</p>
+            </div>
+            
+            <div class="guide-step">
+                <h3>4. Investimento Mensal</h3>
+                <p>Coloque quanto você pretende investir todo mês. Por exemplo: R$ 100,00 por mês</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="guide-card">
+        <h2>Juros Compostos: O Poder do Rendimento sobre Rendimento</h2>
+        <div class="guide-content">
+            <p>Se você está buscando entender juros compostos para usar em uma calculadora financeira ou simplesmente para melhorar seus conhecimentos sobre investimentos, está no lugar certo! Neste guia completo, vamos explicar o que são juros compostos, como calculá-los, suas aplicações e por que eles são tão poderosos para quem quer multiplicar o dinheiro ao longo do tempo.</p>
+
+            <h3>O Que São Juros Compostos?</h3>
+            <p>Juros compostos são os juros calculados sobre o valor inicial (principal) e também sobre os juros acumulados em períodos anteriores. Diferente dos juros simples, que incidem apenas sobre o capital inicial, os juros compostos crescem de forma exponencial, fazendo com que o dinheiro se multiplique mais rapidamente.</p>
+
+            <h3>Fórmula dos Juros Compostos</h3>
+            <p class="formula">M = C × (1 + i)<sup>t</sup></p>
+            <p>Onde:</p>
+            <ul>
+                <li><strong>M</strong> = Montante (valor final)</li>
+                <li><strong>C</strong> = Capital inicial (valor investido ou emprestado)</li>
+                <li><strong>i</strong> = Taxa de juros (em decimal, ex: 5% = 0,05)</li>
+                <li><strong>t</strong> = Tempo (períodos, como meses ou anos)</li>
+            </ul>
+        </div>
+    </div>
+
+    <script is:inline src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script is:inline src="/ferramentas/script.js"></script>
+</MainLayout>

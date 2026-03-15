@@ -1,0 +1,277 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+
+const title = "Mais de 15 Apps e jogos de Ganhar Dinheiro | Lucrar Online";
+const description = "Confira a lista atualizada dos melhores aplicativos para ganhar dinheiro via Pix, PagBank e PayPal em 2026. Ganhe dinheiro jogando e cumprindo tarefas!";
+const categoria = "apps";
+
+const apps = [
+    {
+        name: "TIKTOK - GANHE R$3",
+        logo: "/images/tiktok.webp",
+        downloadLink: "https://vm.tiktok.com/ZMSGjSJPL/",
+        inviteCode: "22997768"
+    },
+    {
+        name: "TIKTOK LITE - RECEBA R$3",
+        logo: "/images/tiktok-lite.webp",
+        downloadLink: "https://vm.tiktok.com/ZMSG2wxog/",
+        inviteCode: "DL70959891"
+    },
+    {    
+        name: "Puzzle Farm - GANHA DINHEIRO JOGANDO",
+        logo: "/images/Puzzle-Farm.webp",
+        downloadLink: "https://puzzlefarm.shareearn3.com/?code=10336544",
+        inviteCode: "10336544"
+    },
+    {   name: "Magic Car - GANHA DINHEIRO JOGANDO",
+        logo: "/images/Magic-Car.webp",
+        downloadLink: "https://d3qk4kpye0fn4i.cloudfront.net/mc/index_3.html?id=40494452",
+        inviteCode: "40494452"
+    },
+    {
+        name: "LUCKY UNSCREW - GANHA JOGANDO",
+        logo: "/images/LUCKY-UNSCREW.webp",
+        downloadLink: "https://m.luckyunscrew.com/share/index?r_id=207379&lang=pt",
+        inviteCode: "207379"
+    },
+    {   name: "Merge Cats - GANHA DINHEIRO JOGANDO",
+        logo: "/images/Merge-Cats.webp",
+        downloadLink: "https://dosr1htjv377z.cloudfront.net/invite.br.html?code=8382a",
+        inviteCode: "8382a"
+    },
+    {   name: "Crazy Rock - GANHA DINHEIRO JOGANDO",
+        logo: "/images/Crazy-Rock.webp",
+        downloadLink: "https://d2fxvpxmf0lmcj.cloudfront.net/cr/index_3.html?id=52653758",
+        inviteCode: "52653758"
+    },
+    {   name: "Clear Blast - GANHA JOGANDO",
+        logo: "/images/Clear-Blast.webp",
+        downloadLink: "https://d21rqw964uv7yt.cloudfront.net/cb/index_3.html?id=27235689",
+        inviteCode: "27235689"
+    },
+    {   name: "Rich Tycoon - GANHA JOGANDO",
+        logo: "/images/Rich-Tycoon.webp",
+        downloadLink: "https://d278eezdf0e083.cloudfront.net/invite.br.html?code=9lmo3",
+        inviteCode: "29lmo3" 
+    },
+    {
+        name: "Block Legend - GANHA JOGANDO",
+        logo: "/images/Block-Legend.webp",
+        downloadLink: "https://dcbnllj8v9o9k.cloudfront.net/invite.br.html?code=vbjko",
+        inviteCode: "vbjko"   
+    },
+    {
+        name: "BACK FIGHT - GANHA JOGANDO",
+        logo: "/images/back-fight.png",
+        downloadLink: "https://d3m8dbu3jhorhq.cloudfront.net/bf/index_3.html?id=12042425",
+        inviteCode: "12042425"
+    },
+    {
+        name: "ATTAPOLL - GANHA RESPONDENDO PESQUISA ",
+        logo: "/images/attapoll.webp",
+        downloadLink: "https://attapoll.app/join/cgfky",
+        inviteCode: "CGFKY"
+    },
+    {
+        name: "X world - ganha fazendo tarefas ",
+        logo: "/images/xworld.webp",
+        downloadLink: "https://xworld-app.com/pt-BR/share/land?userId=300021027",
+        inviteCode: "74TYN9"
+    },
+    {
+        name: "BIU MAN GANHAR JOGANDO",
+        logo: "/images/biu-man.webp",
+        downloadLink: "https://d1bxwap2oi9qu1.cloudfront.net/bbm/index_3.html?id=48504043",
+        inviteCode: "48504043"
+    },
+    {
+        name: "FRUIT BOOM - GANHA JOGANDO",
+        logo: "/images/fruit-bom.webp",
+        downloadLink: "https://join.thefruitcash.com/?code=10730828",
+        inviteCode: "10730828"
+    },
+    {
+        name: "CASHING - GANHA DINHEIRO",
+        logo: "/images/cashing.webp",
+        downloadLink: "https://cashing-ltd.web.app/r/mjmiktze",
+        inviteCode: "mjmiktze"
+    }
+];
+---
+<MainLayout title={title} description={description} categoria={categoria} showRelacionados={false}>
+    <style>
+        .lb-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 1.5rem 1rem;
+        }
+        .lb-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        .lb-title {
+            font-size: 1.8rem;
+            color: #2563eb;
+            margin-bottom: 0.5rem;
+        }
+        .lb-subtitle {
+            color: #6b7280;
+            font-size: 1rem;
+        }
+        .lb-apps-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+        }
+        .lb-card {
+            display: flex;
+            text-decoration: none;
+            color: inherit;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            transition: transform 0.2s, box-shadow 0.2s;
+            position: relative;
+            overflow: hidden;
+            min-height: 80px;
+        }
+        .lb-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+        }
+        .lb-logo-container {
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #f3f4f6;
+            width: 80px;
+            height: 80px;
+            align-self: center;
+        }
+        .lb-logo {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .lb-content {
+            flex-grow: 1;
+            padding: 0.75rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            overflow: hidden;
+        }
+        .lb-card-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #1f2937;
+            margin: 0 0 0.25rem 0;
+            text-align: left;
+        }
+        .lb-code-section {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 0.25rem;
+        }
+        .lb-code-label {
+            font-size: 0.75rem;
+            color: #6b7280;
+        }
+        .lb-code {
+            font-family: monospace;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: #374151;
+            background: #f3f4f6;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+        }
+        .lb-copy-btn {
+            background-color: #2563eb;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 0.25rem 0.75rem;
+            font-size: 0.75rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        .lb-copy-btn:hover {
+            background-color: #1d4ed8;
+        }
+        .lb-copy-btn.copied {
+            background-color: #10b981;
+        }
+        @media (max-width: 480px) {
+            .lb-logo-container {
+                width: 64px;
+                height: 64px;
+            }
+            .lb-card {
+                min-height: 64px;
+            }
+        }
+    </style>
+
+    <div class="lb-container">
+        <div class="lb-header">
+            <h1 class="lb-title">Lista com Melhores Apps e jogos de Ganhar Dinheiro</h1>
+            <p class="lb-subtitle">💸 Confira a lista de aplicativos e sites para ganhar dinheiro! 🤑 E o melhor: estamos sempre adicionando mais opções! 🔄 Volte regularmente para não perder nenhuma novidade. 🚀💻 </p>
+            <div style="margin-top: 2rem; text-align: left; background: #fff; padding: 1.5rem; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); color: #4b5563;">
+                <p style="margin-bottom: 1rem;">Se você está buscando uma maneira de fazer <strong>renda extra online</strong>, esta lista é o lugar certo. Selecionamos os aplicativos mais confiáveis que pagam via <strong>Pix, PagBank e PayPal</strong>.</p>
+                <p>Muitos desses apps permitem ganhar dinheiro apenas jogando, assistindo vídeos ou respondendo pesquisas simples. Confira abaixo os links de download e não esqueça de usar os <strong>códigos de convite</strong> para começar com bônus!</p>
+            </div>
+        </div>
+
+        <div class="lb-apps-list">
+            {apps.map((app) => (
+                <div class="lb-card-wrapper">
+                    <a href={app.downloadLink} target="_blank" rel="noopener noreferrer" class="lb-card">
+                        <div class="lb-logo-container">
+                            <img src={app.logo} alt={app.name} class="lb-logo" />
+                        </div>
+                        <div class="lb-content">
+                            <h2 class="lb-card-title">{app.name}</h2>
+                            <div class="lb-code-section">
+                                <span class="lb-code-label">Código:</span>
+                                <span class="lb-code">{app.inviteCode}</span>
+                                <button class="lb-copy-btn" data-code={app.inviteCode}>Copiar Código</button>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            ))}
+        </div>
+    </div>
+
+    <script>
+        // Lógica de cópia no lado do cliente
+        document.addEventListener('DOMContentLoaded', () => {
+            const buttons = document.querySelectorAll('.lb-copy-btn');
+            buttons.forEach(button => {
+                button.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    const code = button.getAttribute('data-code');
+                    if (code) {
+                        navigator.clipboard.writeText(code).then(() => {
+                            const originalText = button.textContent;
+                            button.textContent = 'Copiado!';
+                            button.classList.add('copied');
+                            setTimeout(() => {
+                                button.textContent = originalText;
+                                button.classList.remove('copied');
+                            }, 2000);
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</MainLayout>
+

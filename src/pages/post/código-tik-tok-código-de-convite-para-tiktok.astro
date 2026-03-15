@@ -1,0 +1,52 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+
+export const title = "Código Tik Tok | Código de Convite Para tiktok";
+export const description = "tiktok é um aplicativo de videos curtos com uma promoção que possibilita os novos usuários ganhar dinheiro adicionando um código de convite.";
+export const categoria = "GANHAR DINHEIRO";
+export const date = "2025-04-21";
+export const image = "/images/tiktok.webp";
+---
+
+<MainLayout title={title} description={description} categoria={categoria}>
+    <article class="post-full">
+        <h1>{title}</h1>
+        <time class="post-date">Atualizado 21 de Abril de 2025</time>
+        
+        <img src="/images/tiktok.webp" alt="logo tiktok" style="display: block; margin: 0 auto;" />
+        
+        <div class="post-content-full">
+            <p>22997768 código de convite para usar no tik tok e ganhar dinheiro </p>
+            <p>baixe aplicativo e increva-se e insira o código de convite <strong>22997768</strong> para bter recompensa</p>
+            <p>tiktok é um aplicativo de videos curtos com uma promoção que possibilita os novos usuários ganhar dinheiro adicionando um código de convite adicione o código de convite 22997768 para ja começar ganhando</p>
+
+            <div class="code-container" style="text-align: center; margin: 1rem auto; max-width: 300px; background: #f3f4f6; padding: 1rem; border-radius: 8px;">
+                <div class="code" id="tiktok-code" style="font-size: 1.5rem; font-weight: bold; margin-bottom: 0.5rem;">22997768</div>
+                <button class="btn-copy" id="copy-btn" style="background: #2563eb; color: white; border: none; padding: 0.5rem 1rem; border-radius: 4px; cursor: pointer;">Copiar</button>
+            </div>
+            <p style="text-align: center;">Clique no botão copiar para copiar o código.</p>
+            
+            <div class="button-container" style="margin: 2rem 0;">
+                <a href="https://vm.tiktok.com/ZMBdV9QMq/" target="_blank" rel="noopener noreferrer" class="action-button">Baixar App Tiktok</a>
+            </div>
+        </div>
+    </article>
+
+    <script is:inline>
+        const copyBtn = document.getElementById('copy-btn');
+        if (copyBtn) {
+            copyBtn.addEventListener('click', () => {
+                const code = document.getElementById('tiktok-code').textContent;
+                navigator.clipboard.writeText(code).then(() => {
+                    const originalText = copyBtn.textContent;
+                    copyBtn.textContent = 'Copiado!';
+                    copyBtn.classList.add('success');
+                    setTimeout(() => {
+                        copyBtn.textContent = originalText;
+                        copyBtn.classList.remove('success');
+                    }, 2000);
+                });
+            });
+        }
+    </script>
+</MainLayout>

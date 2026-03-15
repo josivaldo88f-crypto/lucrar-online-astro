@@ -1,0 +1,114 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+
+export const title = "Como Ganhar Dinheiro Respondendo Pesquisas no App AttaPoll";
+export const description = "Você quer ganhar dinheiro extra de forma simples e sem sair de casa? O AttaPoll é um dos melhores aplicativos para ganhar dinheiro respondendo pesquisas.";
+export const categoria = "GANHAR DINHEIRO";
+export const date = "2025-04-22";
+export const image = "/images/app-attapoll.webp";
+---
+
+<MainLayout title={title} description={description} categoria={categoria}>
+    <article class="post-full">
+        <h1>{title}</h1>
+        <time class="post-date">Atualizado 22 de Abril de 2025</time>
+        
+        <img src="/images/app-attapoll.webp" alt="app AttaPoll" class="post-image-full" />
+        
+        <div style="text-align: center; margin-bottom: 2rem;">
+            <a href="https://youtu.be/93zQ9rB5f6Y" target="_blank">Assistir no YouTube</a>
+        </div>
+
+        <div class="post-content-full">
+            <p>Você quer ganhar dinheiro extra de forma simples e sem sair de casa? O <strong>AttaPoll</strong> é um dos melhores aplicativos para <strong>ganhar dinheiro respondendo pesquisas</strong></p>
+            <p>Neste artigo, vou te mostrar <strong>como funciona o AttaPoll,</strong> como aumentar seus ganhos e como sacar seu dinheiro de forma rápida.</p>
+            
+            <h2>O Que é o AttaPoll?</h2>
+            <p>O <strong>AttaPoll</strong> é um aplicativo que paga você para responder   pesquisas de mercado. Empresas e instituições precisam da opinião de consumidores como você, e em troca, te recompensam com dinheiro.</p>
+            
+            <h2>Vantagens do AttaPoll:</h2> 
+            <p>✅ <strong>Pagamentos</strong> altos (algumas pesquisas pagam até USD 4 cada)</p>
+            <p>✅ <strong>Saque rápido</strong> via PayPal (mínimo de apenas USD 3)</p>
+            <p>✅ <strong>Pesquisas frequentes</strong> (novas oportunidades todos os dias)</p>
+            <p>✅ <strong>Bônus por indicação</strong> (ganhe <strong>10%</strong> do que seus amigos ganharem)</p>
+            
+            <h2>Quanto Você Pode Ganhar no AttaPoll?</h2>
+            <p>Os valores variam, mas cada pesquisa paga entre USD 0,10 e USD 4 Algumas são rápidas (2-3 minutos), outras mais longas (10-15 minutos).</p>
+            <h3>Exemplo de Pagamentos:</h3>
+            <p>🔹 Pesquisa rápida: USD 0,5 </p>
+            <p>🔹 pesquisa media: USD 1,50</p>
+            <p>🔹 Pesquisa longa: USD 3 a USD4</p>
+            <p>Além disso, você pode <strong>ganhar dinheiro baixando apps</strong> ou participando de tarefas extras dentro do aplicativo.</p>
+            
+            <h2>Como Sacar Seu Dinheiro no AttaPoll?</h2>
+            <p>O saque mínimo é apenas USD 3 (cerca de R$15) e o pagamento é feito diretamente no PayPal em até 7 dias!</p>
+            <h3>Passo a Passo para Sacar:</h3>
+            <p>1️⃣ Complete pesquisas até atingir US$ 3</p>
+            <p>2️⃣ Vá até a seção "Carteira"</p>
+            <p>3️⃣ Clique em "Sacar" e escolha PayPal</p>
+            <p>4️⃣ Confirme e receba seu dinheiro em minutos!</p>
+            
+            <h2>Dicas Para Ganhar Mais no AttaPoll</h2>
+            <p>📌 Responda com atenção – Se você responder aleatoriamente, pode ser desqualificado.</p>
+            <p>📌 Verifique o app diariamente – Novas pesquisas aparecem o tempo todo.</p>
+            <p>📌 Complete seu perfil – Isso aumenta suas chances de receber pesquisas compatíveis.</p>
+            <p>📌 Convide amigos – Ganhe 10% do que eles ganharem!</p>
+            
+            <h2>Vale a Pena Usar o AttaPoll?</h2>
+            <p>SIM! Se você quer uma renda extra fácil, o AttaPoll é uma ótima opção. Não vai te deixar rico, mas pode te ajudar a ganhar uma boa grana só respondendo pesquisas no seu tempo livre.</p>
+            
+            <h3>👉 Quer Começar?</h3>
+            <p style="text-align: center;"><strong>📥 Baixe o AttaPoll agora</strong></p>
+
+            <div class="button-container" style="margin: 2rem 0;">
+                <a href="https://attapoll.app/join/cgfky" target="_blank" rel="noopener noreferrer" class="action-button">Baixar App AttaPoll</a>
+            </div>
+
+            <p style="text-align: center;">clique em copiar para copiar o codigo de indicação</p>
+            <div class="code-container" style="text-align: center; margin: 1rem auto; max-width: 300px; background: #f3f4f6; padding: 1rem; border-radius: 8px;">
+                <div class="code" id="codigo-attapoll" style="font-size: 1.5rem; font-weight: bold; margin-bottom: 0.5rem;">CGFKY</div>
+                <button class="btn-copy" id="copy-btn-attapoll" style="background: #2563eb; color: white; border: none; padding: 0.5rem 1rem; border-radius: 4px; cursor: pointer;">Copiar</button>
+            </div>
+        </div>
+    </article>
+
+    <style>
+        .button-container {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin: 2rem auto;
+        }
+        .action-button {
+            padding: 0.75rem 1.5rem;
+            background-color: #2563eb;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            text-decoration: none;
+            display: inline-block;
+            transition: background-color 0.3s;
+        }
+    </style>
+
+    <script is:inline>
+        const copyBtnAttapoll = document.getElementById('copy-btn-attapoll');
+        if (copyBtnAttapoll) {
+            copyBtnAttapoll.addEventListener('click', () => {
+                const code = document.getElementById('codigo-attapoll').textContent;
+                navigator.clipboard.writeText(code).then(() => {
+                    const originalText = copyBtnAttapoll.textContent;
+                    copyBtnAttapoll.textContent = 'Copiado!';
+                    copyBtnAttapoll.classList.add('success');
+                    setTimeout(() => {
+                        copyBtnAttapoll.textContent = originalText;
+                        copyBtnAttapoll.classList.remove('success');
+                    }, 2000);
+                });
+            });
+        }
+    </script>
+</MainLayout>

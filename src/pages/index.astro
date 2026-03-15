@@ -1,0 +1,28 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import PostCard from '../components/PostCard.astro';
+
+const posts = await Astro.glob('./**/*.astro');
+const latestPosts = posts
+    .filter(post => post.url && !post.url.endsWith('/') && post.title)
+    .sort((a, b) => new Date(b.date || '0').getTime() - new Date(a.date || '0').getTime())
+    .slice(0, 12);
+
+const title = "Lucrar Online - Seu Guia para Renda Extra na Internet";
+const description = "Aprenda a lucrar online com dicas de apps e sites para ganhar dinheiro e estratégias comprovadas";
+const categoria = "home";
+---
+
+<MainLayout title={title} description={description} categoria={categoria}>
+    <section class="posts-grid">
+        {latestPosts.map(post => (
+            <PostCard 
+                title={post.title || post.frontmatter?.title}
+                description={post.description || post.frontmatter?.description}
+                url={post.url}
+                image={post.image || post.frontmatter?.image || '/images/default-post.webp'}
+                date={post.date || post.frontmatter?.date}
+            />
+        ))}
+    </section>
+</MainLayout>

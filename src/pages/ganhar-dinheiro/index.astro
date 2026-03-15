@@ -1,0 +1,32 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+import PostCard from '../../components/PostCard.astro';
+
+const posts = await Astro.glob('../**/*.astro');
+const categoryPosts = posts
+    .filter(post => {
+        const postCategoria = post.frontmatter?.categoria || post.categoria;
+        return postCategoria === "GANHAR DINHEIRO" && post.url && !post.url.endsWith('/');
+    })
+    .sort((a, b) => new Date(b.date || '0').getTime() - new Date(a.date || '0').getTime());
+
+const categoria = "GANHAR DINHEIRO";
+const title = "GANHAR DINHEIRO";
+const description = "Confira nossos artigos detalhados sobre como ganhar dinheiro na internet.";
+---
+
+<MainLayout title={title} description={description} categoria={categoria} showRelacionados={false}>
+    <h1 class="page-title" style="margin-bottom: 2rem; color: #2563eb;">{title}</h1>
+    
+    <div class="posts-grid">
+        {categoryPosts.map(post => (
+            <PostCard 
+                title={post.title}
+                description={post.description}
+                url={post.url}
+                image={post.image || '/images/default-post.webp'}
+                date={post.date}
+            />
+        ))}
+    </div>
+</MainLayout>

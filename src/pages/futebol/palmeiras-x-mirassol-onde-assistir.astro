@@ -1,0 +1,136 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+
+export const title = "Palmeiras x Mirassol: Onde Assistir, Escalações e Horário (15/03)";
+export const description = "Saiba onde assistir Palmeiras x Mirassol ao vivo pelo Campeonato Brasileiro 2026. Veja as prováveis escalações, horário, local e detalhes da arbitragem.";
+export const categoria = "futebol";
+export const date = "2026-03-15";
+export const image = "/images/palmeiras-e-mirassol-onde-assisti.webp";
+---
+
+<MainLayout title={title} description={description} categoria={categoria}>
+    <style>
+        .match-info {
+            background: #fff;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+        .match-header {
+            text-align: center;
+            margin-bottom: 2rem;
+            border-bottom: 2px solid #2563eb;
+            padding-bottom: 1rem;
+        }
+        .match-header h1 {
+            color: #2563eb;
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+        .match-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .detail-item h3 {
+            color: #1f2937;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+        .lineups {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        .team-lineup {
+            background: #f3f4f6;
+            padding: 1.5rem;
+            border-radius: 8px;
+        }
+        .team-lineup h2 {
+            color: #2563eb;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            border-bottom: 1px solid #d1d5db;
+            padding-bottom: 0.5rem;
+        }
+        .officials {
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px solid #e5e7eb;
+        }
+        .back-link {
+            display: inline-block;
+            margin-top: 2rem;
+            color: #2563eb;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .back-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+
+    <div class="match-info">
+        <div class="match-header">
+            <h1>Palmeiras x Mirassol: onde assistir possiveis escalações e arbitragem</h1>
+            <p>Campeonato Brasileiro - 6ª rodada</p>
+        </div>
+
+        <div class="match-image-container" style="width: 100%; margin-bottom: 2rem;">
+            <img src="/images/palmeiras-e-mirassol-onde-assisti.webp" alt="Palmeiras x Mirassol - Onde Assistir" style="width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);" />
+        </div>
+
+        <div class="match-details">
+            <div class="detail-item">
+                <h3>Data e Horário</h3>
+                <p>15/3/2026 (domingo), às 18h30 (de Brasília)</p>
+            </div>
+            <div class="detail-item">
+                <h3>Local</h3>
+                <p>Allianz Parque, São Paulo (SP)</p>
+            </div>
+            <div class="detail-item">
+                <h3>Onde Assistir</h3>
+                <p>Sportv e Premiere</p>
+            </div>
+        </div>
+
+        <div class="match-preview" style="margin-bottom: 2rem; line-height: 1.8; color: #4b5563;">
+            <h2 style="color: #1f2937; margin-bottom: 1rem; border-left: 4px solid #2563eb; padding-left: 1rem;">O Que Esperar do Jogo</h2>
+            <p style="margin-bottom: 1rem;">
+                O Allianz Parque será o palco de mais um grande confronto pela 6ª rodada do Campeonato Brasileiro. O Palmeiras, sob o comando estratégico de Abel Ferreira, busca consolidar sua posição no topo da tabela, contando com a força de sua torcida e o talento de jogadores como <strong>Felipe Anderson</strong> e <strong>Flaco López</strong>. O Verdão entra em campo com uma formação ofensiva, aposta na criatividade de Jhon Arias e na solidez defensiva liderada pelo capitão Gustavo Gómez.
+            </p>
+            <p style="margin-bottom: 1rem;">
+                Do outro lado, o Mirassol, conhecido por ser um dos times mais organizados do interior paulista, promete não facilitar a vida do alviverde. Comandado por Ivan Baitello, a equipe conta com a experiência do goleiro Walter e a habilidade de Shaylon para tentar surpreender o Palmeiras em pleno Allianz. O Leão da Araraquarense deve apostar em contra-ataques rápidos e uma marcação forte no meio-campo para neutralizar as principais jogadas do adversário.
+            </p>
+            <p>
+                Este duelo é crucial para ambas as equipes na busca por seus objetivos na competição. Enquanto o Palmeiras quer manter o favoritismo e os três pontos em casa, o Mirassol vê neste jogo uma oportunidade de ouro para ganhar moral e subir na classificação. A promessa é de um jogo movimentado, com muita intensidade tática e emoção até o apito final.
+            </p>
+        </div>
+
+        <div class="lineups">
+            <div class="team-lineup">
+                <h2>PALMEIRAS</h2>
+                <p>Carlos Miguel; Khellven, Gustavo Gómez, Bruno Fuchs e Piquerez; Marlon Freitas e Andreas Pereira; Jhon Arias, Ramón Sosa e Felipe Anderson; Flaco López.</p>
+                <p><strong>Técnico:</strong> Abel Ferreira</p>
+            </div>
+            <div class="team-lineup">
+                <h2>MIRASSOL</h2>
+                <p>Walter; Igor Formiga, João Victor, Willian Machado e Reinaldo; Neto Moura e Aldo Filho; Shaylon; Firmino Negueba e Alesson; Nathan Fogaça.</p>
+                <p><strong>Técnico:</strong> Ivan Baitello</p>
+            </div>
+        </div>
+
+        <div class="officials">
+            <h3>Arbitragem</h3>
+            <p><strong>Árbitro:</strong> Rodrigo Jose Pereira de Lima (PE)</p>
+            <p><strong>Assistentes:</strong> Francisco Chaves Bezerra Junior (PE) e Bruno Cesar Chaves Vieira (PE)</p>
+            <p><strong>VAR:</strong> Marcio Henrique de Gois (SP)</p>
+        </div>
+
+        <a href="/" class="back-link">← Voltar para o início</a>
+    </div>
+</MainLayout>
