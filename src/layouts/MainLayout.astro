@@ -14,6 +14,11 @@ const {
 	categoria = "geral",
 	showRelacionados = true
 } = Astro.props;
+
+let canonicalPathname = Astro.url.pathname;
+if (canonicalPathname.endsWith('.html')) canonicalPathname = canonicalPathname.slice(0, -5);
+if (canonicalPathname !== '/' && !canonicalPathname.endsWith('/')) canonicalPathname += '/';
+const canonicalURL = new URL(canonicalPathname, Astro.site ?? 'https://www.lucrar.link/').href;
 ---
 
 <!doctype html>
@@ -24,6 +29,7 @@ const {
 		<meta name="description" content={description} />
 		<meta name="keywords" content="lucrar online, renda extra, app para ganhar dinheiro" />
 		<title>{title}</title>
+		<link rel="canonical" href={canonicalURL} />
 		<link rel="stylesheet" href="/styles.css" />
 		<style is:global>
 			/* Importando estilos globais se necessário */
