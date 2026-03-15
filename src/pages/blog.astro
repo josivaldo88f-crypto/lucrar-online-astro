@@ -4,8 +4,16 @@ import PostCard from '../components/PostCard.astro';
 
 const posts = await Astro.glob('./post/*.astro');
 const blogPosts = posts
-    .filter(post => post.url && !post.url.endsWith('/') && post.title)
-    .sort((a, b) => new Date(b.date || '0').getTime() - new Date(a.date || '0').getTime());
+    .filter(post => {
+        const title = post.title || post.frontmatter?.title;
+        // Deve ter título, URL e não ser uma página de índice
+        return post.url && title && !post.url.endsWith('/') && !post.url.endsWith('/index');
+    })
+    .sort((a, b) => {
+        const dateA = new Date(a.date || a.frontmatter?.date || '0').getTime();
+        const dateB = new Date(b.date || b.frontmatter?.date || '0').getTime();
+        return dateB - dateA;
+    });
 
 const title = "Blog - Lucrar Online";
 const description = "Blog sobre como lucrar online, dicas e estratégias para ganhar dinheiro na internet";
@@ -16,15 +24,22 @@ const categoria = "blog";
     <h1 class="page-title" style="margin-bottom: 2rem; color: #2563eb;">Blog</h1>
     
     <div class="posts-grid">
-        {blogPosts.map(post => (
-            <PostCard 
-                title={post.title}
-                description={post.description}
-                url={post.url}
-                image={post.image || '/images/default-post.webp'}
-                date={post.date}
-            />
-        ))}
+        {blogPosts.map(post => {
+            const postTitle = post.title || post.frontmatter?.title;
+            const postDescription = post.description || post.frontmatter?.description;
+            const postImage = post.image || post.frontmatter?.image || '/images/default-post.webp';
+            const postDate = post.date || post.frontmatter?.date;
+            
+            return (
+                <PostCard 
+                    title={postTitle}
+                    description={postDescription}
+                    url={post.url}
+                    image={postImage}
+                    date={postDate}
+                />
+            );
+        })}
     </div>
 
     <nav aria-label="breadcrumb" style="margin-top: 2rem;">
