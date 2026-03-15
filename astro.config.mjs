@@ -4,7 +4,11 @@ import sitemap from '@astrojs/sitemap';
 // https://astro.build/config
 export default defineConfig({
   site: 'https://www.lucrar.link',
+  integrations: [
+    sitemap() // <-- ESSA LINHA FALTAVA!
+  ],
   build: {
-    format: 'directory' // URLs limpas (ex: /blog em vez de /blog.html)
+    format: 'directory' 
   }
 });
+
