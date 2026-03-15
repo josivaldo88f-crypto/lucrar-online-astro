@@ -5,12 +5,15 @@ import PostCard from '../../components/PostCard.astro';
 const posts = await Astro.glob('./*.astro');
 const categoryPosts = posts
     .filter(post => {
-        // Ignora a própria página de índice
-        if (post.url === '/futebol' || post.url === '/futebol/') return false;
-        // Verifica se tem título e url (o Astro.glob retorna objetos mesmo para arquivos sem export)
-        return post.title && post.url;
+        const title = post.title || post.frontmatter?.title;
+        // Ignora a própria página de índice e posts sem título
+        return post.url && title && post.url !== Astro.url.pathname && post.url !== Astro.url.pathname + '/';
     })
-    .sort((a, b) => new Date(b.date || '0').getTime() - new Date(a.date || '0').getTime());
+    .sort((a, b) => {
+        const dateA = new Date(a.date || a.frontmatter?.date || '0').getTime();
+        const dateB = new Date(b.date || b.frontmatter?.date || '0').getTime();
+        return dateB - dateA;
+    });
 
 const categoria = "futebol";
 const title = "Futebol";
@@ -21,14 +24,21 @@ const description = "Confira as últimas notícias, análises e onde assistir ao
     <h1 class="page-title" style="margin-bottom: 2rem; color: #2563eb;">{title}</h1>
     
     <div class="posts-grid">
-        {categoryPosts.map(post => (
-            <PostCard 
-                title={post.title}
-                description={post.description}
-                url={post.url}
-                image={post.image || '/images/default-post.webp'}
-                date={post.date}
-            />
-        ))}
+        {categoryPosts.map(post => {
+            const title = post.title || post.frontmatter?.title;
+            const description = post.description || post.frontmatter?.description;
+            const image = post.image || post.frontmatter?.image || '/images/default-post.webp';
+            const date = post.date || post.frontmatter?.date;
+            
+            return (
+                <PostCard 
+                    title={title}
+                    description={description}
+                    url={post.url}
+                    image={image}
+                    date={date}
+                />
+            );
+        })}
     </div>
 </MainLayout>

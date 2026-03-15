@@ -5,10 +5,14 @@ import PostCard from '../../components/PostCard.astro';
 const posts = await Astro.glob('./*.astro');
 const categoryPosts = posts
     .filter(post => {
-        if (post.url === '/relacionamento' || post.url === '/relacionamento/') return false;
-        return post.title && post.url;
+        const title = post.title || post.frontmatter?.title;
+        return post.url && title && post.url !== Astro.url.pathname && post.url !== Astro.url.pathname + '/';
     })
-    .sort((a, b) => new Date(b.date || '0').getTime() - new Date(a.date || '0').getTime());
+    .sort((a, b) => {
+        const dateA = new Date(a.date || a.frontmatter?.date || '0').getTime();
+        const dateB = new Date(b.date || b.frontmatter?.date || '0').getTime();
+        return dateB - dateA;
+    });
 
 const categoria = "relacionamento";
 const title = "Relacionamento - Lucrar Online";
@@ -19,14 +23,21 @@ const description = "Dicas e aplicativos para melhorar seus relacionamentos e en
     <h1 class="page-title" style="margin-bottom: 2rem; color: #2563eb;">{title}</h1>
     
     <div class="posts-grid">
-        {categoryPosts.map(post => (
-            <PostCard 
-                title={post.title}
-                description={post.description}
-                url={post.url}
-                image={post.image || '/images/default-post.webp'}
-                date={post.date}
-            />
-        ))}
+        {categoryPosts.map(post => {
+            const postTitle = post.title || post.frontmatter?.title;
+            const postDescription = post.description || post.frontmatter?.description;
+            const postImage = post.image || post.frontmatter?.image || '/images/default-post.webp';
+            const postDate = post.date || post.frontmatter?.date;
+            
+            return (
+                <PostCard 
+                    title={postTitle}
+                    description={postDescription}
+                    url={post.url}
+                    image={postImage}
+                    date={postDate}
+                />
+            );
+        })}
     </div>
 </MainLayout>
