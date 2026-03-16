@@ -45,11 +45,11 @@ const canonicalURL = new URL(canonicalPathname, Astro.site ?? 'https://www.lucra
 				<nav class="nav">
 					<ul class="nav-list">
 						<li><a href="/" class="nav-link">Início</a></li>
-						<li><a href="/ganhar-dinheiro" class="nav-link">Ganhar Dinheiro</a></li>
-						<li><a href="/melhores-apps" class="nav-link">Lista de Melhores Apps</a></li>
-						<li><a href="/blog" class="nav-link">Blog</a></li>
-						<li><a href="/código-de-convite-do-app-rio-rush-descub" class="nav-link">Código de convite Rio Rush</a></li>
-						<li><a href="/app-para-ganhar-dinheiro-assistindo-vídeos" class="nav-link">Ganhe assistindo video</a></li>
+						<li><a href="/ganhar-dinheiro/" class="nav-link">Ganhar Dinheiro</a></li>
+						<li><a href="/melhores-apps/" class="nav-link">Lista de Melhores Apps</a></li>
+						<li><a href="/blog/" class="nav-link">Blog</a></li>
+						<li><a href="/código-de-convite-do-app-rio-rush-descub/" class="nav-link">Código de convite Rio Rush</a></li>
+						<li><a href="/app-para-ganhar-dinheiro-assistindo-vídeos/" class="nav-link">Ganhe assistindo video</a></li>
 					</ul>
 				</nav>
 			</div>
@@ -69,8 +69,14 @@ const canonicalURL = new URL(canonicalPathname, Astro.site ?? 'https://www.lucra
 		</footer>
 
 		<script>
-			// Menu Toggle Script
 			document.addEventListener('DOMContentLoaded', function() {
+				const pathname = window.location.pathname;
+				const shouldAddTrailingSlash = pathname !== '/' && !pathname.endsWith('/') && !pathname.includes('.');
+				if (shouldAddTrailingSlash) {
+					window.location.replace(pathname + '/' + window.location.search + window.location.hash);
+					return;
+				}
+
 				const menuToggle = document.querySelector('.menu-toggle');
 				const nav = document.querySelector('.nav');
 				
