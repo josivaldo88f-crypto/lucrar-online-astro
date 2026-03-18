@@ -1,0 +1,231 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+
+// SEO e Metadados
+export const title = "Novo Jogo Pagando no Pix e PagBank: Lançamento Puzzle Farm 2026";
+export const description = "Conheça o Puzzle Farm, novo aplicativo de jogo lançado em 2026 que promete pagar via Pix, PagBank e Mercado Pago. Veja como baixar e ganhar.";
+export const categoria = "GANHAR DINHEIRO";
+export const date = "2026-03-18";
+export const image = "/images/jogo-que-paga-no-pix-puzzle-farm.jpg"; // Altere para a URL da sua imagem
+---
+
+<MainLayout title={title} description={description} categoria={categoria}>
+    <article class="post-full">
+        <h1 class="post-title">{title}</h1>
+        
+        <div class="post-meta">
+            <time datetime={date}>Publicado em 18 de Março de 2026</time>
+        </div>
+
+        <div class="video-container">
+            <iframe 
+                width="100%" 
+                height="450" 
+                src="https://www.youtube.com/embed/GfM6hojuMwc" 
+                title="Novo Aplicativo que Paga no Pix" 
+                frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                allowfullscreen
+                loading="lazy">
+            </iframe>
+        </div>
+
+        <div class="post-content">
+            <p>
+                Acabou de ser lançado um novo aplicativo de joguinho que está chamando a atenção de quem busca uma renda extra. O app promete pagamentos via <strong>Pix, PagBank e Mercado Pago</strong>. Lançado oficialmente em 2 de fevereiro de 2026, o jogo ainda é muito recente e conta com poucos downloads, o que aumenta as chances de conseguir as primeiras recompensas.
+            </p>
+
+            <div class="action-box">
+                <a href="https://puzzlefarm.shareearn3.com/?code=10336544" target="_blank" class="download-btn">
+                    <i class="fas fa-download"></i> BAIXAR APLICATIVO AGORA
+                </a>
+                
+                <div class="code-section">
+                    <span>Código de Convite:</span>
+                    <div class="copy-wrapper">
+                        <input type="text" value="10336544" id="inviteCode" readonly />
+                        <button onclick="copyCode()" id="copyBtn">Copiar</button>
+                    </div>
+                </div>
+            </div>
+
+            <h2>Como funciona o Aplicativo?</h2>
+            <p>
+                O funcionamento é simples: trata-se de um jogo de mesclagem (match) onde você deve unir figuras iguais. Ao avançar no jogo, surgem anúncios premiados que liberam <strong>notas verdes e moedas</strong>. 
+            </p>
+            
+            <p>
+                Confira também nossa lista com <a href="https://www.lucrar.link/melhores-apps/">Mais de 15 Apps e jogos de Ganhar Dinheiro no Pix, PagBank, PayPal</a> para maximizar seus ganhos diários.
+            </p>
+
+            <h2>Dicas do TikTok e Recompensas Extras</h2>
+            <p>
+                Antes de focar apenas no lançamento, uma dica de ouro: se você é um usuário inativo no TikTok há mais de 30 dias ou ainda não tem conta, pode ganhar até R$ 5,00 apenas colocando um código de convite. É uma das formas mais rápidas de garantir o primeiro saque hoje mesmo.
+            </p>
+
+            <p>
+                Outra excelente opção para quem gosta de tarefas simples é aprender <a href="https://www.lucrar.link/como-ganhar-dinheiro-respondedo-pesquisas-attapoll/">Como Ganhar Dinheiro Respondendo Pesquisas no App AttaPoll</a>, que possui um dos menores valores de saque do mercado.
+            </p>
+
+            <h2>Saques e Valores</h2>
+            <p>
+                No novo jogo Puzzle Farm, os saques de notas verdes começam a partir de <strong>R$ 0,05 e R$ 0,20</strong>, permitindo que você teste o pagamento logo no primeiro dia de uso. Já as moedas exigem um acúmulo maior para desbloqueio.
+            </p>
+
+            <div class="disclaimer">
+                <p><strong>Aviso:</strong> Não temos vínculo com os desenvolvedores. Aplicativos de renda extra podem parar de pagar a qualquer momento e os valores costumam ser baixos para quem não realiza convites.</p>
+            </div>
+        </div>
+    </article>
+
+    <script is:inline>
+        function copyCode() {
+            var copyText = document.getElementById("inviteCode");
+            copyText.select();
+            copyText.setSelectionRange(0, 99999);
+            navigator.clipboard.writeText(copyText.value);
+            
+            var btn = document.getElementById("copyBtn");
+            btn.innerText = "Copiado!";
+            btn.style.background = "#059669";
+            setTimeout(() => {
+                btn.innerText = "Copiar";
+                btn.style.background = "#2563eb";
+            }, 2000);
+        }
+    </script>
+
+    <style>
+        .post-full {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 1rem;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        .post-title {
+            color: #111827;
+            font-size: 2.2rem;
+            line-height: 1.3;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        .post-meta {
+            text-align: center;
+            color: #64748b;
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        /* VÍDEO RESPONSIVO */
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* Proporção 16:9 */
+            height: 0;
+            overflow: hidden;
+            border-radius: 12px;
+            background: #000;
+            margin-bottom: 2rem;
+        }
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* BOTÕES DE AÇÃO */
+        .action-box {
+            background: #f8fafc;
+            padding: 2rem;
+            border-radius: 12px;
+            border: 2px dashed #cbd5e1;
+            text-align: center;
+            margin: 2rem 0;
+        }
+        .download-btn {
+            display: inline-block;
+            background: #2563eb;
+            color: white !important;
+            padding: 1.2rem 2rem;
+            border-radius: 50px;
+            font-weight: bold;
+            text-decoration: none;
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            transition: transform 0.2s;
+            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
+        }
+        .download-btn:hover {
+            transform: scale(1.05);
+            background: #1d4ed8;
+        }
+        .code-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .copy-wrapper {
+            display: flex;
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            overflow: hidden;
+            width: 100%;
+            max-width: 300px;
+        }
+        .copy-wrapper input {
+            border: none;
+            padding: 0.8rem;
+            width: 70%;
+            text-align: center;
+            font-weight: bold;
+            color: #1e293b;
+            outline: none;
+        }
+        .copy-wrapper button {
+            background: #2563eb;
+            color: white;
+            border: none;
+            padding: 0.8rem;
+            width: 30%;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .post-content {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #334155;
+        }
+        .post-content p {
+            margin-bottom: 1.5rem;
+        }
+        .post-content h2 {
+            color: #1e293b;
+            font-size: 1.6rem;
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
+            border-left: 4px solid #2563eb;
+            padding-left: 1rem;
+        }
+        .disclaimer {
+            background: #fff1f2;
+            padding: 1rem;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            border: 1px solid #fecdd3;
+            margin-top: 3rem;
+        }
+
+        @media (max-width: 768px) {
+            .post-title { font-size: 1.6rem; }
+            .post-content { font-size: 1rem; }
+            .download-btn { font-size: 1rem; width: 100%; }
+        }
+    </style>
+</MainLayout>
