@@ -1,0 +1,99 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+
+export const title = "Governo Anuncia Novas Medidas para Evitar Paralisação de Caminhoneiros";
+export const description = "Com o aumento do diesel e ameaça de nova paralisação, o governo federal lança pacote focado na fiscalização do frete mínimo e negocia redução de impostos.";
+export const categoria = "noticias";
+export const date = "2026-03-18";
+export const image = "/images/greve-caminhoneiros.jpg";
+---
+
+<MainLayout title={title} description={description} categoria={categoria}>
+    <article class="post-full">
+        <h1 class="post-title">{title}</h1>
+        <div class="post-meta">
+            <time datetime={date}>Publicado em 18 de Março de 2026</time>
+        </div>
+        
+        <div class="post-image-container">
+            <img src={image} alt="Protesto de caminhoneiros em rodovia bloqueada" class="featured-image" />
+        </div>
+        
+        <div class="post-content">
+            <p>Com o objetivo de conter uma possível nova paralisação nacional de caminhoneiros — semelhante à crise que parou o Brasil em 2018 —, o governo federal prepara uma série de ações estratégicas focadas no setor de transportes.</p>
+
+            <p>O pacote de medidas deve ser detalhado em coletiva de imprensa nesta quarta-feira (18), conduzida pelo ministro dos Transportes, Renan Filho, em conjunto com Guilherme Sampaio, diretor-geral da Agência Nacional de Transportes Terrestres (ANTT).</p>
+
+            <h2>Foco na Fiscalização do Frete</h2>
+            <p>A principal meta da nova iniciativa é endurecer a fiscalização para garantir que a tabela do piso mínimo de frete seja rigorosamente respeitada pelos contratantes. Além disso, o governo pretende aplicar sanções mais severas e responsabilizar de forma direta as empresas e infratores que descumprirem as regras de forma contínua.</p>
+
+            <h2>O Peso do Óleo Diesel</h2>
+            <p>O clima de tensão entre os motoristas profissionais cresceu nas últimas semanas, impulsionado pelo aumento expressivo no preço do óleo diesel. Representantes e lideranças da categoria alertam que os custos atuais tornam o transporte de cargas financeiramente insustentável, traçando um paralelo preocupante com o cenário de 2018.</p>
+
+            <p>Buscando aliviar essa pressão econômica sobre os caminhoneiros, o Ministério da Fazenda já iniciou rodadas de negociação com os governos estaduais. O objetivo é chegar a um acordo para a redução do ICMS sobre os combustíveis. Como medida emergencial, na última semana, o governo federal já havia zerado a cobrança de tributos federais incidentes sobre o diesel.</p>
+
+            <h2>Investigação da Polícia Federal</h2>
+            <p>Além das ações de cunho econômico e regulatório, os recentes reajustes nos combustíveis também entraram na mira da Justiça. A escalada dos preços motivou a abertura de um inquérito por parte da Polícia Federal, que passará a investigar as causas e eventuais irregularidades na precificação do diesel nas bombas.</p>
+        </div>
+    </article>
+
+    <style>
+        .post-full {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 1rem;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        .post-title {
+            color: #111827;
+            font-size: 2.2rem;
+            line-height: 1.3;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        .post-meta {
+            text-align: center;
+            color: #64748b;
+            margin-bottom: 2rem;
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+        .post-image-container {
+            margin-bottom: 2.5rem;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .featured-image {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: cover;
+        }
+        .post-content {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #334155;
+        }
+        .post-content p {
+            margin-bottom: 1.5rem;
+        }
+        .post-content h2 {
+            color: #2563eb;
+            font-size: 1.5rem;
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 0.5rem;
+        }
+        @media (max-width: 768px) {
+            .post-title {
+                font-size: 1.6rem;
+            }
+            .post-content {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</MainLayout>
