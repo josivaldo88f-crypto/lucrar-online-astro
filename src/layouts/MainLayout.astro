@@ -31,6 +31,15 @@ const canonicalURL = new URL(canonicalPathname, Astro.site ?? 'https://www.lucra
 		<title>{title}</title>
 		<link rel="canonical" href={canonicalURL} />
 		<link rel="stylesheet" href="/styles.css" />
+		<script type="text/partytown" async src="https://www.googletagmanager.com/gtag/js?id=G-7225X73JRY"></script>
+		<script type="text/partytown" is:inline>
+			window.dataLayer = window.dataLayer || [];
+			function gtag() {
+				dataLayer.push(arguments);
+			}
+			gtag('js', new Date());
+			gtag('config', 'G-7225X73JRY');
+		</script>
 		<style is:global>
 			/* Importando estilos globais se necessário */
             .youtube-btn {
