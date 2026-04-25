@@ -1,18 +1,10 @@
 import { defineConfig } from 'astro/config';
-import partytown from '@astrojs/partytown';
 import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
   site: 'https://www.lucrar.link/',
-  integrations: [
-    sitemap(),
-    partytown({
-      config: {
-        forward: ['dataLayer.push']
-      }
-    })
-  ],
+  integrations: [sitemap()],
   trailingSlash: 'always',
   build: {
     format: 'directory'
