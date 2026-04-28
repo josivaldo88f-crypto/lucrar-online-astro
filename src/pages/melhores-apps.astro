@@ -237,6 +237,24 @@ const apps = [
         .lb-copy-btn.copied {
             background-color: #10b981;
         }
+        .lb-disclaimer {
+            margin-top: 2rem;
+            padding: 0.9rem 1rem;
+            text-align: center;
+            font-size: 0.8rem;
+            line-height: 1.65;
+            color: #4b5563;
+            background: #f9fafb;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+        }
+        .lb-info-text {
+            margin-top: 2rem;
+            text-align: center;
+            font-size: 0.95rem;
+            line-height: 1.7;
+            color: #4b5563;
+        }
         @media (max-width: 480px) {
             .lb-logo-container {
                 width: 64px;
@@ -245,6 +263,13 @@ const apps = [
             .lb-card {
                 min-height: 64px;
             }
+            .lb-disclaimer {
+                font-size: 0.78rem;
+                padding: 0.85rem 0.9rem;
+            }
+            .lb-info-text {
+                font-size: 0.9rem;
+            }
         }
     </style>
 
@@ -252,9 +277,8 @@ const apps = [
         <div class="lb-header">
             <h1 class="lb-title">Mais de 15 Apps e jogos de Ganhar Dinheiro no Pix, PagBank, PayPal</h1>
             <p class="lb-subtitle">💸 Confira a lista de aplicativos e sites para ganhar dinheiro! 🤑 E o melhor: estamos sempre adicionando mais opções! 🔄 Volte regularmente para não perder nenhuma novidade. 🚀💻 </p>
-            <div style="margin-top: 2rem; text-align: left; background: #fff; padding: 1.5rem; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); color: #4b5563;">
-                <p style="margin-bottom: 1rem;">Se você está buscando uma maneira de fazer <strong>renda extra online</strong>, esta lista é o lugar certo. Selecionamos os aplicativos mais confiáveis que pagam via <strong>Pix, PagBank e PayPal</strong>.</p>
-                <p>Muitos desses apps permitem ganhar dinheiro apenas jogando, assistindo vídeos ou respondendo pesquisas simples. Confira abaixo os links de download e não esqueça de usar os <strong>códigos de convite</strong> para começar com bônus!</p>
+            <div class="lb-disclaimer">
+                <p>Atencão: O canal Lucrar Online e o site lucrar.link apenas compartilham dicas de renda extra e não possuem vinculo com os desenvolvedores dos apps listados. Os ganhos nao sao promessa de riqueza e variam conforme o seu uso (tarefas, jogos e convites). Todo e qualquer pagamento e de responsabilidade unica do desenvolvedor do aplicativo/site.</p>
             </div>
         </div>
 
@@ -277,6 +301,10 @@ const apps = [
                     </a>
                 </div>
             ))}
+        </div>
+        <div class="lb-info-text">
+            Se você está buscando uma maneira de fazer renda extra online, esta lista é o lugar certo. Selecionamos os aplicativos mais confiáveis que pagam via Pix, PagBank e PayPal.
+            Muitos desses apps permitem ganhar dinheiro apenas jogando, assistindo vídeos ou respondendo pesquisas simples. Confira abaixo os links de download e não esqueça de usar os códigos de convite para começar com bônus!
         </div>
 
         <p style="margin-top: 2rem; text-align: center; color: #6b7280; font-size: 0.95rem;">
