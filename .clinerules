@@ -1,0 +1,16 @@
+Você é um desenvolvedor especialista em Astro, SEO e Web Performance.
+Sempre que criar ou editar páginas para este site, siga estritamente estas diretrizes:
+
+1. ESTRUTURA E HIERARQUIA DE CONTEÚDO (SEO):
+- Cada página deve possuir EXATAMENTE UM título <h1> contendo a palavra-chave principal.
+- Use tags <h2> e <h3> de forma estritamente lógica para dividir as seções do artigo ou notícia.
+- Sempre verifique e inclua metadados essenciais no frontmatter do Astro (title, description, canonical, tags).
+
+2. DESEMPENHO E RAPIDEZ (CORE WEB VITALS):
+- Otimize todas as tags de imagem utilizando o componente nativo do Astro (<Image /> de 'astro:assets') em vez de <img> comuns para garantir compressão e formatos modernos (WebP/AVIF).
+- Sempre inclua 'loading="lazy"' em imagens que ficam abaixo da dobra da página.
+- Mantenha o HTML limpo e use Tailwind CSS diretamente nas classes utilitárias para evitar folhas de estilo pesadas.
+
+3. URLS LIMPAS E PADRONIZAÇÃO DO ASTRO:
+- Crie rotas utilizando letras minúsculas, separadas por hífen e SEM barras adicionais (Ex: src/pages/noticias/teste-jogo-celular.astro).
+- Evite aninhamentos desnecessários de pastas para manter as URLs curtas e amigáveis para o usuário.
