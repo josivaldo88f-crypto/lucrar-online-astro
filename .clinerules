@@ -14,3 +14,16 @@ Sempre que criar ou editar páginas para este site, siga estritamente estas dire
 3. URLS LIMPAS E PADRONIZAÇÃO DO ASTRO:
 - Crie rotas utilizando letras minúsculas, separadas por hífen e SEM barras adicionais (Ex: src/pages/noticias/teste-jogo-celular.astro).
 - Evite aninhamentos desnecessários de pastas para manter as URLs curtas e amigáveis para o usuário.
+
+4. DIRETRIZES ANTIPLÁGIO E ORIGINALIDADE:
+- Proibido copiar trechos, parágrafos ou frases idênticas de fontes da internet.
+- Todo conteúdo extraído via "Embasamento com a Pesquisa Google" ou buscas no YouTube deve ser totalmente REESCRITO e PARAFRASEADO com suas próprias palavras.
+- Mantenha um tom editorial único, dinâmico e focado no público brasileiro.
+- Sempre cite informações de terceiros de forma indireta (Ex: "Segundo dados de mercado..." ou "Testes recentes apontam que...").
+- Garanta que a estrutura do texto (títulos e ordem das informações) seja original e superior à concorrência pesquisada.
+
+5. ESTRATÉGIA DE LINKAGEM INTERNA (SEO):
+- Sempre que criar um artigo novo, você deve ler a pasta da categoria correspondente em 'src/pages/' para identificar artigos antigos que já existem.
+- Insira de 1 a 3 links contextualizados no corpo do novo texto apontando para essas páginas antigas da mesma categoria.
+- Use URLs limpas e relativas do Astro (Ex: <a href="/ganhar-dinheiro/nome-do-artigo-antigo">texto âncora</a>).
+- PROIBIDO usar textos âncora genéricos como "clique aqui" ou "leia mais". O link deve estar naturalmente inserido em uma palavra-chave relevante (Ex: "...essencial para saber se o <a href="/ferramentas/calculadora-fps">jogo roda liso</a> no dispositivo...").

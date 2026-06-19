@@ -26,3 +26,7 @@ Thumbs.db
 .idea/
 *.swp
 *.swo
+
+# Regras de agentes de IA
+AGENTS.md
+.clinerules
