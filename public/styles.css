@@ -31,27 +31,50 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 80px;
+    height: 60px;
+    gap: 1rem;
 }
 
 .logo {
-    font-size: 1.8rem;
+    font-size: 1.4rem;
     font-weight: 700;
     color: #2563eb;
     text-decoration: none;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.nav {
+    overflow-x: auto;
+    overflow-y: hidden;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    flex: 1;
+}
+
+.nav::-webkit-scrollbar {
+    display: none;
 }
 
 .nav-list {
     display: flex;
     list-style: none;
-    gap: 2rem;
+    gap: 1.2rem;
+    white-space: nowrap;
 }
 
 .nav-link {
     color: #4b5563;
     text-decoration: none;
     font-weight: 500;
+    font-size: 0.88rem;
     transition: color 0.3s;
+    white-space: nowrap;
+}
+
+/* Botao "Mais" escondido no desktop, visivel no mobile */
+.nav-more-item {
+    display: none;
 }
 
 .nav-link:hover {
@@ -149,35 +172,115 @@ body {
 @media (max-width: 768px) {
     .menu-toggle {
         display: block;
+        flex-shrink: 0;
     }
 
     .header .container {
+        display: flex;
         flex-direction: row;
-        justify-content: space-between;
+        justify-content: flex-start;
+        align-items: center;
+        flex-wrap: nowrap;
         height: auto;
-        padding: 1rem;
+        min-height: 48px;
+        padding: 0.3rem 0.6rem;
+        gap: 0.3rem;
+    }
+
+    .logo {
+        font-size: 1rem;
+        margin-right: 0.3rem;
+        flex-shrink: 0;
     }
 
     .nav {
-        position: fixed;
-        top: 0;
-        right: -100%;
-        width: 100%;
-        height: 100vh;
-        background-color: #fff;
-        padding: 80px 2rem 2rem;
-        transition: right 0.3s ease-in-out;
-        z-index: 100;
+        position: static;
+        flex: 1;
+        overflow-x: auto;
+        overflow-y: hidden;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+        background: none;
+        width: auto;
+        height: auto;
+        padding: 0;
+        min-width: 0;
     }
-
-    .nav.nav-open {
-        right: 0;
+    .nav::-webkit-scrollbar {
+        display: none;
+    }
+    /* Quando expandido, desliga scroll horizontal */
+    .nav.expanded {
+        overflow: visible;
     }
 
     .nav-list {
-        flex-direction: column;
+        flex-direction: row;
+        flex-wrap: nowrap;
         align-items: center;
-        gap: 1.5rem;
+        gap: 0.25rem;
+        white-space: nowrap;
+    }
+
+    /* Itens escondidos no mobile, aparecem só ao expandir */
+    .nav-list li.nav-hidden {
+        display: none;
+    }
+    .nav-list.expanded li.nav-hidden {
+        display: list-item;
+    }
+
+    /* Estado expandido: desliga scroll horizontal e mostra tudo */
+    .nav-list.expanded {
+        flex-wrap: wrap;
+        overflow: visible;
+        max-height: none;
+    }
+
+    /* Botão "Mais" no mobile */
+    .nav-more-item {
+        display: list-item !important;
+        flex-shrink: 0;
+    }
+    .nav-more-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.15rem;
+        background: #eef2ff;
+        border: 1px solid #c7d2fe;
+        border-radius: 6px;
+        padding: 0.2rem 0.45rem;
+        font-size: 0.75rem;
+        font-weight: 600;
+        color: #4f46e5;
+        cursor: pointer;
+        transition: all 0.2s;
+        white-space: nowrap;
+        font-family: inherit;
+        line-height: 1.3;
+    }
+    .nav-more-btn:hover {
+        background: #e0e7ff;
+    }
+    .nav-more-arrow {
+        display: inline-block;
+        font-size: 0.6rem;
+        transition: transform 0.3s;
+    }
+    .nav-list.expanded .nav-more-arrow {
+        transform: rotate(180deg);
+    }
+
+    /* Links menores no mobile */
+    .nav-link {
+        font-size: 0.8rem;
+        padding: 0.1rem 0;
+    }
+
+    /* Estado expandido ocupa largura total */
+    .nav-list.expanded {
+        width: 100%;
     }
 
     .posts-grid {

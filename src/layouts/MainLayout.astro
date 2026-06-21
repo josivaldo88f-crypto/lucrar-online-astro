@@ -15,6 +15,29 @@ const {
 	showRelacionados = true
 } = Astro.props;
 
+// Mapeia categoria → nome amigável e URL do link de navegação
+const categoriaMap: Record<string, { nome: string; navUrl: string }> = {
+	home: { nome: "Início", navUrl: "/" },
+	noticias: { nome: "Notícias", navUrl: "/noticias/" },
+	futebol: { nome: "Futebol", navUrl: "/futebol/" },
+	comprar: { nome: "Comprar", navUrl: "/comprar/" },
+	"GANHAR DINHEIRO": { nome: "Ganhar Dinheiro", navUrl: "/ganhar-dinheiro/" },
+	ferramentas: { nome: "Ferramentas", navUrl: "/ferramentas/" },
+	blog: { nome: "Blog", navUrl: "/blog/" },
+	post: { nome: "Blog", navUrl: "/blog/" },
+	relacionamento: { nome: "Relacionamento", navUrl: "" },
+	geral: { nome: "Lucrar Online", navUrl: "" },
+};
+
+const catInfo = categoriaMap[categoria] || categoriaMap["geral"];
+const nomeCategoria = catInfo.nome;
+const navAtivo = catInfo.navUrl;
+
+// Título da aba: só mostra a categoria e o título, sem "Lucrar Online"
+const tituloAba = categoria === "home" 
+	? "Lucrar Online - Seu Guia para Renda Extra na Internet"
+	: title === nomeCategoria ? nomeCategoria : `${nomeCategoria} | ${title}`;
+
 let canonicalPathname = Astro.url.pathname;
 if (canonicalPathname.endsWith('.html')) canonicalPathname = canonicalPathname.slice(0, -5);
 if (canonicalPathname !== '/' && !canonicalPathname.endsWith('/')) canonicalPathname += '/';
@@ -28,7 +51,7 @@ const canonicalURL = new URL(canonicalPathname, Astro.site ?? 'https://www.lucra
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<meta name="description" content={description} />
 		<meta name="keywords" content="lucrar online, renda extra, app para ganhar dinheiro" />
-		<title>{title}</title>
+		<title>{tituloAba}</title>
 		<link rel="canonical" href={canonicalURL} />
 		<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
 		<link rel="icon" href="/favicon.ico" sizes="any" />
@@ -61,29 +84,50 @@ const canonicalURL = new URL(canonicalPathname, Astro.site ?? 'https://www.lucra
                 transform: scale(1.05);
                 text-decoration: none;
             }
+
+			/* Destaque do link ativo na navegação */
+			.nav-link.active {
+				color: #6366f1 !important;
+				font-weight: 700;
+				position: relative;
+			}
+			.nav-link.active::after {
+				content: '';
+				position: absolute;
+				bottom: -4px;
+				left: 50%;
+				transform: translateX(-50%);
+				width: 60%;
+				height: 3px;
+				background: linear-gradient(90deg, #6366f1, #8b5cf6);
+				border-radius: 2px;
+			}
+			.youtube-btn.active {
+				color: white !important;
+			}
+			.youtube-btn.active::after {
+				background: white;
+			}
 		</style>
 	</head>
 	<body>
 		<header class="header">
 			<div class="container">
-				<h1 class="logo"><a href="/" style="text-decoration: none; color: inherit;">Lucrar Online</a></h1>
-				<button class="menu-toggle" aria-label="Abrir menu">
-					<span class="hamburger"></span>
-				</button>
+				<h1 class="logo"><a href="/" style="text-decoration: none; color: inherit;">{categoria === "home" ? "Lucrar Online" : nomeCategoria}</a></h1>
 				<nav class="nav">
 					<ul class="nav-list">
-						<li><a href="/" class="nav-link">Início</a></li>
-						<li><a href="/noticias/" class="nav-link">Notícias</a></li>
-						<li><a href="/ganhar-dinheiro/" class="nav-link">Ganhar Dinheiro</a></li>
-						<li><a href="/melhores-apps/" class="nav-link">Lista de Melhores Apps</a></li>
-						<li><a href="/blog/" class="nav-link">Blog</a></li>
-						<li><a href="/código-de-convite-do-app-rio-rush-descub/" class="nav-link">Código de convite Rio Rush</a></li>
-						<li><a href="/app-para-ganhar-dinheiro-assistindo-vídeos/" class="nav-link">Ganhe assistindo video</a></li>
-						<li>
-							<a href="https://www.youtube.com/@LUCRARONLINE" target="_blank" rel="noopener noreferrer" class="nav-link youtube-btn">
-								<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/></svg>
-								YouTube
-							</a>
+						<li><a href="/" class={`nav-link ${navAtivo === '/' ? 'active' : ''}`}>Início</a></li>
+						<li><a href="/noticias/" class={`nav-link ${navAtivo === '/noticias/' ? 'active' : ''}`}>Notícias</a></li>
+						<li class="nav-hidden"><a href="/futebol/" class={`nav-link ${navAtivo === '/futebol/' ? 'active' : ''}`}>Futebol</a></li>
+						<li><a href="/comprar/" class={`nav-link ${navAtivo === '/comprar/' ? 'active' : ''}`}>Comprar</a></li>
+						<li><a href="/ganhar-dinheiro/" class={`nav-link ${navAtivo === '/ganhar-dinheiro/' ? 'active' : ''}`}>Ganhar Dinheiro</a></li>
+						<li class="nav-hidden"><a href="/ferramentas/" class={`nav-link ${navAtivo === '/ferramentas/' ? 'active' : ''}`}>Ferramentas</a></li>
+						<li class="nav-hidden"><a href="/blog/" class={`nav-link ${navAtivo === '/blog/' ? 'active' : ''}`}>Blog</a></li>
+						<li class="nav-more-item">
+							<button class="nav-more-btn" aria-label="Mostrar mais categorias">
+								<span class="nav-more-text">Mais</span>
+								<span class="nav-more-arrow">▼</span>
+							</button>
 						</li>
 					</ul>
 				</nav>
@@ -112,13 +156,18 @@ const canonicalURL = new URL(canonicalPathname, Astro.site ?? 'https://www.lucra
 					return;
 				}
 
-				const menuToggle = document.querySelector('.menu-toggle');
+				// Alterna o texto do botao "Mais" / "Menos"
+				const moreBtn = document.querySelector('.nav-more-btn');
+				const navList = document.querySelector('.nav-list');
 				const nav = document.querySelector('.nav');
 				
-				if (menuToggle && nav) {
-					menuToggle.addEventListener('click', function() {
-						nav.classList.toggle('nav-open');
-						menuToggle.classList.toggle('active');
+				if (moreBtn && navList && nav) {
+					moreBtn.addEventListener('click', function() {
+						navList.classList.toggle('expanded');
+						nav.classList.toggle('expanded');
+						const isExpanded = navList.classList.contains('expanded');
+						moreBtn.querySelector('.nav-more-text').textContent = isExpanded ? 'Menos' : 'Mais';
+						moreBtn.setAttribute('aria-label', isExpanded ? 'Mostrar menos categorias' : 'Mostrar mais categorias');
 					});
 				}
 			});
