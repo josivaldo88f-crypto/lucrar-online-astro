@@ -22,6 +22,10 @@ const description = "Calculadoras e ferramentas úteis para o seu dia a dia fina
 <MainLayout title={title} description={description} categoria={categoria} showRelacionados={false}>
     <h1 class="page-title" style="margin-bottom: 2rem; color: #2563eb;">{title}</h1>
     
+    <section class="category-intro">
+        <p>Utilidades e <strong>calculadoras online gratuitas</strong> para facilitar seu dia a dia. Resolva cálculos de porcentagem, juros compostos e muito mais com nossas ferramentas práticas e intuitivas. Cada calculadora vem acompanhada de explicações detalhadas e exemplos reais para ajudar você a entender e aplicar os conceitos no seu cotidiano financeiro.</p>
+    </section>
+    
     <div class="posts-grid">
         {categoryPosts.map(post => {
             const postTitle = post.title || post.frontmatter?.title;

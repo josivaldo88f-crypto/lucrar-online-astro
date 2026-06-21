@@ -23,6 +23,10 @@ const description = "Fique por dentro das últimas notícias, novidades e atuali
 <MainLayout title={title} description={description} categoria={categoria} showRelacionados={false}>
     <h1 class="page-title" style="margin-bottom: 2rem; color: #2563eb;">{title}</h1>
     
+    <section class="category-intro">
+        <p>Fique por dentro das <strong>últimas notícias e atualizações</strong> que realmente importam. Aqui no Lucrar Online, acompanhamos os principais acontecimentos do Brasil e do mundo, com foco em economia, tecnologia, política e mercado. Nossa equipe seleciona e resume as informações mais relevantes para que você se mantenha informado sem perder tempo.</p>
+    </section>
+    
     <div class="posts-grid">
         {categoryPosts.length > 0 ? (
             categoryPosts.map(post => {

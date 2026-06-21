@@ -25,12 +25,16 @@ const categoryPosts = posts
     });
 
 const categoria = "GANHAR DINHEIRO";
-const title = "GANHAR DINHEIR";
+const title = "Ganhar Dinheiro";
 const description = "Confira nossos artigos detalhados sobre como ganhar dinheiro na internet.";
 ---
 
 <MainLayout title={title} description={description} categoria={categoria} showRelacionados={false}>
     <h1 class="page-title" style="margin-bottom: 2rem; color: #2563eb;">{title}</h1>
+    
+    <section class="category-intro">
+        <p>Descubra as <strong>melhores formas de ganhar dinheiro online</strong> em 2026! Reunimos aplicativos, jogos e sites que realmente pagam, com dicas práticas e estratégias comprovadas para você aumentar sua renda. De apps que pagam para assistir vídeos a jogos que rendem Pix, nosso conteúdo é atualizado constantemente para trazer as oportunidades mais recentes do mercado digital.</p>
+    </section>
     
     <div class="posts-grid">
         {categoryPosts.map(post => {

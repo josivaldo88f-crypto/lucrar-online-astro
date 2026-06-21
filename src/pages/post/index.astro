@@ -19,8 +19,12 @@ const title = "Artigos";
 const description = "Confira nossos artigos detalhados sobre como ganhar dinheiro na internet.";
 ---
 
-<MainLayout title={title} description={description} categoria={categoria} showRelacionados={false}>
+<MainLayout title={title} description={description} categoria={categoria} showRelacionados={false} noindex={true}>
     <h1 class="page-title" style="margin-bottom: 2rem; color: #2563eb;">{title}</h1>
+    
+    <section class="category-intro">
+        <p>Artigos detalhados e guias completos sobre <strong>como ganhar dinheiro na internet</strong>. Aqui reunimos análises aprofundadas de aplicativos, jogos e plataformas que pagam, com instruções passo a passo e dicas para maximizar seus ganhos. Todo conteúdo é atualizado regularmente para refletir as melhores oportunidades disponíveis.</p>
+    </section>
     
     <div class="posts-grid">
         {categoryPosts.map(post => {

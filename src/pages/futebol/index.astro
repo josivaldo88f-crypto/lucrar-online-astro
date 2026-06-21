@@ -23,6 +23,10 @@ const description = "Confira as últimas notícias, análises e onde assistir ao
 <MainLayout title={title} description={description} categoria={categoria} showRelacionados={false}>
     <h1 class="page-title" style="margin-bottom: 2rem; color: #2563eb;">{title}</h1>
     
+    <section class="category-intro">
+        <p>Acompanhe as <strong>notícias, análises e guias completos</strong> sobre futebol brasileiro e internacional. De clássicos regionais a campeonatos mundiais, trazemos informações sobre onde assistir, escalações, retrospectos e curiosidades. Seja você torcedor apaixonado ou fã de esportes, nosso conteúdo de futebol é feito para quem vive o esporte.</p>
+    </section>
+    
     <div class="posts-grid">
         {categoryPosts.map(post => {
             const title = post.title || post.frontmatter?.title;

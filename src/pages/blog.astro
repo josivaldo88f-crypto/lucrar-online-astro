@@ -23,6 +23,10 @@ const categoria = "blog";
 <MainLayout title={title} description={description} categoria={categoria}>
     <h1 class="page-title" style="margin-bottom: 2rem; color: #2563eb;">Blog</h1>
     
+    <section class="category-intro">
+        <p>Bem-vindo ao <strong>blog do Lucrar Online</strong>! Aqui você encontra artigos completos sobre como ganhar dinheiro na internet, dicas de aplicativos, análises de oportunidades e muito mais. Nosso objetivo é ajudar você a navegar pelo mundo das oportunidades digitais com informações claras, testadas e atualizadas. Fique à vontade para explorar e descobrir novas formas de aumentar sua renda.</p>
+    </section>
+    
     <div class="posts-grid">
         {blogPosts.map(post => {
             const postTitle = post.title || post.frontmatter?.title;

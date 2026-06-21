@@ -86,6 +86,21 @@ body {
     padding: 40px 0;
 }
 
+.category-intro {
+    max-width: 800px;
+    margin: 0 auto 2.5rem;
+    text-align: center;
+    color: #4b5563;
+    font-size: 1.05rem;
+    line-height: 1.8;
+}
+.category-intro p {
+    margin-bottom: 0.8rem;
+}
+.category-intro strong {
+    color: #2563eb;
+}
+
 .posts-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));

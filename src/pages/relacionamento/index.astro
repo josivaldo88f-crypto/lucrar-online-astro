@@ -22,6 +22,10 @@ const description = "Dicas e aplicativos para melhorar seus relacionamentos e en
 <MainLayout title={title} description={description} categoria={categoria} showRelacionados={false}>
     <h1 class="page-title" style="margin-bottom: 2rem; color: #2563eb;">{title}</h1>
     
+    <section class="category-intro">
+        <p>Dicas, aplicativos e guias para <strong>melhorar seus relacionamentos</strong> e encontrar o par ideal. Se você está em busca de um novo amor ou quer fortalecer os laços existentes, nossa seção de relacionamento traz conteúdos selecionados para ajudar você a se conectar com outras pessoas de forma genuína e significativa.</p>
+    </section>
+    
     <div class="posts-grid">
         {categoryPosts.map(post => {
             const postTitle = post.title || post.frontmatter?.title;

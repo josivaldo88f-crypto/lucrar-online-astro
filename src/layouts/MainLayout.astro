@@ -6,13 +6,15 @@ interface Props {
 	description?: string;
 	categoria?: string;
 	showRelacionados?: boolean;
+	noindex?: boolean;
 }
 
 const { 
 	title = "Lucrar Online - Seu Guia para Renda Extra na Internet", 
 	description = "Aprenda a lucrar online com dicas de apps e sites para ganhar dinheiro e estratégias comprovadas",
 	categoria = "geral",
-	showRelacionados = true
+	showRelacionados = true,
+	noindex = false
 } = Astro.props;
 
 // Mapeia categoria → nome amigável e URL do link de navegação
@@ -51,12 +53,62 @@ const canonicalURL = new URL(canonicalPathname, Astro.site ?? 'https://www.lucra
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<meta name="description" content={description} />
 		<meta name="keywords" content="lucrar online, renda extra, app para ganhar dinheiro" />
+		<meta name="robots" content={noindex ? "noindex, follow" : "index, follow, max-snippet:-1, max-image-preview:large"} />
+		<meta name="author" content="Lucrar Online" />
+		<meta property="og:type" content={categoria === "home" ? "website" : "article"} />
+		<meta property="og:title" content={tituloAba} />
+		<meta property="og:description" content={description} />
+		<meta property="og:url" content={canonicalURL} />
+		<meta property="og:site_name" content="Lucrar Online" />
+		<meta property="og:locale" content="pt_BR" />
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content={tituloAba} />
+		<meta name="twitter:description" content={description} />
 		<title>{tituloAba}</title>
 		<link rel="canonical" href={canonicalURL} />
 		<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
 		<link rel="icon" href="/favicon.ico" sizes="any" />
 		<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 		<link rel="stylesheet" href="/styles.css" />
+		<script type="application/ld+json">
+			{
+				"@context": "https://schema.org",
+				"@type": "WebSite",
+				"name": "Lucrar Online",
+				"url": "https://www.lucrar.link/",
+				"description": "Seu guia para renda extra na internet",
+				"potentialAction": {
+					"@type": "SearchAction",
+					"target": {
+						"@type": "EntryPoint",
+						"urlTemplate": "https://www.lucrar.link/?q={search_term_string}"
+					},
+					"query-input": "required name=search_term_string"
+				}
+			}
+		</script>
+		{categoria !== "home" && categoria !== "geral" && (
+			<script type="application/ld+json">
+				{
+					"@context": "https://schema.org",
+					"@type": "BreadcrumbList",
+					"itemListElement": [
+						{
+							"@type": "ListItem",
+							"position": 1,
+							"name": "Início",
+							"item": "https://www.lucrar.link/"
+						},
+						{
+							"@type": "ListItem",
+							"position": 2,
+							"name": "{nomeCategoria}",
+							"item": "{canonicalURL}"
+						}
+					]
+				}
+			</script>
+		)}
 		<script type="text/partytown" async src="https://www.googletagmanager.com/gtag/js?id=G-7225X73JRY"></script>
 		<script type="text/partytown" is:inline>
 			window.dataLayer = window.dataLayer || [];

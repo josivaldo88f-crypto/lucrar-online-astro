@@ -23,6 +23,10 @@ const description = "As melhores opções de compra, listas de produtos recomend
 <MainLayout title={title} description={description} categoria={categoria} showRelacionados={false}>
     <h1 class="page-title" style="margin-bottom: 2rem; color: #2563eb;">{title}</h1>
     
+    <section class="category-intro">
+        <p>Bem-vindo à nossa central de <strong>recomendações de compras</strong>! Aqui você encontra as melhores opções de produtos com excelente custo-benefício, selecionados criteriosamente com base nas avaliações dos usuários e preços imperdíveis. De fones de ouvido a eletrônicos, nossos guias ajudam você a escolher o produto ideal sem gastar muito. Todas as listas são atualizadas regularmente para trazer as melhores ofertas do mercado brasileiro.</p>
+    </section>
+    
     <div class="posts-grid">
         {categoryPosts.length > 0 ? (
             categoryPosts.map(post => {
