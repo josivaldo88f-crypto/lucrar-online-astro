@@ -1,0 +1,5 @@
+# Root index.html → raiz
+/index.html  /  301
+
+# Redirecionar todas as URLs .html para versão limpa com barra
+/*.html /:splat/ 301
