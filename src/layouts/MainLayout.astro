@@ -44,6 +44,25 @@ let canonicalPathname = Astro.url.pathname;
 if (canonicalPathname.endsWith('.html')) canonicalPathname = canonicalPathname.slice(0, -5);
 if (canonicalPathname !== '/' && !canonicalPathname.endsWith('/')) canonicalPathname += '/';
 const canonicalURL = new URL(canonicalPathname, Astro.site ?? 'https://www.lucrar.link/').href;
+
+const breadcrumbJson = JSON.stringify({
+	"@context": "https://schema.org",
+	"@type": "BreadcrumbList",
+	"itemListElement": [
+		{
+			"@type": "ListItem",
+			"position": 1,
+			"name": "Início",
+			"item": "https://www.lucrar.link/"
+		},
+		{
+			"@type": "ListItem",
+			"position": 2,
+			"name": nomeCategoria,
+			"item": canonicalURL
+		}
+	]
+});
 ---
 
 <!doctype html>
@@ -88,26 +107,7 @@ const canonicalURL = new URL(canonicalPathname, Astro.site ?? 'https://www.lucra
 			}
 		</script>
 		{categoria !== "home" && categoria !== "geral" && (
-			<script type="application/ld+json">
-				{
-					"@context": "https://schema.org",
-					"@type": "BreadcrumbList",
-					"itemListElement": [
-						{
-							"@type": "ListItem",
-							"position": 1,
-							"name": "Início",
-							"item": "https://www.lucrar.link/"
-						},
-						{
-							"@type": "ListItem",
-							"position": 2,
-							"name": "{nomeCategoria}",
-							"item": "{canonicalURL}"
-						}
-					]
-				}
-			</script>
+			<script type="application/ld+json" set:html={breadcrumbJson}></script>
 		)}
 		<script type="text/partytown" async src="https://www.googletagmanager.com/gtag/js?id=G-7225X73JRY"></script>
 		<script type="text/partytown" is:inline>
