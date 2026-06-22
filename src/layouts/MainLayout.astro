@@ -25,8 +25,8 @@ const categoriaMap: Record<string, { nome: string; navUrl: string }> = {
 	comprar: { nome: "Comprar", navUrl: "/comprar/" },
 	"GANHAR DINHEIRO": { nome: "Ganhar Dinheiro", navUrl: "/ganhar-dinheiro/" },
 	ferramentas: { nome: "Ferramentas", navUrl: "/ferramentas/" },
-	blog: { nome: "Blog", navUrl: "/blog/" },
-	post: { nome: "Blog", navUrl: "/blog/" },
+	blog: { nome: "Blog", navUrl: "/post/" },
+	post: { nome: "Blog", navUrl: "/post/" },
 	relacionamento: { nome: "Relacionamento", navUrl: "" },
 	geral: { nome: "Lucrar Online", navUrl: "" },
 };
@@ -174,7 +174,7 @@ const canonicalURL = new URL(canonicalPathname, Astro.site ?? 'https://www.lucra
 						<li><a href="/comprar/" class={`nav-link ${navAtivo === '/comprar/' ? 'active' : ''}`}>Comprar</a></li>
 						<li><a href="/ganhar-dinheiro/" class={`nav-link ${navAtivo === '/ganhar-dinheiro/' ? 'active' : ''}`}>Ganhar Dinheiro</a></li>
 						<li class="nav-hidden"><a href="/ferramentas/" class={`nav-link ${navAtivo === '/ferramentas/' ? 'active' : ''}`}>Ferramentas</a></li>
-						<li class="nav-hidden"><a href="/blog/" class={`nav-link ${navAtivo === '/blog/' ? 'active' : ''}`}>Blog</a></li>
+						<li class="nav-hidden"><a href="/post/" class={`nav-link ${navAtivo === '/post/' ? 'active' : ''}`}>Blog</a></li>
 						<li class="nav-more-item">
 							<button class="nav-more-btn" aria-label="Mostrar mais categorias">
 								<span class="nav-more-text">Mais</span>
