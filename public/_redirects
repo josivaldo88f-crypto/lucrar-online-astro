@@ -3,3 +3,11 @@
 
 # Redirecionar todas as URLs .html para versão limpa com barra
 /*.html /:splat/ 301
+
+# URLs sem barra no final → versão com barra
+/noticias /noticias/ 301
+/futebol /futebol/ 301
+
+# URLs antigas do TikTok que não existem mais
+/código-de-convite-tiktok-22997768 /ganhar-dinheiro/tiktok-e-tiktok-lite-codigos-convite/ 301
+/código-de-convite-no-tiktok /ganhar-dinheiro/tiktok-lite-codigo-convite/ 301
