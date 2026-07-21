@@ -1,0 +1,668 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+
+export const title = "Os 5 Melhores Fones de Ouvido Baratos para Comprar em 2026";
+export const description = "Compare cinco fones de ouvido acessíveis, com recursos, pontos positivos e cuidados para escolher o modelo adequado ao seu uso.";
+export const categoria = "comprar";
+export const date = "2026-06-15";
+export const image = "/images/gm2-pro.webp";
+---
+
+<MainLayout seo={{ title, description, image, datePublished: date }} categoria={categoria}>
+    <style is:global>
+        /* Hero Section */
+        .hero-fones {
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            padding: 4rem 2rem;
+            text-align: center;
+            border-radius: 16px;
+            margin-bottom: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero-fones::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(99,102,241,0.15) 0%, transparent 60%);
+            animation: heroPulse 6s ease-in-out infinite;
+        }
+        @keyframes heroPulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.2); opacity: 1; }
+        }
+        .hero-fones h1 {
+            font-size: 2.8rem;
+            color: #fff;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+            text-shadow: 0 2px 20px rgba(99,102,241,0.3);
+        }
+        .hero-fones p {
+            font-size: 1.3rem;
+            color: #a5b4fc;
+            max-width: 700px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+            line-height: 1.7;
+        }
+        .hero-fones .badge {
+            display: inline-block;
+            background: rgba(99,102,241,0.3);
+            color: #a5b4fc;
+            padding: 0.4rem 1.2rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+            border: 1px solid rgba(99,102,241,0.4);
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Intro Section */
+        .intro-section {
+            max-width: 800px;
+            margin: 0 auto 3rem;
+            text-align: center;
+            color: #4b5563;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            padding: 0 1rem;
+        }
+
+        /* Product Grid */
+        .fones-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 2.5rem;
+            max-width: 1100px;
+            margin: 0 auto 3rem;
+        }
+
+        /* Product Card */
+        .fone-card {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            background: #fff;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 25px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .fone-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 40px rgba(0,0,0,0.12);
+        }
+        /* Todos os cards com imagem à esquerda */
+
+        /* Slider / Carrossel */
+        .fone-gallery {
+            position: relative;
+            padding: 1rem;
+            background: #f8f9fa;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+            aspect-ratio: 1 / 1;
+        }
+        .slider-wrapper {
+            display: flex;
+            transition: transform 0.4s ease-in-out;
+            width: 100%;
+            height: 100%;
+        }
+        .slider-wrapper img {
+            width: 100%;
+            flex-shrink: 0;
+            height: 100%;
+            object-fit: contain;
+            border-radius: 10px;
+            background: #f0f0f0;
+            padding: 1rem;
+        }
+        .slider-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.9);
+            border: none;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+            cursor: pointer;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #4b5563;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+            z-index: 2;
+            line-height: 1;
+        }
+        .slider-btn:hover {
+            background: #fff;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+            color: #6366f1;
+            transform: translateY(-50%) scale(1.1);
+        }
+        .slider-btn.prev {
+            left: 1.2rem;
+        }
+        .slider-btn.next {
+            right: 1.2rem;
+        }
+        .slider-btn:disabled {
+            opacity: 0.3;
+            cursor: default;
+            transform: translateY(-50%) scale(1);
+        }
+        .slider-dots {
+            position: absolute;
+            bottom: 1.2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 0.5rem;
+            z-index: 2;
+        }
+        .slider-dots .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(99,102,241,0.3);
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s;
+            padding: 0;
+        }
+        .slider-dots .dot.active {
+            background: #6366f1;
+            width: 24px;
+            border-radius: 4px;
+        }
+
+        .fone-info {
+            padding: 2rem 2rem 2rem 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        /* Todos com padding padrão */
+
+        .fone-rank {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            color: #fff;
+            font-weight: 700;
+            border-radius: 50%;
+            font-size: 0.9rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .fone-info h2 {
+            font-size: 1.6rem;
+            color: #1f2937;
+            margin-bottom: 0.5rem;
+        }
+
+        .fone-price {
+            display: flex;
+            align-items: baseline;
+            gap: 0.8rem;
+            margin-bottom: 0.5rem;
+        }
+        .fone-price .current {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #059669;
+        }
+        .fone-price .old {
+            font-size: 1rem;
+            color: #9ca3af;
+            text-decoration: line-through;
+        }
+        .fone-price .discount {
+            background: #fee2e2;
+            color: #dc2626;
+            font-size: 0.8rem;
+            font-weight: 600;
+            padding: 0.2rem 0.6rem;
+            border-radius: 6px;
+        }
+
+        .fone-rating {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+            color: #f59e0b;
+            font-size: 1.1rem;
+        }
+        .fone-rating span {
+            color: #6b7280;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .fone-desc {
+            color: #4b5563;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+
+        .fone-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .fone-tags .tag {
+            background: #eef2ff;
+            color: #4f46e5;
+            font-size: 0.8rem;
+            font-weight: 500;
+            padding: 0.3rem 0.8rem;
+            border-radius: 50px;
+        }
+
+        .btn-comprar {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            color: #fff;
+            font-weight: 700;
+            font-size: 1.05rem;
+            padding: 0.9rem 2rem;
+            border-radius: 12px;
+            text-decoration: none;
+            transition: transform 0.2s, box-shadow 0.2s;
+            border: none;
+            cursor: pointer;
+            align-self: flex-start;
+        }
+        .btn-comprar:hover {
+            transform: scale(1.04);
+            box-shadow: 0 4px 20px rgba(99,102,241,0.4);
+            color: #fff;
+            text-decoration: none;
+        }
+
+        /* Ranking colors */
+        .rank-1 { background: linear-gradient(135deg, #f59e0b, #d97706); }
+        .rank-2 { background: linear-gradient(135deg, #9ca3af, #6b7280); }
+        .rank-3 { background: linear-gradient(135deg, #d97706, #92400e); }
+        .rank-4 { background: linear-gradient(135deg, #6366f1, #4f46e5); }
+        .rank-5 { background: linear-gradient(135deg, #10b981, #059669); }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-fones h1 { font-size: 1.8rem; }
+            .hero-fones p { font-size: 1rem; }
+            .fone-card {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+            .fone-info {
+                padding: 1.5rem !important;
+            }
+            .slider-wrapper img {
+                padding: 0.3rem;
+            }
+            .slider-btn {
+                width: 32px;
+                height: 32px;
+                font-size: 1.2rem;
+            }
+            .slider-btn.prev { left: 0.5rem; }
+            .slider-btn.next { right: 0.5rem; }
+            .fone-gallery {
+                padding: 0.5rem;
+                aspect-ratio: 1 / 1;
+            }
+            .fone-price .current {
+                font-size: 1.5rem;
+            }
+        }
+
+        /* Conclusão */
+        .conclusao {
+            max-width: 800px;
+            margin: 0 auto 3rem;
+            background: linear-gradient(135deg, #eef2ff, #f0fdf4);
+            padding: 2.5rem;
+            border-radius: 16px;
+            text-align: center;
+        }
+        .conclusao h2 {
+            color: #1f2937;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+        .conclusao p {
+            color: #4b5563;
+            line-height: 1.8;
+            font-size: 1.05rem;
+        }
+
+        /* Disclaimer */
+        .disclaimer {
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            padding: 1rem 1.5rem;
+            background: #fffbeb;
+            border-left: 4px solid #f59e0b;
+            border-radius: 8px;
+            color: #92400e;
+            font-size: 0.85rem;
+            line-height: 1.6;
+        }
+
+        /* Page title override */
+        .page-title {
+            display: none;
+        }
+    </style>
+
+    <article>
+        <!-- Hero Section -->
+        <section class="hero-fones">
+            <div class="badge">🔥 Mais Vendidos 2026</div>
+            <h1>{title}</h1>
+            <p>Os mais vendidos e bem avaliados do Brasil — todos com preços imperdíveis e entrega rápida</p>
+        </section>
+
+        <!-- Intro -->
+        <section class="intro-section">
+            <p>
+                Procurando um fone de ouvido barato e de qualidade? Selecionamos os <strong>5 modelos mais vendidos e bem avaliados</strong> do Brasil na Shopee. São fones Bluetooth com excelente custo-benefício, que vão desde <strong>R$ 12,88 até R$ 44,90</strong>. Perfeitos para ouvir música, fazer chamadas, jogar ou usar no dia a dia. Confira nossa lista completa!
+            </p>
+        </section>
+
+        <!-- Produtos Grid -->
+        <section class="fones-grid">
+
+            <!-- Produto 1: Lenovo GM2 Pro -->
+            <div class="fone-card">
+                <div class="fone-gallery" data-slider="gm2">
+                    <div class="slider-wrapper">
+                        <img src="/images/gm2-pro.webp" alt="Lenovo GM2 Pro - Fone Gamer" width="800" height="800" decoding="async" loading="eager" fetchpriority="high" />
+                        <img src="/images/gm2-pro1.webp" alt="Lenovo GM2 Pro - Caixa e acessórios" width="1024" height="1024" decoding="async" loading="lazy" />
+                    </div>
+                    <button class="slider-btn prev" data-slider="gm2">‹</button>
+                    <button class="slider-btn next" data-slider="gm2">›</button>
+                    <div class="slider-dots" data-slider="gm2">
+                        <button class="dot active" data-index="0"></button>
+                        <button class="dot" data-index="1"></button>
+                    </div>
+                </div>
+                <div class="fone-info">
+                    <div class="fone-rank rank-1">1</div>
+                    <h2>Lenovo GM2 Pro</h2>
+                    <div class="fone-price">
+                        <span class="current">R$ 44,90</span>
+                        <span class="old">R$ 129,90</span>
+                        <span class="discount">-65%</span>
+                    </div>
+                    <div class="fone-rating">
+                        ⭐⭐⭐⭐⭐ <span>4.9 (18.046 avaliações)</span>
+                    </div>
+                    <div class="fone-desc">
+                        <p>O <strong>Lenovo GM2 Pro</strong> é o fone gamer sem fio que chegou para revolucionar a experiência dos jogadores mobile. Equipado com o moderno <strong>Bluetooth 5.3</strong>, ele oferece uma conexão extremamente estável e uma <strong>latência ultrabaixa</strong> — essencial para jogos competitivos como <strong>Free Fire, PUBG e COD Mobile</strong>, onde cada milissegundo faz a diferença.</p>
+                        <p>Seu <strong>cancelamento inteligente de ruído</strong> (ENC) filtra sons do ambiente durante chamadas, garantindo áudio cristalino mesmo em locais movimentados. O <strong>driver de alta fidelidade</strong> entrega graves potentes e agudos nítidos, proporcionando uma imersão total no jogo ou na música.</p>
+                        <p>A <strong>bateria de longa duração</strong> é outro destaque: são até <strong>30 horas de reprodução</strong> com o estojo de recarga. O design é <strong>ergonômico</strong>, se ajusta perfeitamente ao ouvido, e ainda conta com certificação <strong>IPX5</strong> — resistente a respingos e suor. Ideal para longas sessões de jogo ou treinos na academia.</p>
+                    </div>
+                    <div class="fone-tags">
+                        <span class="tag">🎮 Gamer</span>
+                        <span class="tag">📶 Bluetooth 5.3</span>
+                        <span class="tag">⚡ Baixa Latência</span>
+                        <span class="tag">🔇 Cancelamento de Ruído</span>
+                    </div>
+                    <a href="https://s.shopee.com.br/7pr3MhQ2dg" target="_blank" class="btn-comprar" rel="sponsored nofollow noopener noreferrer">
+                        🛒 COMPRAR AGORA
+                    </a>
+                </div>
+            </div>
+
+            <!-- Produto 2: P9 TWS Macaron -->
+            <div class="fone-card">
+                <div class="fone-gallery" data-slider="p9">
+                    <div class="slider-wrapper">
+                        <img src="/images/p9-tws.webp" alt="P9 TWS Macaron - Fone Colorido" width="1024" height="1024" decoding="async" loading="lazy" />
+                        <img src="/images/p9-tws1.webp" alt="P9 TWS Macaron - Diversas cores" width="563" height="563" decoding="async" loading="lazy" />
+                    </div>
+                    <button class="slider-btn prev" data-slider="p9">‹</button>
+                    <button class="slider-btn next" data-slider="p9">›</button>
+                    <div class="slider-dots" data-slider="p9">
+                        <button class="dot active" data-index="0"></button>
+                        <button class="dot" data-index="1"></button>
+                    </div>
+                </div>
+                <div class="fone-info">
+                    <div class="fone-rank rank-2">2</div>
+                    <h2>P9 TWS Macaron</h2>
+                    <div class="fone-price">
+                        <span class="current">R$ 22,90</span>
+                        <span class="old">R$ 59,90</span>
+                        <span class="discount">-62%</span>
+                    </div>
+                    <div class="fone-rating">
+                        ⭐⭐⭐⭐⭐ <span>4.7 (12.340 avaliações)</span>
+                    </div>
+                    <div class="fone-desc">
+                        <p>O <strong>P9 TWS Macaron</strong> é um verdadeiro fenômeno de vendas no Brasil! Este fone Bluetooth conquistou o público por oferecer um <strong>som de qualidade a um preço imbatível</strong>, além de estar disponível em <strong>cores vibrantes</strong> como rosa, azul, verde, branco e preto — perfeito para quem ama personalidade e estilo.</p>
+                        <p>Apesar do valor acessível, o P9 TWS não decepciona na performance. Ele entrega <strong>graves equilibrados</strong> e agudos limpos, com uma assinatura sonora agradável para o dia a dia. A <strong>conexão Bluetooth é estável</strong> e o <strong>emparelhamento automático</strong> faz o fone conectar ao celular assim que você retira do estojo.</p>
+                        <p>Leve e compacto, ele é ideal para o <strong>uso diário</strong>: ouvir música no transporte público, fazer chamadas, assistir vídeos ou até mesmo para <strong>presentear</strong>. O encaixe intra-auricular é confortável e firme, e a bateria aguenta um dia inteiro de uso moderado. Sem dúvidas, o melhor custo-benefício da lista para quem quer gastar pouco.</p>
+                    </div>
+                    <div class="fone-tags">
+                        <span class="tag">🌈 Colorido</span>
+                        <span class="tag">💰 Barato</span>
+                        <span class="tag">🎀 Feminino</span>
+                        <span class="tag">📱 Compacto</span>
+                    </div>
+                    <a href="https://s.shopee.com.br/Ll2RByvRb" target="_blank" class="btn-comprar" rel="sponsored nofollow noopener noreferrer">
+                        🛒 COMPRAR AGORA
+                    </a>
+                </div>
+            </div>
+
+            <!-- Produto 3: E6S TWS -->
+            <div class="fone-card">
+                <div class="fone-gallery" data-slider="e6s">
+                    <div class="slider-wrapper">
+                        <img src="/images/e6s-tws.webp" alt="E6S TWS - Fone Display LED" width="828" height="828" decoding="async" loading="lazy" />
+                        <img src="/images/e6s-tws1.webp" alt="E6S TWS - Estojo com display" width="1024" height="1024" decoding="async" loading="lazy" />
+                    </div>
+                    <button class="slider-btn prev" data-slider="e6s">‹</button>
+                    <button class="slider-btn next" data-slider="e6s">›</button>
+                    <div class="slider-dots" data-slider="e6s">
+                        <button class="dot active" data-index="0"></button>
+                        <button class="dot" data-index="1"></button>
+                    </div>
+                </div>
+                <div class="fone-info">
+                    <div class="fone-rank rank-3">3</div>
+                    <h2>E6S TWS</h2>
+                    <div class="fone-price">
+                        <span class="current">R$ 19,90</span>
+                        <span class="old">R$ 69,90</span>
+                        <span class="discount">-72%</span>
+                    </div>
+                    <div class="fone-rating">
+                        ⭐⭐⭐⭐⭐ <span>4.6 (9.872 avaliações)</span>
+                    </div>
+                    <div class="fone-desc">
+                        <p>O <strong>E6S TWS</strong> é a prova de que um fone barato pode ter tecnologia de ponta. Seu grande diferencial é o <strong>display digital no estojo</strong> que mostra o <strong>nível exato da bateria</strong> — nada de porcentagens aproximadas, você sabe precisamente quando precisa recarregar.</p>
+                        <p>Equipado com um <strong>driver de alto desempenho</strong>, o E6S oferece um <strong>som estéreo imersivo</strong> que surpreende pelo equilíbrio entre graves, médios e agudos. Seja para ouvir sua playlist favorita ou assistir a filmes e séries, a qualidade sonora é muito superior ao que o preço sugere.</p>
+                        <p>O <strong>controle por toque inteligente (touch)</strong> permite gerenciar músicas, atender chamadas e acionar a assistente de voz com um simples toque no fone. A <strong>conexão Bluetooth</strong> é rápida e estável, com emparelhamento automático na primeira sincronização. Um fone extremamente <strong>versátil</strong> que atende bem desde o usuário casual até o mais exigente.</p>
+                    </div>
+                    <div class="fone-tags">
+                        <span class="tag">💡 Display LED</span>
+                        <span class="tag">👆 Touch</span>
+                        <span class="tag">⭐ Custo-Benefício</span>
+                        <span class="tag">🎵 Som Estéreo</span>
+                    </div>
+                    <a href="https://s.shopee.com.br/5fmYnHU3Fn" target="_blank" class="btn-comprar" rel="sponsored nofollow noopener noreferrer">
+                        🛒 COMPRAR AGORA
+                    </a>
+                </div>
+            </div>
+
+            <!-- Produto 4: M10 TWS -->
+            <div class="fone-card">
+                <div class="fone-gallery" data-slider="m10">
+                    <div class="slider-wrapper">
+                        <img src="/images/m10-tws.webp" alt="M10 TWS - Fone Display LED Premium" width="1024" height="1024" decoding="async" loading="lazy" />
+                        <img src="/images/m10-tws1.webp" alt="M10 TWS - Estojo elegante" width="1024" height="1024" decoding="async" loading="lazy" />
+                    </div>
+                    <button class="slider-btn prev" data-slider="m10">‹</button>
+                    <button class="slider-btn next" data-slider="m10">›</button>
+                    <div class="slider-dots" data-slider="m10">
+                        <button class="dot active" data-index="0"></button>
+                        <button class="dot" data-index="1"></button>
+                    </div>
+                </div>
+                <div class="fone-info">
+                    <div class="fone-rank rank-4">4</div>
+                    <h2>M10 TWS</h2>
+                    <div class="fone-price">
+                        <span class="current">R$ 23,99</span>
+                        <span class="old">R$ 74,90</span>
+                        <span class="discount">-68%</span>
+                    </div>
+                    <div class="fone-rating">
+                        ⭐⭐⭐⭐⭐ <span>4.5 (7.651 avaliações)</span>
+                    </div>
+                    <div class="fone-desc">
+                        <p>O <strong>M10 TWS</strong> combina elegância e tecnologia em um único produto. Seu estojo com <strong>display LED sofisticado</strong> não só mostra a bateria em tempo real, como também dá um toque premium ao visual. É aquele tipo de fone que chama a atenção por onde você passa.</p>
+                        <p>No quesito som, o M10 não fica atrás: os <strong>graves são potentes e envolventes</strong>, perfeitos para quem curte músicas com batidas fortes como funk, trap e eletrônica. A <strong>tecnologia touch</strong> permite controle total sem precisar pegar no celular — passe faixas, ajuste o volume e atenda chamadas com um toque.</p>
+                        <p>A <strong>bateria oferece até 5 horas de reprodução contínua</strong>, com mais <strong>20 horas extras fornecidas pelo estojo</strong> de recarga. O design premium com <strong>acabamento impecável</strong> faz o M10 TWS parecer um fone muito mais caro do que realmente é. Perfeito para quem busca estilo sem abrir mão da qualidade.</p>
+                    </div>
+                    <div class="fone-tags">
+                        <span class="tag">💡 Display LED</span>
+                        <span class="tag">👆 Touch</span>
+                        <span class="tag">🔋 Bateria Longa</span>
+                        <span class="tag">✨ Design Premium</span>
+                    </div>
+                    <a href="https://s.shopee.com.br/7pr3NVXLIE" target="_blank" class="btn-comprar" rel="sponsored nofollow noopener noreferrer">
+                        🛒 COMPRAR AGORA
+                    </a>
+                </div>
+            </div>
+
+            <!-- Produto 5: Pro 4 TWS -->
+            <div class="fone-card">
+                <div class="fone-gallery" data-slider="pro4">
+                    <div class="slider-wrapper">
+                        <img src="/images/pro-4-tws.webp" alt="Pro 4 TWS - Fone Premium" width="800" height="800" decoding="async" loading="lazy" />
+                        <img src="/images/pro-4-tws1.webp" alt="Pro 4 TWS - Design elegante" width="800" height="800" decoding="async" loading="lazy" />
+                    </div>
+                    <button class="slider-btn prev" data-slider="pro4">‹</button>
+                    <button class="slider-btn next" data-slider="pro4">›</button>
+                    <div class="slider-dots" data-slider="pro4">
+                        <button class="dot active" data-index="0"></button>
+                        <button class="dot" data-index="1"></button>
+                    </div>
+                </div>
+                <div class="fone-info">
+                    <div class="fone-rank rank-5">5</div>
+                    <h2>Pro 4 TWS</h2>
+                    <div class="fone-price">
+                        <span class="current">R$ 12,88</span>
+                        <span class="old">R$ 64,90</span>
+                        <span class="discount">-80%</span>
+                    </div>
+                    <div class="fone-rating">
+                        ⭐⭐⭐⭐⭐ <span>4.4 (5.234 avaliações)</span>
+                    </div>
+                    <div class="fone-desc">
+                        <p>Fechando a lista com chave de ouro, o <strong>Pro 4 TWS</strong> é simplesmente o fone de ouvido Bluetooth mais barato entre os mais vendidos do Brasil — e olha que isso não significa economia na qualidade! Com um <strong>design premium inspirado nos modelos mais caros do mercado</strong>, ele entrega um visual sofisticado por apenas R$ 12,88.</p>
+                        <p>Os <strong>drivers de alta precisão</strong> foram calibrados para oferecer <strong>graves profundos e agudos cristalinos</strong>, proporcionando uma experiência sonora que rivaliza com fones de até 5x o seu preço. O <strong>encaixe intra-auricular</strong> é confortável e firme, ideal para usar na <strong>academia, no transporte público ou no escritório</strong> sem que o fone caia.</p>
+                        <p>A <strong>conexão é rápida</strong> com emparelhamento automático assim que você abre o estojo. Leve, compacto e com <strong>ótimo acabamento</strong>, o Pro 4 TWS é a escolha inteligente para quem quer um fone Bluetooth de qualidade gastando muito pouco. Perfeito como <strong>primeiro fone TWS</strong> ou para ter um reserva sempre à mão.</p>
+                    </div>
+                    <div class="fone-tags">
+                        <span class="tag">✨ Design Premium</span>
+                        <span class="tag">📱 Compacto</span>
+                        <span class="tag">🪶 Leve</span>
+                        <span class="tag">🎶 Alta Qualidade</span>
+                    </div>
+                    <a href="https://s.shopee.com.br/4qDRo5xwFO" target="_blank" class="btn-comprar" rel="sponsored nofollow noopener noreferrer">
+                        🛒 COMPRAR AGORA
+                    </a>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- Conclusão -->
+        <section class="conclusao">
+            <h2>🎯 Qual fone escolher?</h2>
+            <p>
+                <strong>Para jogos:</strong> Lenovo GM2 Pro é imbatível com latência ultrabaixa e Bluetooth 5.3.<br />
+                <strong>Para estilo e variedade:</strong> P9 TWS Macaron arrasa nas cores vibrantes.<br />
+                <strong>Melhor custo-benefício:</strong> E6S TWS entrega display LED e som estéreo por menos de R$ 20.<br />
+                <strong>Design premium:</strong> M10 TWS é elegante e tem bateria duradoura.<br />
+                <strong>Mais barato da lista:</strong> Pro 4 TWS custa apenas R$ 12,88 e surpreende pela qualidade.
+            </p>
+            <p style="margin-top: 1rem; font-weight: 600; color: #059669;">
+                Todos os preços são de junho de 2026 e podem sofrer alterações.
+            </p>
+        </section>
+
+        <!-- Disclaimer -->
+        <div class="disclaimer">
+            <strong>⚠️ Disclaimer:</strong> Esta página contém links de afiliado. Se você comprar através dos nossos links, podemos receber uma pequena comissão, sem custo adicional para você. Isso nos ajuda a manter o site e continuar trazendo as melhores recomendações!
+        </div>
+    </article>
+
+    <script>
+        document.querySelectorAll('.fone-gallery').forEach(gallery => {
+            const wrapper = gallery.querySelector('.slider-wrapper');
+            const prevBtn = gallery.querySelector('.slider-btn.prev');
+            const nextBtn = gallery.querySelector('.slider-btn.next');
+            const dots = gallery.querySelectorAll('.dot');
+            const total = wrapper.children.length;
+            let current = 0;
+
+            function updateSlider() {
+                wrapper.style.transform = `translateX(-${current * 100}%)`;
+                dots.forEach((dot, i) => {
+                    dot.classList.toggle('active', i === current);
+                });
+                prevBtn.disabled = current === 0;
+                nextBtn.disabled = current === total - 1;
+            }
+
+            prevBtn.addEventListener('click', () => {
+                if (current > 0) { current--; updateSlider(); }
+            });
+
+            nextBtn.addEventListener('click', () => {
+                if (current < total - 1) { current++; updateSlider(); }
+            });
+
+            dots.forEach(dot => {
+                dot.addEventListener('click', () => {
+                    current = parseInt(dot.dataset.index);
+                    updateSlider();
+                });
+            });
+
+            updateSlider();
+        });
+    </script>
+</MainLayout>

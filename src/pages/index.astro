@@ -1,0 +1,57 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import PostCard from '../components/PostCard.astro';
+
+const posts = await Astro.glob('./**/*.astro');
+
+const latestPosts = posts
+    .filter(post => {
+        const title = post.title || post.frontmatter?.title;
+        const url = post.url;
+
+        if (!url || !title) return false;
+        
+        // Verifica se a URL aponta para um arquivo index (que são as páginas de categoria)
+        // No Astro, arquivos src/pages/categoria/index.astro geram a URL /categoria/
+        // Enquanto arquivos src/pages/post.astro geram a URL /post/
+        
+        // A lógica correta é: se o arquivo termina em /index.astro, ele é uma página de categoria
+        const isIndexFile = post.file.endsWith('index.astro');
+        
+        // Além disso, a home é o arquivo src/pages/index.astro
+        // Queremos apenas os posts reais
+        return !isIndexFile;
+    })
+    .sort((a, b) => {
+        const dateA = new Date(a.date || a.frontmatter?.date || '0').getTime();
+        const dateB = new Date(b.date || b.frontmatter?.date || '0').getTime();
+        return dateB - dateA;
+    })
+    .slice(0, 12);
+
+const title = "Lucrar Online - Seu Guia para Renda Extra na Internet";
+const description = "Conheça aplicativos, sites, ferramentas e cuidados para avaliar oportunidades de renda extra na internet";
+const categoria = "home";
+---
+
+<MainLayout seo={{ title, description }} categoria={categoria}>
+    <h1 class="page-title">Aprenda a Lucrar Online e Criar Renda Extra</h1>
+    <section class="posts-grid">
+        {latestPosts.map(post => {
+            const postTitle = post.title || post.frontmatter?.title;
+            const postDescription = post.description || post.frontmatter?.description;
+            const postImage = post.image || post.frontmatter?.image || '/images/default-post.webp';
+            const postDate = post.date || post.frontmatter?.date;
+            
+            return (
+                <PostCard 
+                    title={postTitle}
+                    description={postDescription}
+                    url={post.url}
+                    image={postImage}
+                    date={postDate}
+                />
+            );
+        })}
+    </section>
+</MainLayout>

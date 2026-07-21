@@ -1,0 +1,112 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+
+const pages = await Astro.glob('./**/*.astro');
+const normalize = (value: string) => value
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .toLowerCase();
+
+const searchablePages = pages
+    .map((page) => ({
+        title: page.title || page.frontmatter?.title,
+        description: page.description || page.frontmatter?.description || '',
+        image: page.image || page.frontmatter?.image || '/images/default-post.webp',
+        date: page.date || page.frontmatter?.date,
+        url: page.url,
+    }))
+    .filter((page) => page.url && page.title && page.date)
+    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+
+const title = 'Pesquisa';
+const description = 'Pesquise artigos, notícias, aplicativos e ferramentas no Lucrar Online.';
+---
+
+<MainLayout seo={{ title, description, noindex: true }} categoria="geral" showRelacionados={false}>
+    <section class="search-page">
+        <h1 id="search-title">Pesquisar no Lucrar Online</h1>
+
+        <form class="search-form" action="/buscar/" method="get" role="search">
+            <label for="search-input">O que você procura?</label>
+            <div class="search-controls">
+                <input id="search-input" name="q" type="search" placeholder="Ex.: aplicativos que pagam no Pix" required autofocus />
+                <button type="submit">Pesquisar</button>
+            </div>
+        </form>
+
+        <p id="search-status" aria-live="polite">Digite um termo para pesquisar.</p>
+
+        <div id="search-results" class="search-results">
+            {searchablePages.map((page) => (
+                <article
+                    class="search-result"
+                    data-search={normalize(`${page.title} ${page.description}`)}
+                    hidden
+                >
+                    <img src={page.image} alt="" width="160" height="100" loading="lazy" decoding="async" />
+                    <div>
+                        <h2><a href={page.url}>{page.title}</a></h2>
+                        <p>{page.description}</p>
+                    </div>
+                </article>
+            ))}
+        </div>
+    </section>
+
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const query = (params.get('q') || '').trim();
+        const input = document.querySelector<HTMLInputElement>('#search-input');
+        const title = document.querySelector<HTMLElement>('#search-title');
+        const status = document.querySelector<HTMLElement>('#search-status');
+        const results = Array.from(document.querySelectorAll<HTMLElement>('.search-result'));
+        const normalize = (value: string) => value
+            .normalize('NFD')
+            .replace(/[\u0300-\u036f]/g, '')
+            .toLowerCase();
+
+        if (input) input.value = query;
+
+        if (query) {
+            const terms = normalize(query).split(/\s+/).filter(Boolean);
+            let matches = 0;
+
+            results.forEach((result) => {
+                const content = result.dataset.search || '';
+                const matchesAllTerms = terms.every((term) => content.includes(term));
+                result.hidden = !matchesAllTerms;
+                if (matchesAllTerms) matches += 1;
+            });
+
+            if (title) title.textContent = `Resultados para “${query}”`;
+            if (status) {
+                status.textContent = matches === 1
+                    ? '1 resultado encontrado.'
+                    : `${matches} resultados encontrados.`;
+            }
+            document.title = `Pesquisa: ${query} | Lucrar Online`;
+        }
+    </script>
+</MainLayout>
+
+<style>
+    .search-page { max-width: 900px; margin: 0 auto; }
+    .search-page h1 { color: #1f2937; margin-bottom: 1.5rem; }
+    .search-form { margin-bottom: 1.5rem; }
+    .search-form label { display: block; font-weight: 600; margin-bottom: 0.5rem; }
+    .search-controls { display: flex; gap: 0.75rem; }
+    .search-controls input { flex: 1; min-width: 0; padding: 0.8rem 1rem; border: 1px solid #cbd5e1; border-radius: 8px; font: inherit; }
+    .search-controls button { border: 0; border-radius: 8px; padding: 0.8rem 1.25rem; background: #2563eb; color: #fff; font-weight: 700; cursor: pointer; }
+    #search-status { color: #4b5563; margin-bottom: 1rem; }
+    .search-results { display: grid; gap: 1rem; }
+    .search-result { display: flex; gap: 1rem; padding: 1rem; background: #fff; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,.08); }
+    .search-result img { width: 160px; height: 100px; object-fit: cover; border-radius: 7px; flex-shrink: 0; }
+    .search-result h2 { font-size: 1.15rem; line-height: 1.35; margin-bottom: 0.4rem; }
+    .search-result h2 a { color: #1d4ed8; text-decoration: none; }
+    .search-result p { color: #4b5563; font-size: 0.95rem; }
+    @media (max-width: 600px) {
+        .search-result img { width: 100px; height: 80px; }
+        .search-result p { display: none; }
+        .search-controls { flex-direction: column; }
+    }
+</style>

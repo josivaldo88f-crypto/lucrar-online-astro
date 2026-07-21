@@ -1,0 +1,310 @@
+---
+import Relacionados from '../components/Relacionados.astro';
+import type { SeoMetadata } from '../types/seo';
+
+interface Props {
+	seo?: SeoMetadata;
+	categoria?: string;
+	showRelacionados?: boolean;
+}
+
+const { 
+	seo = {
+		title: "Lucrar Online - Seu Guia para Renda Extra na Internet",
+		description: "Aprenda a lucrar online com dicas de apps e sites para ganhar dinheiro e estratégias comprovadas"
+	},
+	categoria = "geral",
+	showRelacionados = true
+} = Astro.props;
+
+const {
+	title,
+	description,
+	image = "/images/default-post.webp",
+	datePublished,
+	dateModified,
+	noindex = false
+} = seo;
+
+// Mapeia categoria → nome amigável e URL do link de navegação
+const categoriaMap: Record<string, { nome: string; navUrl: string }> = {
+	home: { nome: "Início", navUrl: "/" },
+	noticias: { nome: "Notícias", navUrl: "/noticias/" },
+	futebol: { nome: "Futebol", navUrl: "/futebol/" },
+	comprar: { nome: "Comprar", navUrl: "/comprar/" },
+	"GANHAR DINHEIRO": { nome: "Ganhar Dinheiro", navUrl: "/ganhar-dinheiro/" },
+	ferramentas: { nome: "Ferramentas", navUrl: "/ferramentas/" },
+	blog: { nome: "Blog", navUrl: "/post/" },
+	post: { nome: "Blog", navUrl: "/post/" },
+	relacionamento: { nome: "Relacionamento", navUrl: "/relacionamento/" },
+	geral: { nome: "Lucrar Online", navUrl: "/" },
+};
+
+const catInfo = categoriaMap[categoria] || categoriaMap["geral"];
+const nomeCategoria = catInfo.nome;
+const navAtivo = catInfo.navUrl;
+
+// A home mantém o título institucional; as demais páginas usam apenas o próprio título.
+const tituloAba = categoria === "home" 
+	? "Lucrar Online - Seu Guia para Renda Extra na Internet"
+	: title;
+
+let canonicalPathname = Astro.url.pathname;
+if (canonicalPathname.endsWith('.html')) canonicalPathname = canonicalPathname.slice(0, -5);
+if (canonicalPathname !== '/' && !canonicalPathname.endsWith('/')) canonicalPathname += '/';
+const canonicalURL = new URL(canonicalPathname, Astro.site ?? 'https://www.lucrar.link/').href;
+const socialImageURL = new URL(image, Astro.site ?? 'https://www.lucrar.link/').href;
+const isArticle = Boolean(datePublished);
+const articleType = categoria === "noticias" ? "NewsArticle" : "BlogPosting";
+
+const articleJson = isArticle ? JSON.stringify({
+	"@context": "https://schema.org",
+	"@type": articleType,
+	"headline": title,
+	"description": description,
+	"image": [socialImageURL],
+	"datePublished": datePublished,
+	...(dateModified ? { "dateModified": dateModified } : {}),
+	"inLanguage": "pt-BR",
+	"articleSection": nomeCategoria,
+	"mainEntityOfPage": {
+		"@type": "WebPage",
+		"@id": canonicalURL
+	},
+	"author": {
+		"@type": "Organization",
+		"name": "Lucrar Online",
+		"url": "https://www.lucrar.link/"
+	},
+	"publisher": {
+		"@type": "Organization",
+		"name": "Lucrar Online",
+		"url": "https://www.lucrar.link/",
+		"logo": {
+			"@type": "ImageObject",
+			"url": "https://www.lucrar.link/images/favicon-lucrar.link.png"
+		}
+	}
+}) : null;
+
+const breadcrumbItems = [
+	{
+		"@type": "ListItem",
+		"position": 1,
+		"name": "Início",
+		"item": "https://www.lucrar.link/"
+	},
+	{
+		"@type": "ListItem",
+		"position": 2,
+		"name": nomeCategoria,
+		"item": isArticle
+			? new URL(catInfo.navUrl, Astro.site ?? "https://www.lucrar.link/").href
+			: canonicalURL
+	}
+];
+
+if (isArticle) {
+	breadcrumbItems.push({
+		"@type": "ListItem",
+		"position": 3,
+		"name": title,
+		"item": canonicalURL
+	});
+}
+
+const breadcrumbJson = JSON.stringify({
+	"@context": "https://schema.org",
+	"@type": "BreadcrumbList",
+	"itemListElement": breadcrumbItems
+});
+---
+
+<!doctype html>
+<html lang="pt-BR">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="description" content={description} />
+		<meta name="keywords" content="lucrar online, renda extra, app para ganhar dinheiro" />
+		<meta name="robots" content={noindex ? "noindex, follow" : "index, follow, max-snippet:-1, max-image-preview:large"} />
+		<meta name="author" content="Lucrar Online" />
+		<meta property="og:type" content={isArticle ? "article" : "website"} />
+		<meta property="og:title" content={tituloAba} />
+		<meta property="og:description" content={description} />
+		<meta property="og:url" content={canonicalURL} />
+		<meta property="og:site_name" content="Lucrar Online" />
+		<meta property="og:locale" content="pt_BR" />
+		<meta property="og:image" content={socialImageURL} />
+		<meta property="og:image:alt" content={title} />
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content={tituloAba} />
+		<meta name="twitter:description" content={description} />
+		<meta name="twitter:image" content={socialImageURL} />
+		<meta name="twitter:image:alt" content={title} />
+		<title>{tituloAba}</title>
+		<link rel="canonical" href={canonicalURL} />
+		<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+		<link rel="icon" href="/favicon.ico" sizes="any" />
+		<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+		<link rel="stylesheet" href="/styles.css" />
+		{categoria === "home" && (
+			<script type="application/ld+json">
+				{
+					"@context": "https://schema.org",
+					"@type": "WebSite",
+					"name": "Lucrar Online",
+					"url": "https://www.lucrar.link/",
+					"description": "Seu guia para renda extra na internet",
+					"potentialAction": {
+						"@type": "SearchAction",
+						"target": {
+							"@type": "EntryPoint",
+							"urlTemplate": "https://www.lucrar.link/buscar/?q={search_term_string}"
+						},
+						"query-input": "required name=search_term_string"
+					}
+				}
+			</script>
+		)}
+		{categoria !== "home" && categoria !== "geral" && (
+			<script type="application/ld+json" set:html={breadcrumbJson}></script>
+		)}
+		{articleJson && <script type="application/ld+json" set:html={articleJson}></script>}
+		<script type="text/partytown" async src="https://www.googletagmanager.com/gtag/js?id=G-7225X73JRY"></script>
+		<script type="text/partytown" is:inline>
+			window.dataLayer = window.dataLayer || [];
+			function gtag() {
+				dataLayer.push(arguments);
+			}
+			gtag('js', new Date());
+			gtag('config', 'G-7225X73JRY');
+		</script>
+		<style is:global>
+			/* Importando estilos globais se necessário */
+            .youtube-btn {
+                background-color: #FF0000;
+                color: white !important;
+                padding: 0.5rem 1rem;
+                border-radius: 20px;
+                font-weight: bold;
+                transition: transform 0.2s, background-color 0.2s;
+                display: inline-flex;
+                align-items: center;
+                gap: 0.5rem;
+            }
+            .youtube-btn:hover {
+                background-color: #cc0000;
+                transform: scale(1.05);
+                text-decoration: none;
+            }
+
+			/* Destaque do link ativo na navegação */
+			.nav-link.active {
+				color: #6366f1 !important;
+				font-weight: 700;
+				position: relative;
+			}
+			.nav-link.active::after {
+				content: '';
+				position: absolute;
+				bottom: -4px;
+				left: 50%;
+				transform: translateX(-50%);
+				width: 60%;
+				height: 3px;
+				background: linear-gradient(90deg, #6366f1, #8b5cf6);
+				border-radius: 2px;
+			}
+			.youtube-btn.active {
+				color: white !important;
+			}
+			.youtube-btn.active::after {
+				background: white;
+			}
+		</style>
+	</head>
+	<body>
+		<header class="header">
+			<div class="container">
+				<div class="logo"><a href="/" style="text-decoration: none; color: inherit;">{categoria === "home" ? "Lucrar Online" : nomeCategoria}</a></div>
+				<nav class="nav">
+					<ul class="nav-list">
+						<li><a href="/" class={`nav-link ${navAtivo === '/' ? 'active' : ''}`}>Início</a></li>
+						<li><a href="/noticias/" class={`nav-link ${navAtivo === '/noticias/' ? 'active' : ''}`}>Notícias</a></li>
+						<li class="nav-hidden"><a href="/futebol/" class={`nav-link ${navAtivo === '/futebol/' ? 'active' : ''}`}>Futebol</a></li>
+						<li><a href="/comprar/" class={`nav-link ${navAtivo === '/comprar/' ? 'active' : ''}`}>Comprar</a></li>
+						<li><a href="/ganhar-dinheiro/" class={`nav-link ${navAtivo === '/ganhar-dinheiro/' ? 'active' : ''}`}>Ganhar Dinheiro</a></li>
+						<li class="nav-hidden"><a href="/ferramentas/" class={`nav-link ${navAtivo === '/ferramentas/' ? 'active' : ''}`}>Ferramentas</a></li>
+						<li class="nav-more-item">
+							<button class="nav-more-btn" aria-label="Mostrar mais categorias">
+								<span class="nav-more-text">Mais</span>
+								<span class="nav-more-arrow">▼</span>
+							</button>
+						</li>
+					</ul>
+				</nav>
+				<form class="header-search" action="/buscar/" method="get" role="search">
+					<label class="sr-only" for="header-search-input">Pesquisar no site</label>
+					<input id="header-search-input" name="q" type="search" placeholder="Pesquisar" required />
+					<button type="submit" aria-label="Pesquisar">Buscar</button>
+				</form>
+			</div>
+		</header>
+
+		<main class="main">
+			<div class="container">
+				<slot />
+				{isArticle && categoria === "GANHAR DINHEIRO" && (
+					<aside class="earnings-disclaimer" aria-label="Aviso sobre recompensas">
+						<strong>Aviso:</strong> campanhas, tarefas, valores mínimos e formas de saque podem mudar sem aviso. Ganhos variam por usuário e não são garantidos. Confira as regras atuais no aplicativo antes de participar.
+					</aside>
+				)}
+				{showRelacionados && <Relacionados categoria={categoria} />}
+			</div>
+		</main>
+
+		<footer class="footer">
+			<div class="container">
+				<p>&copy; {new Date().getFullYear()} Lucrar Online. Todos os direitos reservados.</p>
+			</div>
+		</footer>
+
+		<script>
+			document.addEventListener('DOMContentLoaded', function() {
+				const pathname = window.location.pathname;
+				const shouldAddTrailingSlash = pathname !== '/' && !pathname.endsWith('/') && !pathname.includes('.');
+				if (shouldAddTrailingSlash) {
+					window.location.replace(pathname + '/' + window.location.search + window.location.hash);
+					return;
+				}
+
+				// Alterna o texto do botao "Mais" / "Menos"
+				const moreBtn = document.querySelector('.nav-more-btn');
+				const navList = document.querySelector('.nav-list');
+				const nav = document.querySelector('.nav');
+				
+				if (moreBtn && navList && nav) {
+					moreBtn.addEventListener('click', function() {
+						navList.classList.toggle('expanded');
+						nav.classList.toggle('expanded');
+						const isExpanded = navList.classList.contains('expanded');
+						moreBtn.querySelector('.nav-more-text').textContent = isExpanded ? 'Menos' : 'Mais';
+						moreBtn.setAttribute('aria-label', isExpanded ? 'Mostrar menos categorias' : 'Mostrar mais categorias');
+					});
+				}
+			});
+		</script>
+		<style is:global>
+			.earnings-disclaimer {
+				max-width: 800px;
+				margin: 2rem auto;
+				padding: 1rem;
+				border-left: 4px solid #d97706;
+				background: #fffbeb;
+				color: #78350f;
+				border-radius: 6px;
+			}
+		</style>
+	</body>
+</html>

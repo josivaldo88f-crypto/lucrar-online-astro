@@ -1,0 +1,141 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+
+interface Props {
+    title: string;
+    description: string;
+    datePublished: string;
+    matchDate: string;
+    startDate: string;
+    time: string;
+    round: string;
+    homeTeam: string;
+    awayTeam: string;
+    venue: string;
+    city: string;
+    broadcast: string;
+    image?: string;
+    newsTitle: string;
+    newsText: string;
+    sourceUrl: string;
+    sourceLabel: string;
+    venueUrl?: string;
+}
+
+const {
+    title,
+    description,
+    datePublished,
+    matchDate,
+    startDate,
+    time,
+    round,
+    homeTeam,
+    awayTeam,
+    venue,
+    city,
+    broadcast,
+    image = '/images/brasileirao-onde-assistir.webp',
+    newsTitle,
+    newsText,
+    sourceUrl,
+    sourceLabel,
+    venueUrl,
+} = Astro.props;
+
+const eventJson = JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'SportsEvent',
+    name: `${homeTeam} x ${awayTeam} pelo Brasileirão 2026`,
+    description,
+    startDate,
+    eventStatus: 'https://schema.org/EventScheduled',
+    eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
+    image: [new URL(image, Astro.site ?? 'https://www.lucrar.link/').href],
+    location: {
+        '@type': 'Place',
+        name: venue,
+        address: {
+            '@type': 'PostalAddress',
+            addressLocality: city,
+            addressCountry: 'BR',
+        },
+    },
+    competitor: [
+        { '@type': 'SportsTeam', name: homeTeam },
+        { '@type': 'SportsTeam', name: awayTeam },
+    ],
+    organizer: {
+        '@type': 'Organization',
+        name: 'Confederação Brasileira de Futebol',
+        url: 'https://www.cbf.com.br/',
+    },
+});
+---
+
+<script type="application/ld+json" set:html={eventJson}></script>
+
+<MainLayout seo={{ title, description, image, datePublished, dateModified: datePublished }} categoria="futebol">
+    <article class="match-article">
+        <header class="match-hero">
+            <p class="match-kicker">Brasileirão 2026 · {round}</p>
+            <h1>{title}</h1>
+            <p class="match-updated"><time datetime={datePublished}>Atualizado em 21 de julho de 2026</time></p>
+        </header>
+
+        <img class="match-cover" src={image} alt={`${homeTeam} x ${awayTeam} pelo Brasileirão`} width="1200" height="630" loading="eager" fetchpriority="high" decoding="async" />
+
+        <section class="match-summary" aria-labelledby="match-details-title">
+            <h2 id="match-details-title">Jogo, horário e onde assistir</h2>
+            <dl class="match-details">
+                <div><dt>Data</dt><dd>{matchDate}</dd></div>
+                <div><dt>Horário</dt><dd>{time} (de Brasília)</dd></div>
+                <div><dt>Estádio</dt><dd>{venueUrl ? <a href={venueUrl}>{venue}</a> : venue}</dd></div>
+                <div><dt>Local</dt><dd>{city}</dd></div>
+                <div><dt>Transmissão</dt><dd>{broadcast}</dd></div>
+            </dl>
+            <p class="schedule-note"><strong>Atenção:</strong> a grade de transmissão pode ser alterada pelas emissoras. Confirme a programação no canal ou aplicativo no dia da partida.</p>
+        </section>
+
+        <section class="match-content">
+            <h2>O que esperar de {homeTeam} x {awayTeam}</h2>
+            <p>{homeTeam} e {awayTeam} se enfrentam pela {round} do Campeonato Brasileiro. O mando de campo será do {homeTeam}, no {venue}, em {city}.</p>
+            <p>Além do horário e da transmissão, vale acompanhar as escalações oficiais, os desfalques e as condições do gramado antes do apito inicial. Essas informações costumam ser confirmadas pelos clubes e pela competição perto do jogo.</p>
+        </section>
+
+        <aside class="match-news" aria-labelledby="match-news-title">
+            <p class="news-label">Destaque da rodada</p>
+            <h2 id="match-news-title">{newsTitle}</h2>
+            <p>{newsText}</p>
+            <a href={sourceUrl} rel="noopener noreferrer">Ler a informação completa em {sourceLabel} ↗</a>
+        </aside>
+
+        <footer class="match-footer">
+            <p>Este guia informa onde assistir e pode ser atualizado quando houver mudança oficial de horário ou transmissão.</p>
+            <a href="/futebol/">← Ver todos os jogos e notícias de futebol</a>
+        </footer>
+    </article>
+</MainLayout>
+
+<style>
+    .match-article { max-width: 900px; margin: 0 auto; }
+    .match-hero { margin-bottom: 1.5rem; }
+    .match-kicker, .news-label { margin: 0 0 0.5rem; color: #2563eb; font-size: 0.85rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; }
+    .match-hero h1 { margin: 0 0 0.6rem; color: #111827; font-size: clamp(2rem, 5vw, 3rem); line-height: 1.15; }
+    .match-updated { margin: 0; color: #6b7280; font-size: 0.9rem; }
+    .match-cover { display: block; width: 100%; height: auto; margin-bottom: 2rem; border-radius: 12px; }
+    .match-summary, .match-news { margin: 2rem 0; padding: 1.5rem; border-radius: 12px; }
+    .match-summary { background: #eff6ff; border: 1px solid #bfdbfe; }
+    .match-summary h2, .match-content h2, .match-news h2 { margin-top: 0; color: #1f2937; }
+    .match-details { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 1rem; margin: 1.25rem 0; }
+    .match-details div { padding: 0.9rem; background: #fff; border-radius: 8px; }
+    .match-details dt { color: #6b7280; font-size: 0.85rem; font-weight: 700; }
+    .match-details dd { margin: 0.3rem 0 0; color: #111827; font-weight: 600; }
+    .match-details a, .match-news a, .match-footer a { color: #1d4ed8; text-decoration: underline; text-underline-offset: 0.2em; }
+    .schedule-note { margin: 0; color: #374151; font-size: 0.92rem; }
+    .match-content { padding: 0.5rem 0; color: #374151; font-size: 1.05rem; line-height: 1.8; }
+    .match-news { background: #fff7ed; border: 1px solid #fed7aa; }
+    .match-news p { color: #4b5563; line-height: 1.7; }
+    .match-footer { padding-top: 1.5rem; border-top: 1px solid #e5e7eb; color: #6b7280; }
+    @media (max-width: 640px) { .match-summary, .match-news { padding: 1rem; } }
+</style>

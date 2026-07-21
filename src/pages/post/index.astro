@@ -1,0 +1,91 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+import PostCard from '../../components/PostCard.astro';
+
+const posts = await Astro.glob('./*.astro');
+const categoryPosts = posts
+    .filter(post => {
+        const title = post.title || post.frontmatter?.title;
+        return post.url && title && post.url !== Astro.url.pathname && post.url !== Astro.url.pathname + '/';
+    })
+    .sort((a, b) => {
+        const dateA = new Date(a.date || a.frontmatter?.date || '0').getTime();
+        const dateB = new Date(b.date || b.frontmatter?.date || '0').getTime();
+        return dateB - dateA;
+    });
+
+const categoria = "post";
+const title = "Artigos";
+const description = "Explore artigos e guias sobre aplicativos, ferramentas, compras, relacionamento e outros temas publicados no site.";
+---
+
+<MainLayout seo={{ title, description }} categoria={categoria} showRelacionados={false}>
+    <h1 class="page-title" style="margin-bottom: 2rem; color: #2563eb;">{title}</h1>
+    
+    <section class="category-intro">
+        <p>Artigos detalhados e guias completos sobre <strong>como ganhar dinheiro na internet</strong>. Aqui reunimos análises aprofundadas de aplicativos, jogos e plataformas que pagam, com instruções passo a passo e dicas para maximizar seus ganhos. Todo conteúdo é atualizado regularmente para refletir as melhores oportunidades disponíveis.</p>
+    </section>
+    <nav class="topic-links" aria-labelledby="topic-links-title">
+        <h2 id="topic-links-title">Explore outros conteúdos</h2>
+        <p>
+            Navegue também por <a href="/ganhar-dinheiro/">renda extra</a>,
+            <a href="/ferramentas/">calculadoras financeiras</a>,
+            <a href="/comprar/">guias de compra</a> e <a href="/noticias/">notícias</a>.
+        </p>
+        <ul>
+            <li><a href="/ganhar-dinheiro/top-3-apps-que-pagam-no-pix/">Aplicativos que pagam pelo Pix</a></li>
+            <li><a href="/sites-para-ganhar-dinheiro-respondendo-pesquisas/">Sites de pesquisas remuneradas</a></li>
+            <li><a href="/ferramentas/calculadora-de-juros-compostos/">Calculadora de juros compostos</a></li>
+            <li><a href="/comprar/melhores-fones-de-ouvido-baratos/">Guia de fones de ouvido baratos</a></li>
+        </ul>
+    </nav>
+    
+    <div class="posts-grid">
+        {categoryPosts.map(post => {
+            const postTitle = post.title || post.frontmatter?.title;
+            const postDescription = post.description || post.frontmatter?.description;
+            const postImage = post.image || post.frontmatter?.image || '/images/default-post.webp';
+            const postDate = post.date || post.frontmatter?.date;
+            
+            return (
+                <PostCard 
+                    title={postTitle}
+                    description={postDescription}
+                    url={post.url}
+                    image={postImage}
+                    date={postDate}
+                />
+            );
+        })}
+    </div>
+</MainLayout>
+
+<style>
+    .topic-links {
+        margin: 2rem 0;
+        padding: 1.5rem;
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 12px;
+    }
+
+    .topic-links h2 {
+        margin: 0 0 0.75rem;
+        color: #1f2937;
+        font-size: 1.35rem;
+    }
+
+    .topic-links a {
+        color: #1d4ed8;
+        text-decoration: underline;
+        text-underline-offset: 0.2em;
+    }
+
+    .topic-links ul {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 0.75rem 1.5rem;
+        margin: 1rem 0 0;
+        padding-left: 1.25rem;
+    }
+</style>

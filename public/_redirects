@@ -1,0 +1,27 @@
+# Root index.html → raiz
+/index.html  /  301
+
+# Redirecionar todas as URLs .html para versão limpa com barra
+/*.html /:splat/ 301
+
+# URLs sem barra no final → versão com barra
+/noticias /noticias/ 301
+/futebol /futebol/ 301
+
+# URLs antigas e artigos consolidados
+/blog/ /post/ 301
+/código-de-convite-tiktok-22997768 /ganhar-dinheiro/tiktok-e-tiktok-lite-codigos-convite/ 301
+/código-de-convite-no-tiktok /ganhar-dinheiro/tiktok-e-tiktok-lite-codigos-convite/ 301
+/ganhar-dinheiro/tiktok-lite-codigo-convite/ /ganhar-dinheiro/tiktok-e-tiktok-lite-codigos-convite/ 301
+/post/código-tik-tok-código-de-convite-para-tiktok/ /ganhar-dinheiro/tiktok-e-tiktok-lite-codigos-convite/ 301
+/post/cashing-app-ganhe-dinheiro-jogando-respondendo-pesquisas-e-assistindo-vídeos-resgates-rápidos-vi/ /ganhar-dinheiro/cashing-app-ganhe-dinheiro/ 301
+/código-de-convite-do-app-rio-rush-descub/ /ganhar-dinheiro/codigo-de-convite-rio-rush/ 301
+
+# Slugs revisados: acentos, erros, anos obsoletos e URLs excessivamente longas
+/app-para-ganhar-dinheiro-assistindo-vídeos/ /app-para-ganhar-dinheiro-assistindo-videos/ 301
+/como-ganhar-dinheiro-respondedo-pesquisas-attapoll/ /como-ganhar-dinheiro-respondendo-pesquisas-attapoll/ 301
+/código-de-convite-kwai-atualizado-2024/ /codigo-de-convite-kwai/ 301
+/os-3-melhores-sites-paraganhar-dinheiro-respondendo-pesquisasem-2025/ /sites-para-ganhar-dinheiro-respondendo-pesquisas/ 301
+/comprar/5-melhores-fones-de-ouvido-baratas/ /comprar/melhores-fones-de-ouvido-baratos/ 301
+/post/como-usar-o-código-de-convite-rio-rush-ganhe-dinheiro-assistindo-vídeos-e-lendo-notícias/ /ganhar-dinheiro/codigo-de-convite-rio-rush/ 301
+/relacionamento/Top-10-Apps-de-Relacionamento-em-2025-Encontre-o-Par-Ideal/ /relacionamento/melhores-apps-de-relacionamento/ 301
