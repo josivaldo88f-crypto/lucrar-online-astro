@@ -1,0 +1,159 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+
+export const title = 'DramaSpot paga mesmo? App é confiável?';
+export const description = 'DramaSpot paga mesmo? Veja como o app promete recompensas por assistir dramas, o que os prints mostram e por que não há prova de saque.';
+export const categoria = 'GANHAR DINHEIRO';
+export const date = '2026-07-30';
+export const image = '/images/dramaspot-google-play.webp';
+
+const screenshots = [
+    {
+        src: '/images/dramaspot-inicio.webp',
+        alt: 'Tela inicial do DramaSpot com dramas e saldo exibido',
+        caption: 'Tela inicial com catálogo de dramas, tarefas e saldo exibido no aplicativo.',
+        width: 1220,
+        height: 2712,
+    },
+    {
+        src: '/images/dramaspot-carteira.webp',
+        alt: 'Carteira do DramaSpot com tarefas para assistir episódios',
+        caption: 'A carteira mostra tarefas de assistir episódios, mas não mostra saque concluído.',
+        width: 1220,
+        height: 2712,
+    },
+    {
+        src: '/images/dramaspot-episodio.webp',
+        alt: 'DramaSpot exibindo episódio e saldo de moedas',
+        caption: 'Durante a reprodução, o aplicativo exibe saldo e progresso de recompensa.',
+        width: 1220,
+        height: 2712,
+    },
+];
+---
+
+<MainLayout seo={{ title, description, image, datePublished: date, dateModified: date }} categoria={categoria}>
+    <article class="review-article">
+        <header class="review-header">
+            <p class="eyebrow">Análise de aplicativo · renda extra</p>
+            <h1>{title}</h1>
+            <p class="review-meta"><time datetime={date}>Atualizado em 30 de julho de 2026</time></p>
+            <p class="lead">O DramaSpot é um aplicativo de vídeos curtos e dramas que promete recompensas para quem assiste a episódios. Nesta análise, verificamos o que aparece na loja e nas telas do app — e o que ainda não foi comprovado.</p>
+        </header>
+
+        <figure class="hero-figure">
+            <img src={image} alt="Página do DramaSpot na Google Play" width="1904" height="909" loading="eager" fetchpriority="high" decoding="async" />
+            <figcaption>Informações da página do DramaSpot na Google Play enviadas para esta análise.</figcaption>
+        </figure>
+
+        <div class="verdict" role="note">
+            <strong>Conclusão rápida:</strong> os materiais mostram uma promessa de recompensa, mas não apresentam comprovante de saque. Por isso, não é possível afirmar que o DramaSpot realmente paga; trate o app como não comprovado e não deposite dinheiro para tentar liberar ganhos.
+        </div>
+
+        <nav class="toc" aria-label="Índice desta análise">
+            <strong>Nesta análise</strong>
+            <a href="#como-funciona">Como funciona</a>
+            <a href="#paga-mesmo">DramaSpot paga mesmo?</a>
+            <a href="#prints">O que os prints mostram</a>
+            <a href="#vale-a-pena">É confiável?</a>
+            <a href="#perguntas">Perguntas frequentes</a>
+        </nav>
+
+        <section id="como-funciona" class="content-section">
+            <h2>O que é o DramaSpot e como ele promete ganhar dinheiro?</h2>
+            <p>O DramaSpot é apresentado como um app de entretenimento com dramas, séries curtas e anúncios. Na descrição visual enviada, o usuário assiste a episódios e acessa uma área de tarefas chamada “Minha Carteira”. A recompensa aparece como saldo dentro do aplicativo.</p>
+            <p>Isso explica por que algumas pessoas pesquisam “DramaSpot ganha dinheiro” ou “app DramaSpot”. Porém, uma tela de saldo é apenas uma promessa interna do aplicativo: ela não prova que o valor pode ser retirado e recebido em uma conta real.</p>
+
+            <div class="facts-grid">
+                <div><strong>Desenvolvedor</strong><span>Nabuild 254 Inc.</span></div>
+                <div><strong>Downloads exibidos</strong><span>500 mil ou mais</span></div>
+                <div><strong>Conteúdo</strong><span>Contém anúncios</span></div>
+                <div><strong>Versão mostrada</strong><span>2.1.7.260615</span></div>
+            </div>
+        </section>
+
+        <section id="paga-mesmo" class="content-section">
+            <h2>DramaSpot paga mesmo ou não paga?</h2>
+            <p>Com base nos prints enviados, <strong>não há comprovação de que o DramaSpot paga</strong>. As imagens mostram saldo de ₱0,00 e ₱20,00, além de uma exigência de ₱1.000 para desbloquear o saque. Elas não mostram transferência bancária, Pix, carteira digital, recibo, ID de transação ou confirmação de pagamento.</p>
+            <p>Também é importante observar que o símbolo exibido é <strong>₱</strong>, associado ao peso filipino, e não o símbolo do real brasileiro (R$). Portanto, não se deve interpretar esse saldo como dinheiro disponível em reais.</p>
+            <div class="evidence-table" role="table" aria-label="Evidências encontradas nos prints">
+                <div class="table-row table-head" role="row"><strong role="columnheader">O que aparece</strong><strong role="columnheader">O que não aparece</strong></div>
+                <div class="table-row" role="row"><span role="cell">Saldo e moedas dentro do app</span><span role="cell">Saque concluído</span></div>
+                <div class="table-row" role="row"><span role="cell">Tarefas para assistir episódios</span><span role="cell">Comprovante de transferência</span></div>
+                <div class="table-row" role="row"><span role="cell">Meta de ₱1.000</span><span role="cell">Prazo e método de pagamento verificados</span></div>
+            </div>
+        </section>
+
+        <section id="prints" class="content-section">
+            <h2>O que os prints do aplicativo revelam?</h2>
+            <p>As capturas indicam um ciclo de recompensa baseado em assistir conteúdo: o usuário abre um drama, acompanha episódios e vê o progresso na carteira. A interface é suficiente para demonstrar como a promessa funciona, mas não para validar o pagamento.</p>
+            <div class="screenshots-grid">
+                {screenshots.map((shot) => (
+                    <figure class="screenshot-card">
+                        <img src={shot.src} alt={shot.alt} width={shot.width} height={shot.height} loading="lazy" decoding="async" />
+                        <figcaption>{shot.caption}</figcaption>
+                    </figure>
+                ))}
+            </div>
+        </section>
+
+        <section id="vale-a-pena" class="content-section">
+            <h2>O DramaSpot é confiável?</h2>
+            <p>A resposta mais segura é: <strong>não há dados suficientes para considerar o app confiável como fonte de renda</strong>. A existência na loja, a quantidade de downloads ou uma interface bem produzida não garantem que o saque será aprovado.</p>
+            <ul class="check-list">
+                <li>Não pague taxa, depósito ou “ativação” para liberar recompensas.</li>
+                <li>Não informe documentos, dados bancários ou códigos recebidos por SMS sem entender a finalidade.</li>
+                <li>Leia as políticas da loja e observe as permissões solicitadas pelo aplicativo.</li>
+                <li>Se testar, use apenas tempo que você aceita perder e registre qualquer tentativa de saque.</li>
+            </ul>
+            <p>Para comparar outras análises do site, veja também a categoria <a href="/ganhar-dinheiro/">Ganhar Dinheiro</a> e confira os cuidados antes de usar aplicativos de recompensas.</p>
+        </section>
+
+        <section id="perguntas" class="faq-section">
+            <h2>Perguntas frequentes sobre o DramaSpot</h2>
+            <details><summary>DramaSpot paga mesmo?</summary><p>Os prints analisados mostram saldo e tarefas, mas nenhum saque concluído. Portanto, não há comprovação suficiente para dizer que o DramaSpot paga.</p></details>
+            <details><summary>O aplicativo DramaSpot paga em Pix?</summary><p>Não há, nas capturas enviadas, comprovante de pagamento via Pix. O símbolo mostrado é ₱, e o método de saque não foi comprovado.</p></details>
+            <details><summary>DramaSpot é confiável?</summary><p>A confiabilidade não pode ser confirmada apenas pela página da loja ou pelo saldo exibido. Verifique permissões, política de privacidade e relatos de saque antes de usar.</p></details>
+            <details><summary>DramaSpot realmente paga para assistir dramas?</summary><p>O app promete recompensas por assistir, mas a promessa não equivale a pagamento. Até existir uma transação verificável, considere o ganho não comprovado.</p></details>
+        </section>
+
+        <aside class="method-note"><strong>Como esta análise foi feita:</strong> usamos a página da Google Play, a tela “Sobre este app” e as capturas de uso fornecidas pelo leitor. As conclusões refletem apenas as evidências disponíveis e podem mudar se houver um comprovante de saque verificável.</aside>
+    </article>
+</MainLayout>
+
+<style>
+    .review-article { max-width: 900px; margin: 0 auto; color: #374151; }
+    .review-header { margin-bottom: 1.5rem; }
+    .eyebrow { margin: 0 0 .5rem; color: #2563eb; font-size: .82rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
+    .review-header h1 { margin: 0 0 .6rem; color: #111827; font-size: clamp(2rem, 5vw, 3rem); line-height: 1.12; }
+    .review-meta { margin: 0 0 1.2rem; color: #6b7280; font-size: .9rem; }
+    .lead { font-size: 1.15rem; line-height: 1.75; }
+    .hero-figure { margin: 0 0 1.5rem; }
+    .hero-figure img { display: block; width: 100%; height: auto; border-radius: 12px; }
+    figcaption { margin-top: .55rem; color: #6b7280; font-size: .86rem; line-height: 1.5; }
+    .verdict { margin: 1.5rem 0; padding: 1.2rem 1.35rem; background: #fff7ed; border-left: 4px solid #ea580c; border-radius: 8px; line-height: 1.7; }
+    .toc { display: flex; flex-wrap: wrap; gap: .65rem; align-items: center; margin: 2rem 0; padding: 1rem; background: #f8fafc; border: 1px solid #e5e7eb; border-radius: 10px; }
+    .toc strong { flex-basis: 100%; color: #111827; }
+    .toc a, .content-section a { color: #1d4ed8; text-decoration: underline; text-underline-offset: .18em; }
+    .toc a { padding: .35rem .65rem; background: #fff; border-radius: 6px; font-size: .92rem; }
+    .content-section { margin: 2.5rem 0; }
+    .content-section h2, .faq-section h2 { margin-bottom: .8rem; color: #1f2937; font-size: 1.65rem; }
+    .content-section p, .faq-section p { line-height: 1.8; }
+    .facts-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: .75rem; margin-top: 1.3rem; }
+    .facts-grid div { display: flex; flex-direction: column; gap: .25rem; padding: 1rem; background: #f8fafc; border-radius: 8px; }
+    .facts-grid strong { color: #111827; font-size: .85rem; }
+    .facts-grid span { color: #4b5563; }
+    .evidence-table { margin-top: 1.25rem; border: 1px solid #e5e7eb; border-radius: 8px; overflow: hidden; }
+    .table-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; padding: .85rem 1rem; border-top: 1px solid #e5e7eb; }
+    .table-row:first-child { border-top: 0; }
+    .table-head { background: #f3f4f6; color: #111827; }
+    .screenshots-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 1.25rem; }
+    .screenshot-card { margin: 0; }
+    .screenshot-card img { display: block; width: 100%; height: 520px; object-fit: cover; object-position: top; border-radius: 10px; background: #111827; }
+    .check-list { padding-left: 1.35rem; line-height: 1.9; }
+    .faq-section { margin: 2.5rem 0; }
+    details { padding: 1rem 0; border-top: 1px solid #e5e7eb; }
+    summary { cursor: pointer; color: #111827; font-weight: 700; }
+    .method-note { margin: 2rem 0; padding: 1rem 1.2rem; background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 8px; line-height: 1.7; font-size: .92rem; }
+    @media (max-width: 680px) { .screenshots-grid { grid-template-columns: 1fr; } .screenshot-card img { height: auto; max-height: 720px; object-fit: contain; } .table-row { grid-template-columns: 1fr; gap: .35rem; } }
+</style>
