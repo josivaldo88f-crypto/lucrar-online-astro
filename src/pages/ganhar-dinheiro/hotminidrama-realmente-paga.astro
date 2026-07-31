@@ -1,0 +1,48 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+
+export const title = 'HotMiniDrama realmente paga? Hot Mini Drama paga mesmo ou é golpe?';
+export const description = 'HotMiniDrama realmente paga? Entenda a promessa de ganhar dinheiro assistindo vídeos, veja os prints do app e descubra por que o Hot Mini Drama não paga.';
+export const categoria = 'GANHAR DINHEIRO';
+export const date = '2026-07-31';
+export const image = '/images/hotminidrama-abertura.jpg';
+
+const screenshots = [
+  { src: '/images/hotminidrama-abertura.jpg', alt: 'Tela de abertura do aplicativo HotMiniDrama', caption: 'A tela inicial do HotMiniDrama promete recompensas enquanto carrega os vídeos.' },
+  { src: '/images/hotminidrama-episodio.jpg', alt: 'HotMiniDrama exibindo episódio e promessa de ganhar R$ 1 mil', caption: 'Durante o episódio, aparecem chamadas como “Ganhe mais R$1K” e “Saque R$1K agora”.' },
+  { src: '/images/hotminidrama-saque.jpg', alt: 'Tela de saque do HotMiniDrama com saldo de R$ 95,32', caption: 'A carteira mostra saldo e valores altos de resgate, mas não confirma transferência real.' },
+  { src: '/images/hotminidrama-logo.webp', alt: 'Ícone do aplicativo HotMiniDrama', caption: 'Ícone usado pelo aplicativo HotMiniDrama.' },
+];
+---
+
+<MainLayout seo={{ title, description, image, datePublished: date, dateModified: date }} categoria={categoria}>
+  <article class="review-article">
+    <header class="review-header">
+      <p class="eyebrow">Análise · ganhar dinheiro assistindo vídeos</p>
+      <h1>{title}</h1>
+      <p class="review-meta"><time datetime={date}>Atualizado em 31 de julho de 2026</time></p>
+      <p class="lead">O HotMiniDrama (também chamado de Hot Mini Drama) promete pagar quem assiste a minidramas e completa tarefas. A dúvida é “hotminidrama realmente paga?”. A resposta, após analisar as telas enviadas, é não: o aplicativo exibe saldos e promessas, mas não entrega um pagamento verificável.</p>
+    </header>
+
+    <figure class="hero-figure"><img src={image} alt="Tela de abertura do HotMiniDrama" width="900" height="1900" loading="eager" fetchpriority="high" /><figcaption>Print enviado pelo leitor mostrando a abertura do HotMiniDrama.</figcaption></figure>
+
+    <div class="verdict"><strong>Resposta direta:</strong> o HotMiniDrama não paga de forma comprovada. Os valores exibidos são apenas créditos dentro do app; não há comprovante de Pix, depósito bancário ou saque recebido.</div>
+
+    <nav class="toc" aria-label="Índice"><strong>Nesta análise</strong><a href="#como-funciona">Como funciona</a><a href="#paga">Hot Mini Drama paga mesmo?</a><a href="#prints">O que os prints mostram</a><a href="#cuidados">Cuidados</a><a href="#faq">Perguntas frequentes</a></nav>
+
+    <section id="como-funciona" class="content-section"><h2>Como o HotMiniDrama promete ganhar dinheiro?</h2><p>O aplicativo oferece minidramas em episódios curtos e tarefas de engajamento. Enquanto a pessoa assiste, a interface mostra moedas, dinheiro e botões de saque. É por isso que surgem buscas como “hot mini drama paga”, “hotminidrama paga mesmo” e “o app Hot Mini Drama paga mesmo”.</p><p>Um saldo na tela não é dinheiro disponível. Para considerar um app confiável, seria necessário um saque concluído e identificável, com valor, data e destinatário.</p></section>
+
+    <section id="paga" class="content-section"><h2>HotMiniDrama realmente paga ou não paga?</h2><p><strong>Não paga.</strong> Nos prints fornecidos, o HotMiniDrama promete até R$ 1 mil e mostra R$ 95,32 de saldo, porém nenhuma imagem registra Pix aprovado, comprovante bancário ou recebimento. A promessa serve para estimular o usuário a continuar assistindo e cumprindo tarefas, mas não prova que o dinheiro sai do aplicativo.</p><div class="evidence-table"><div class="table-row table-head"><strong>O que aparece</strong><strong>O que falta</strong></div><div class="table-row"><span>Saldo, moedas e botões “Sacar”</span><span>Comprovante de pagamento</span></div><div class="table-row"><span>Chamadas “Ganhe mais R$1K”</span><span>Transferência via Pix confirmada</span></div><div class="table-row"><span>Tarefas para assistir episódios</span><span>Regra clara que garanta o resgate</span></div></div></section>
+
+    <section id="prints" class="content-section"><h2>Prints do HotMiniDrama: o que eles revelam?</h2><p>As capturas mostram o fluxo típico: o usuário abre um drama, assiste a episódios, acumula créditos e chega à tela de saque. Também aparece a linguagem de urgência para “sacar agora”. Mesmo assim, os prints não mostram uma transação finalizada. Eles comprovam a propaganda interna do app, não um pagamento real.</p><div class="screenshots-grid">{screenshots.map((shot) => <figure class="screenshot-card"><img src={shot.src} alt={shot.alt} loading="lazy" decoding="async" /><figcaption>{shot.caption}</figcaption></figure>)}</div></section>
+
+    <section id="cuidados" class="content-section"><h2>Hot Mini Drama é confiável? Veja os cuidados</h2><p>Como o HotMiniDrama não comprova os saques, não use o aplicativo como fonte de renda. Não pague taxa para liberar saldo, não envie documentos ou dados bancários sem necessidade e desconfie de pedidos para convidar mais pessoas antes de sacar.</p><ul class="check-list"><li>Não deposite dinheiro para “ativar” ou “desbloquear” o saque.</li><li>Evite informar senha, código SMS ou dados do cartão.</li><li>Leia permissões e política de privacidade antes de instalar.</li><li>Se já instalou, desative permissões desnecessárias e remova o app se houver cobrança.</li></ul><p>Confira outras análises na categoria <a href="/ganhar-dinheiro/">Ganhar Dinheiro</a>.</p></section>
+
+    <section id="faq" class="faq-section"><h2>Perguntas frequentes sobre o HotMiniDrama</h2><details><summary>HotMiniDrama realmente paga?</summary><p>Não. O app mostra saldo e promessas, mas não apresenta pagamento verificável nos prints analisados.</p></details><details><summary>Hot Mini Drama paga no Pix?</summary><p>Não há comprovante de Pix aprovado. O botão “Sacar” sozinho não confirma recebimento.</p></details><details><summary>O aplicativo HotMiniDrama é confiável?</summary><p>Não como fonte de renda. Sem saque comprovado, trate as recompensas como não verificadas e proteja seus dados.</p></details><details><summary>É possível ganhar dinheiro assistindo vídeos no HotMiniDrama?</summary><p>Essa é a promessa do app, mas a evidência disponível indica que o usuário acumula créditos internos sem pagamento real.</p></details></section>
+    <aside class="method-note"><strong>Como analisamos:</strong> usamos os prints fornecidos pelo leitor e observamos o caminho entre assistir episódios, acumular saldo e tentar sacar. A conclusão pode ser revista apenas diante de um comprovante de pagamento autêntico e verificável.</aside>
+  </article>
+</MainLayout>
+
+<style>
+.review-article{max-width:900px;margin:0 auto;color:#374151}.review-header{margin-bottom:1.5rem}.eyebrow{margin:0 0 .5rem;color:#2563eb;font-size:.82rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase}.review-header h1{margin:0 0 .6rem;color:#111827;font-size:clamp(2rem,5vw,3rem);line-height:1.12}.review-meta{margin:0 0 1.2rem;color:#6b7280;font-size:.9rem}.lead{font-size:1.15rem;line-height:1.75}.hero-figure{margin:0 0 1.5rem}.hero-figure img{display:block;width:100%;height:auto;max-height:720px;object-fit:cover;object-position:top;border-radius:12px}figcaption{margin-top:.55rem;color:#6b7280;font-size:.86rem;line-height:1.5}.verdict{margin:1.5rem 0;padding:1.2rem 1.35rem;background:#fff7ed;border-left:4px solid #ea580c;border-radius:8px;line-height:1.7}.toc{display:flex;flex-wrap:wrap;gap:.65rem;align-items:center;margin:2rem 0;padding:1rem;background:#f8fafc;border:1px solid #e5e7eb;border-radius:10px}.toc strong{flex-basis:100%;color:#111827}.toc a,.content-section a{color:#1d4ed8;text-decoration:underline;text-underline-offset:.18em}.toc a{padding:.35rem .65rem;background:#fff;border-radius:6px;font-size:.92rem}.content-section{margin:2.5rem 0}.content-section h2,.faq-section h2{margin-bottom:.8rem;color:#1f2937;font-size:1.65rem}.content-section p,.faq-section p{line-height:1.8}.evidence-table{margin-top:1.25rem;border:1px solid #e5e7eb;border-radius:8px;overflow:hidden}.table-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;padding:.85rem 1rem;border-top:1px solid #e5e7eb}.table-row:first-child{border-top:0}.table-head{background:#f3f4f6;color:#111827}.screenshots-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-top:1.25rem}.screenshot-card{margin:0}.screenshot-card img{display:block;width:100%;height:390px;object-fit:cover;object-position:top;border-radius:10px;background:#111827}.check-list{padding-left:1.35rem;line-height:1.9}.faq-section{margin:2.5rem 0}details{padding:1rem 0;border-top:1px solid #e5e7eb}summary{cursor:pointer;color:#111827;font-weight:700}.method-note{margin:2rem 0;padding:1rem 1.2rem;background:#eff6ff;border:1px solid #bfdbfe;border-radius:8px;line-height:1.7;font-size:.92rem}@media(max-width:680px){.screenshots-grid{grid-template-columns:repeat(2,1fr)}.screenshot-card img{height:300px}.table-row{grid-template-columns:1fr;gap:.35rem}}
+</style>

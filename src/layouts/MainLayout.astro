@@ -10,7 +10,7 @@ interface Props {
 
 const { 
 	seo = {
-		title: "Lucrar Online - Seu Guia para Renda Extra na Internet",
+		title: "Seu Guia para Renda Extra na Internet",
 		description: "Aprenda a lucrar online com dicas de apps e sites para ganhar dinheiro e estratégias comprovadas"
 	},
 	categoria = "geral",
@@ -44,10 +44,8 @@ const catInfo = categoriaMap[categoria] || categoriaMap["geral"];
 const nomeCategoria = catInfo.nome;
 const navAtivo = catInfo.navUrl;
 
-// A home mantém o título institucional; as demais páginas usam apenas o próprio título.
-const tituloAba = categoria === "home" 
-	? "Lucrar Online - Seu Guia para Renda Extra na Internet"
-	: title;
+// Evita que o nome do site seja repetido no título exibido por buscadores.
+const tituloAba = title.replace(/\s*(?:-|\|)\s*Lucrar Online\s*$/i, '').trim();
 
 let canonicalPathname = Astro.url.pathname;
 if (canonicalPathname.endsWith('.html')) canonicalPathname = canonicalPathname.slice(0, -5);
