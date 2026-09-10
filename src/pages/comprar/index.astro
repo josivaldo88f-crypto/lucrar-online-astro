@@ -17,7 +17,7 @@ const categoryPosts = posts
 
 const categoria = "comprar";
 const title = "Comprar";
-const description = "As melhores opções de compra, listas de produtos recomendados e guias para ajudar você a escolher o que vale a pena.";
+const description = "Compare produtos recomendados, listas atualizadas e guias de compra com foco em custo-benefício para escolher melhor e economizar no dia a dia.";
 ---
 
 <MainLayout seo={{ title, description }} categoria={categoria} showRelacionados={false}>
@@ -29,7 +29,7 @@ const description = "As melhores opções de compra, listas de produtos recomend
     
     <div class="posts-grid">
         {categoryPosts.length > 0 ? (
-            categoryPosts.map(post => {
+            categoryPosts.map((post, index) => {
                 const postTitle = post.title || post.frontmatter?.title;
                 const postDescription = post.description || post.frontmatter?.description;
                 const postImage = post.image || post.frontmatter?.image || '/images/default-post.webp';
@@ -42,6 +42,7 @@ const description = "As melhores opções de compra, listas de produtos recomend
                         url={post.url}
                         image={postImage}
                         date={postDate}
+                        priority={index === 0}
                     />
                 );
             })

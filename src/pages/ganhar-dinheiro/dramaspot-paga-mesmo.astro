@@ -6,6 +6,16 @@ export const description = 'DramaSpot paga mesmo? Veja como o app promete recomp
 export const categoria = 'GANHAR DINHEIRO';
 export const date = '2026-07-30';
 export const image = '/images/dramaspot-google-play.webp';
+export const faq = [
+  { question: 'DramaSpot paga mesmo?', answer: 'Os prints analisados mostram saldo e tarefas, mas nenhum saque concluído. Portanto, não há comprovação suficiente para dizer que o DramaSpot paga.' },
+  { question: 'O aplicativo DramaSpot paga em Pix?', answer: 'Não há, nas capturas enviadas, comprovante de pagamento via Pix. O símbolo mostrado é ₱, e o método de saque não foi comprovado.' },
+  { question: 'DramaSpot é confiável?', answer: 'A confiabilidade não pode ser confirmada apenas pela página da loja ou pelo saldo exibido. Verifique permissões, política de privacidade e relatos de saque antes de usar.' },
+  { question: 'DramaSpot realmente paga para assistir dramas?', answer: 'O app promete recompensas por assistir, mas a promessa não equivale a pagamento. Até existir uma transação verificável, considere o ganho não comprovado.' },
+];
+
+const smallImg = (p: string) => p.replace(/\.[^.]+$/, '-480.webp');
+const bigImg = (p: string) => p.replace(/\.[^.]+$/, '-900.webp');
+const heroSizes = '(max-width: 860px) 92vw, 900px';
 
 const screenshots = [
     {
@@ -32,7 +42,7 @@ const screenshots = [
 ];
 ---
 
-<MainLayout seo={{ title, description, image, datePublished: date, dateModified: date }} categoria={categoria}>
+<MainLayout seo={{ title, description, image, imageWidth: 1200, imageHeight: 573, datePublished: date, dateModified: date, faq }} categoria={categoria} preloadImage={bigImg(image)} preloadImageSrcset={`${smallImg(image)} 480w, ${bigImg(image)} 900w`} preloadImageSizes={heroSizes}>
     <article class="review-article">
         <header class="review-header">
             <p class="eyebrow">Análise de aplicativo · renda extra</p>
@@ -42,7 +52,7 @@ const screenshots = [
         </header>
 
         <figure class="hero-figure">
-            <img src={image} alt="Página do DramaSpot na Google Play" width="1904" height="909" loading="eager" fetchpriority="high" decoding="async" />
+            <img src={bigImg(image)} srcset={`${smallImg(image)} 480w, ${bigImg(image)} 900w`} sizes={heroSizes} alt="Página do DramaSpot na Google Play" width="1904" height="909" loading="eager" fetchpriority="high" decoding="async" />
             <figcaption>Informações da página do DramaSpot na Google Play enviadas para esta análise.</figcaption>
         </figure>
 
@@ -90,7 +100,7 @@ const screenshots = [
             <div class="screenshots-grid">
                 {screenshots.map((shot) => (
                     <figure class="screenshot-card">
-                        <img src={shot.src} alt={shot.alt} width={shot.width} height={shot.height} loading="lazy" decoding="async" />
+                        <img src={smallImg(shot.src)} alt={shot.alt} width={shot.width} height={shot.height} loading="lazy" fetchpriority="low" decoding="async" />
                         <figcaption>{shot.caption}</figcaption>
                     </figure>
                 ))}

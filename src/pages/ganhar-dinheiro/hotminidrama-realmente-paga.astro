@@ -2,6 +2,7 @@
 import MainLayout from '../../layouts/MainLayout.astro';
 
 export const title = 'HotMiniDrama realmente paga? Hot Mini Drama paga mesmo ou é golpe?';
+export const seoTitle = 'HotMiniDrama Paga Mesmo? Hot Mini Drama é Golpe?';
 export const description = 'HotMiniDrama realmente paga? Entenda a promessa de ganhar dinheiro assistindo vídeos, veja os prints do app e descubra por que o Hot Mini Drama não paga.';
 export const categoria = 'GANHAR DINHEIRO';
 export const date = '2026-07-31';
@@ -12,9 +13,18 @@ const screenshots = [
   { src: '/images/hotminidrama-episodio.jpg', alt: 'HotMiniDrama exibindo episódio e promessa de ganhar R$ 1 mil', caption: 'Durante o episódio, aparecem chamadas como “Ganhe mais R$1K” e “Saque R$1K agora”.' },
   { src: '/images/hotminidrama-saque.jpg', alt: 'Tela de saque do HotMiniDrama com saldo de R$ 95,32', caption: 'A carteira mostra saldo e valores altos de resgate, mas não confirma transferência real.' },
 ];
+const smallImg = (p: string) => p.replace(/\.[^.]+$/, '-480.webp');
+const bigImg = (p: string) => p.replace(/\.[^.]+$/, '-900.webp');
+const heroSizes = '(max-width: 860px) 92vw, 900px';
+export const faq = [
+  { question: 'HotMiniDrama realmente paga?', answer: 'Não. O app mostra saldo e promessas, mas não apresenta pagamento verificável nos prints analisados.' },
+  { question: 'Hot Mini Drama paga no Pix?', answer: 'Não há comprovante de Pix aprovado. O botão “Sacar” sozinho não confirma recebimento.' },
+  { question: 'O aplicativo HotMiniDrama é confiável?', answer: 'Não como fonte de renda. Sem saque comprovado, trate as recompensas como não verificadas e proteja seus dados.' },
+  { question: 'É possível ganhar dinheiro assistindo vídeos no HotMiniDrama?', answer: 'Essa é a promessa do app, mas a evidência disponível indica que o usuário acumula créditos internos sem pagamento real.' },
+];
 ---
 
-<MainLayout seo={{ title, description, image, datePublished: date, dateModified: date }} categoria={categoria}>
+<MainLayout seo={{ title: seoTitle, headline: title, description, image, imageWidth: 1080, imageHeight: 2400, datePublished: date, dateModified: date, faq }} categoria={categoria} preloadImage={bigImg(image)} preloadImageSrcset={`${smallImg(image)} 480w, ${bigImg(image)} 900w`} preloadImageSizes={heroSizes}>
   <article class="review-article">
     <header class="review-header">
       <p class="eyebrow">Análise · ganhar dinheiro assistindo vídeos</p>
@@ -23,7 +33,7 @@ const screenshots = [
       <p class="lead">O HotMiniDrama (também chamado de Hot Mini Drama) promete pagar quem assiste a minidramas e completa tarefas. A dúvida é “hotminidrama realmente paga?”. A resposta, após analisar as telas enviadas, é não: o aplicativo exibe saldos e promessas, mas não entrega um pagamento verificável.</p>
     </header>
 
-    <figure class="hero-figure"><img src={image} alt="Tela de abertura do HotMiniDrama" width="900" height="1900" loading="eager" fetchpriority="high" /><figcaption>Print enviado pelo leitor mostrando a abertura do HotMiniDrama.</figcaption></figure>
+    <figure class="hero-figure"><img src={bigImg(image)} srcset={`${smallImg(image)} 480w, ${bigImg(image)} 900w`} sizes={heroSizes} alt="Tela de abertura do HotMiniDrama" width="900" height="1900" loading="eager" fetchpriority="high" /><figcaption>Print enviado pelo leitor mostrando a abertura do HotMiniDrama.</figcaption></figure>
 
     <div class="verdict"><strong>Resposta direta:</strong> o HotMiniDrama não paga de forma comprovada. Os valores exibidos são apenas créditos dentro do app; não há comprovante de Pix, depósito bancário ou saque recebido.</div>
 
@@ -33,7 +43,7 @@ const screenshots = [
 
     <section id="paga" class="content-section"><h2>HotMiniDrama realmente paga ou não paga?</h2><p><strong>Não paga.</strong> Nos prints fornecidos, o HotMiniDrama promete até R$ 1 mil e mostra R$ 95,32 de saldo, porém nenhuma imagem registra Pix aprovado, comprovante bancário ou recebimento. A promessa serve para estimular o usuário a continuar assistindo e cumprindo tarefas, mas não prova que o dinheiro sai do aplicativo.</p><div class="evidence-table"><div class="table-row table-head"><strong>O que aparece</strong><strong>O que falta</strong></div><div class="table-row"><span>Saldo, moedas e botões “Sacar”</span><span>Comprovante de pagamento</span></div><div class="table-row"><span>Chamadas “Ganhe mais R$1K”</span><span>Transferência via Pix confirmada</span></div><div class="table-row"><span>Tarefas para assistir episódios</span><span>Regra clara que garanta o resgate</span></div></div></section>
 
-    <section id="prints" class="content-section"><h2>Prints do HotMiniDrama: o que eles revelam?</h2><p>As capturas mostram o fluxo típico: o usuário abre um drama, assiste a episódios, acumula créditos e chega à tela de saque. Também aparece a linguagem de urgência para “sacar agora”. Mesmo assim, os prints não mostram uma transação finalizada. Eles comprovam a propaganda interna do app, não um pagamento real.</p><div class="screenshots-grid">{screenshots.map((shot) => <figure class="screenshot-card"><img src={shot.src} alt={shot.alt} loading="lazy" decoding="async" /><figcaption>{shot.caption}</figcaption></figure>)}</div></section>
+    <section id="prints" class="content-section"><h2>Prints do HotMiniDrama: o que eles revelam?</h2><p>As capturas mostram o fluxo típico: o usuário abre um drama, assiste a episódios, acumula créditos e chega à tela de saque. Também aparece a linguagem de urgência para “sacar agora”. Mesmo assim, os prints não mostram uma transação finalizada. Eles comprovam a propaganda interna do app, não um pagamento real.</p><div class="screenshots-grid">{screenshots.map((shot) => <figure class="screenshot-card"><img src={smallImg(shot.src)} alt={shot.alt} width="1000" height="500" loading="lazy" fetchpriority="low" decoding="async" /><figcaption>{shot.caption}</figcaption></figure>)}</div></section>
 
     <section id="cuidados" class="content-section"><h2>Hot Mini Drama é confiável? Veja os cuidados</h2><p>Como o HotMiniDrama não comprova os saques, não use o aplicativo como fonte de renda. Não pague taxa para liberar saldo, não envie documentos ou dados bancários sem necessidade e desconfie de pedidos para convidar mais pessoas antes de sacar.</p><ul class="check-list"><li>Não deposite dinheiro para “ativar” ou “desbloquear” o saque.</li><li>Evite informar senha, código SMS ou dados do cartão.</li><li>Leia permissões e política de privacidade antes de instalar.</li><li>Se já instalou, desative permissões desnecessárias e remova o app se houver cobrança.</li></ul><p>Confira outras análises na categoria <a href="/ganhar-dinheiro/">Ganhar Dinheiro</a>.</p></section>
 

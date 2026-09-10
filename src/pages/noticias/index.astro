@@ -17,7 +17,7 @@ const categoryPosts = posts
 
 const categoria = "noticias";
 const title = "Notícias";
-const description = "Fique por dentro das últimas notícias, novidades e atualizações.";
+const description = "Acompanhe as principais notícias do Brasil e do mundo sobre economia, tecnologia, política e mercado, com resumos claros e atualizados diariamente.";
 ---
 
 <MainLayout seo={{ title, description }} categoria={categoria} showRelacionados={false}>
@@ -29,7 +29,7 @@ const description = "Fique por dentro das últimas notícias, novidades e atuali
     
     <div class="posts-grid">
         {categoryPosts.length > 0 ? (
-            categoryPosts.map(post => {
+            categoryPosts.map((post, index) => {
                 const postTitle = post.title || post.frontmatter?.title;
                 const postDescription = post.description || post.frontmatter?.description;
                 const postImage = post.image || post.frontmatter?.image || '/images/default-post.webp';
@@ -42,6 +42,7 @@ const description = "Fique por dentro das últimas notícias, novidades e atuali
                         url={post.url}
                         image={postImage}
                         date={postDate}
+                        priority={index === 0}
                     />
                 );
             })

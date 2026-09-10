@@ -18,7 +18,7 @@ const categoryPosts = posts
 const categoria = "futebol";
 const image = "/images/brasileirao-onde-assistir.webp";
 const title = "Jogos do Brasileirão e Onde Assistir";
-const description = "Confira as últimas notícias, análises e onde assistir aos jogos de futebol.";
+const description = "Acompanhe jogos do Brasileirão, horários, onde assistir e notícias do futebol brasileiro, com guias atualizados de cada partida da rodada e transmissão.";
 ---
 
 <MainLayout seo={{ title, description, image }} categoria={categoria} showRelacionados={false}>
@@ -40,7 +40,7 @@ const description = "Confira as últimas notícias, análises e onde assistir ao
     </section>
     
     <div class="posts-grid">
-        {categoryPosts.map(post => {
+        {categoryPosts.map((post, index) => {
             const title = post.title || post.frontmatter?.title;
             const description = post.description || post.frontmatter?.description;
             const image = post.image || post.frontmatter?.image || '/images/default-post.webp';
@@ -53,6 +53,7 @@ const description = "Confira as últimas notícias, análises e onde assistir ao
                     url={post.url}
                     image={image}
                     date={date}
+                priority={index === 0}
                 />
             );
         })}

@@ -16,7 +16,7 @@ const categoryPosts = posts
 
 const categoria = "relacionamento";
 const title = "Relacionamento";
-const description = "Dicas e aplicativos para melhorar seus relacionamentos e encontrar o par ideal.";
+const description = "Encontre dicas e aplicativos de relacionamento para conhecer pessoas, melhorar a comunicação e fortalecer seus vínculos afetivos com mais segurança.";
 ---
 
 <MainLayout seo={{ title, description }} categoria={categoria} showRelacionados={false}>
@@ -27,7 +27,7 @@ const description = "Dicas e aplicativos para melhorar seus relacionamentos e en
     </section>
     
     <div class="posts-grid">
-        {categoryPosts.map(post => {
+        {categoryPosts.map((post, index) => {
             const postTitle = post.title || post.frontmatter?.title;
             const postDescription = post.description || post.frontmatter?.description;
             const postImage = post.image || post.frontmatter?.image || '/images/default-post.webp';
@@ -40,6 +40,7 @@ const description = "Dicas e aplicativos para melhorar seus relacionamentos e en
                     url={post.url}
                     image={postImage}
                     date={postDate}
+                priority={index === 0}
                 />
             );
         })}

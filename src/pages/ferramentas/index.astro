@@ -16,7 +16,7 @@ const categoryPosts = posts
 
 const categoria = "ferramentas";
 const title = "Ferramentas";
-const description = "Calculadoras e ferramentas úteis para o seu dia a dia financeiro.";
+const description = "Use calculadoras financeiras gratuitas para porcentagem, juros compostos e outros cálculos do dia a dia, com explicações, fórmulas e exemplos práticos.";
 ---
 
 <MainLayout seo={{ title, description }} categoria={categoria} showRelacionados={false}>
@@ -27,7 +27,7 @@ const description = "Calculadoras e ferramentas úteis para o seu dia a dia fina
     </section>
     
     <div class="posts-grid">
-        {categoryPosts.map(post => {
+        {categoryPosts.map((post, index) => {
             const postTitle = post.title || post.frontmatter?.title;
             const postDescription = post.description || post.frontmatter?.description;
             const postImage = post.image || post.frontmatter?.image || '/images/default-post.webp';
@@ -40,6 +40,7 @@ const description = "Calculadoras e ferramentas úteis para o seu dia a dia fina
                     url={post.url}
                     image={postImage}
                     date={postDate}
+                priority={index === 0}
                 />
             );
         })}

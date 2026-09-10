@@ -1,6 +1,7 @@
 User-agent: *
 Allow: /
 
+Disallow: /buscar/
 Disallow: /~partytown/
 
 Sitemap: https://www.lucrar.link/sitemap-index.xml

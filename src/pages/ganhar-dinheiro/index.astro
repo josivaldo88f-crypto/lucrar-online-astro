@@ -37,7 +37,7 @@ const description = "Guias sobre aplicativos, pesquisas, jogos e plataformas que
     </section>
     
     <div class="posts-grid">
-        {categoryPosts.map(post => {
+        {categoryPosts.map((post, index) => {
             const postTitle = post.title || post.frontmatter?.title;
             const postDescription = post.description || post.frontmatter?.description;
             const postImage = post.image || post.frontmatter?.image || '/images/default-post.webp';
@@ -50,6 +50,7 @@ const description = "Guias sobre aplicativos, pesquisas, jogos e plataformas que
                     url={post.url}
                     image={postImage}
                     date={postDate}
+                priority={index === 0}
                 />
             );
         })}

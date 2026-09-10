@@ -8,7 +8,9 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "generate:favicons": "node scripts/generate-favicons.mjs"
+    "generate:favicons": "node scripts/generate-favicons.mjs",
+    "generate:responsive": "node scripts/generate-responsive-images.mjs",
+    "optimize:images": "node scripts/optimize-images.mjs"
   },
   "dependencies": {
     "@astrojs/partytown": "^2.1.7",

@@ -1,6 +1,7 @@
 ---
 import MainLayout from '../layouts/MainLayout.astro';
 import PostCard from '../components/PostCard.astro';
+import { cardImage } from '../utils/image';
 
 const posts = await Astro.glob('./**/*.astro');
 
@@ -10,16 +11,9 @@ const latestPosts = posts
         const url = post.url;
 
         if (!url || !title) return false;
-        
-        // Verifica se a URL aponta para um arquivo index (que são as páginas de categoria)
-        // No Astro, arquivos src/pages/categoria/index.astro geram a URL /categoria/
-        // Enquanto arquivos src/pages/post.astro geram a URL /post/
-        
-        // A lógica correta é: se o arquivo termina em /index.astro, ele é uma página de categoria
+
         const isIndexFile = post.file.endsWith('index.astro');
-        
-        // Além disso, a home é o arquivo src/pages/index.astro
-        // Queremos apenas os posts reais
+
         return !isIndexFile;
     })
     .sort((a, b) => {
@@ -29,15 +23,40 @@ const latestPosts = posts
     })
     .slice(0, 12);
 
+const preloadImage = cardImage(latestPosts[0]?.image || latestPosts[0]?.frontmatter?.image || '/images/default-post.webp');
+
 const title = "Seu Guia para Renda Extra na Internet";
-const description = "Conheça aplicativos, sites, ferramentas e cuidados para avaliar oportunidades de renda extra na internet";
+const description = "Conheça aplicativos, sites, jogos e ferramentas para avaliar oportunidades de renda extra na internet, com análises, comparativos e cuidados essenciais.";
+const heroSubtitle = "Conheça aplicativos, sites, ferramentas e cuidados para avaliar oportunidades de renda extra na internet";
 const categoria = "home";
 ---
 
-<MainLayout seo={{ title, description }} categoria={categoria}>
-    <h1 class="page-title">Aprenda a Lucrar Online e Criar Renda Extra</h1>
+<MainLayout seo={{ title, description }} categoria={categoria} preloadImage={preloadImage}>
+    <section class="hero">
+        <span class="hero-badge">Guias e análises</span>
+        <h1 class="hero-title">Aprenda a Lucrar Online e Criar Renda Extra</h1>
+        <p class="hero-subtitle">{heroSubtitle}</p>
+        <form class="hero-search" action="/buscar/" method="get" role="search">
+            <label class="sr-only" for="hero-search-input">Pesquisar no site</label>
+            <input id="hero-search-input" name="q" type="search" placeholder="Ex.: aplicativos que pagam no Pix" required />
+            <button type="submit">Buscar</button>
+        </form>
+        <div class="hero-chips">
+            <a class="chip" href="/ganhar-dinheiro/">Ganhar Dinheiro</a>
+            <a class="chip" href="/noticias/">Notícias</a>
+            <a class="chip" href="/futebol/">Futebol</a>
+            <a class="chip" href="/comprar/">Comprar</a>
+            <a class="chip" href="/ferramentas/">Ferramentas</a>
+        </div>
+    </section>
+
+    <section class="section-header" aria-labelledby="ultimas-publicacoes">
+        <h2 class="section-title" id="ultimas-publicacoes">Últimas publicações</h2>
+        <a class="section-link" href="/post/">Ver todas <span aria-hidden="true">→</span></a>
+    </section>
+
     <section class="posts-grid">
-        {latestPosts.map(post => {
+        {latestPosts.map((post, index) => {
             const postTitle = post.title || post.frontmatter?.title;
             const postDescription = post.description || post.frontmatter?.description;
             const postImage = post.image || post.frontmatter?.image || '/images/default-post.webp';
@@ -50,6 +69,7 @@ const categoria = "home";
                     url={post.url}
                     image={postImage}
                     date={postDate}
+                    priority={index === 0}
                 />
             );
         })}

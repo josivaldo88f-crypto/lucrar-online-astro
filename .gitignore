@@ -31,3 +31,7 @@ Thumbs.db
 # Regras de agentes de IA
 AGENTS.md
 .clinerules
+
+# Logs de servidor local
+.devserver.log
+.preview*.log

@@ -12,7 +12,9 @@ export default defineConfig({
     partytown()
   ],
   trailingSlash: 'always',
+  compressHTML: true,
   build: {
-    format: 'directory'
+    format: 'directory',
+    inlineStylesheets: 'always'
   }
 });

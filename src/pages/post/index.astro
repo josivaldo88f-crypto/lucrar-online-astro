@@ -16,7 +16,7 @@ const categoryPosts = posts
 
 const categoria = "post";
 const title = "Artigos";
-const description = "Explore artigos e guias sobre aplicativos, ferramentas, compras, relacionamento e outros temas publicados no site.";
+const description = "Explore artigos e guias sobre aplicativos, ferramentas, compras e relacionamento, com análises detalhadas, comparativos e dicas para o seu dia a dia.";
 ---
 
 <MainLayout seo={{ title, description }} categoria={categoria} showRelacionados={false}>
@@ -41,7 +41,7 @@ const description = "Explore artigos e guias sobre aplicativos, ferramentas, com
     </nav>
     
     <div class="posts-grid">
-        {categoryPosts.map(post => {
+        {categoryPosts.map((post, index) => {
             const postTitle = post.title || post.frontmatter?.title;
             const postDescription = post.description || post.frontmatter?.description;
             const postImage = post.image || post.frontmatter?.image || '/images/default-post.webp';
@@ -54,6 +54,7 @@ const description = "Explore artigos e guias sobre aplicativos, ferramentas, com
                     url={post.url}
                     image={postImage}
                     date={postDate}
+                priority={index === 0}
                 />
             );
         })}
