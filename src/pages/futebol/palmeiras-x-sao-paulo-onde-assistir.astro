@@ -1,0 +1,271 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+
+export const title = 'Palmeiras x São Paulo: Onde Assistir (12/9)';
+export const description = 'Palmeiras e São Paulo jogam sábado (12/9), às 18h30, pela 27ª rodada do Brasileirão 2026, no Nubank Parque. Veja onde assistir, escalações e desfalques.';
+export const categoria = 'futebol';
+export const date = '2026-09-10';
+export const image = '/images/palmeiras-x-sao-paulo-onde-assistir.webp';
+
+const startDate = '2026-09-12T18:30:00-03:00';
+const cover720 = image.replace(/\.webp$/, '-720.webp');
+
+const faq = [
+    {
+        question: 'Onde assistir Palmeiras x São Paulo?',
+        answer: 'O Premiere exibe o jogo em pay-per-view, para assinantes. O ge faz a cobertura em tempo real, lance a lance.',
+    },
+    {
+        question: 'Que horas começa Palmeiras x São Paulo?',
+        answer: 'O apito inicial está marcado para 18h30 (horário de Brasília) deste sábado, 12 de setembro de 2026.',
+    },
+    {
+        question: 'Onde será o Choque-Rei?',
+        answer: 'No Nubank Parque, o antigo Allianz Parque, na zona oeste de São Paulo (SP).',
+    },
+    {
+        question: 'Quais são os desfalques de Palmeiras e São Paulo?',
+        answer: 'No Palmeiras, Barboza e Marlon Freitas estão suspensos, e Jefté, Ramón Sosa e Paulinho seguem lesionados. No São Paulo, Luciano e Artur são dúvidas, enquanto Nicolas, Lucas, Lucca, Bobadilla e Buta estão no departamento médico.',
+    },
+    {
+        question: 'Como está o retrospecto recente do Choque-Rei?',
+        answer: 'O Palmeiras venceu os últimos seis clássicos e está invicto há 12 (oito vitórias e quatro empates). A última vitória do São Paulo foi em julho de 2023, por 2 a 1, pela Copa do Brasil.',
+    },
+];
+
+const eventJson = JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'SportsEvent',
+    name: 'Palmeiras x São Paulo pelo Brasileirão 2026',
+    description,
+    startDate,
+    eventStatus: 'https://schema.org/EventScheduled',
+    eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
+    image: [new URL(image, Astro.site ?? 'https://www.lucrar.link/').href],
+    location: {
+        '@type': 'Place',
+        name: 'Nubank Parque (Allianz Parque)',
+        address: {
+            '@type': 'PostalAddress',
+            addressLocality: 'São Paulo',
+            addressRegion: 'SP',
+            addressCountry: 'BR',
+        },
+    },
+    competitor: [
+        { '@type': 'SportsTeam', name: 'Palmeiras' },
+        { '@type': 'SportsTeam', name: 'São Paulo' },
+    ],
+    organizer: {
+        '@type': 'Organization',
+        name: 'Confederação Brasileira de Futebol',
+        url: 'https://www.cbf.com.br/',
+    },
+});
+---
+<MainLayout
+    seo={{ title, description, image, datePublished: date, dateModified: date, faq }}
+    categoria={categoria}
+    preloadImage={image}
+    preloadImageSrcset={`${cover720} 720w, ${image} 1200w`}
+    preloadImageSizes="(max-width: 900px) 92vw, 900px"
+>
+    <script slot="head" type="application/ld+json" set:html={eventJson}></script>
+
+    <article class="match-article">
+        <header class="match-hero">
+            <p class="match-kicker">Brasileirão 2026 · 27ª rodada · Choque-Rei</p>
+            <h1>{title}</h1>
+            <p class="match-updated">Por Redação · Publicado em <time datetime={date}>10 de setembro de 2026</time></p>
+        </header>
+
+        <img
+            class="match-cover"
+            src={image}
+            srcset={`${cover720} 720w, ${image} 1200w`}
+            sizes="(max-width: 900px) 92vw, 900px"
+            alt="Palmeiras x São Paulo: onde assistir ao Choque-Rei do Brasileirão 2026"
+            width="1200"
+            height="630"
+            loading="eager"
+            fetchpriority="high"
+            decoding="async"
+        />
+
+        <p class="match-lead">
+            Palmeiras e São Paulo fazem o Choque-Rei deste sábado (12), às 18h30 (horário de Brasília), no Nubank Parque,
+            pela 27ª rodada do Brasileirão 2026. A transmissão confirmada é do Premiere, em pay-per-view. O clássico
+            coloca o vice-líder Palmeiras contra um São Paulo que tenta embalar depois de encerrar uma sequência de dez
+            jogos sem vitória.
+        </p>
+
+        <section class="match-summary" aria-labelledby="ficha-do-jogo">
+            <h2 id="ficha-do-jogo">Ficha do jogo</h2>
+            <dl class="match-details">
+                <div><dt>Data</dt><dd>Sábado, 12 de setembro de 2026</dd></div>
+                <div><dt>Horário</dt><dd>18h30 (de Brasília)</dd></div>
+                <div><dt>Estádio</dt><dd>Nubank Parque (Allianz Parque)</dd></div>
+                <div><dt>Local</dt><dd>São Paulo (SP)</dd></div>
+                <div><dt>Transmissão</dt><dd>Premiere</dd></div>
+                <div><dt>Arbitragem</dt><dd>Rafael Rodrigo Klein (RS)</dd></div>
+            </dl>
+        </section>
+
+        <section class="match-content">
+            <h2>Onde assistir Palmeiras x São Paulo</h2>
+            <p>
+                O <strong>Premiere</strong> é o canal confirmado para exibir o clássico, para assinantes do pay-per-view
+                em todo o Brasil. O <strong>ge</strong> cobre o jogo em tempo real, com lances e estatísticas, e o
+                Flashscore oferece narração em áudio no site e no aplicativo. Alguns veículos de apostas chegaram a
+                citar sinal aberto da Globo, mas não havia confirmação oficial da emissora até a publicação deste guia.
+                Se você depende de TV aberta, confirme a grade no dia da partida.
+            </p>
+
+            <h2>Horário, estádio e o palco do clássico</h2>
+            <p>
+                O apito inicial está marcado para <strong>18h30</strong>, no <strong>Nubank Parque</strong> — o novo
+                nome do Allianz Parque, na zona oeste de São Paulo. A arbitragem fica com Rafael Rodrigo Klein (RS),
+                auxiliado por Rafael da Silva Alves (RS) e Michael Stanislau (RS). O VAR é de Rodrigo D'Alonso
+                Ferreira (SC).
+            </p>
+            <p>
+                Segundo o Portal do Palestra, a arena terá capacidade reduzida em cerca de 25% a 30% por causa da
+                estrutura de um show montada para os dias seguintes. Setores da região norte, como o antigo Geral
+                Norte, ficaram fora da venda — detalhe que explica a procura alta pelos setores liberados.
+            </p>
+
+            <h2>Desfalques e prováveis escalações</h2>
+            <div class="lineups">
+                <div class="team-lineup">
+                    <div class="team-head">
+                        <img src="/images/escudo-palmeiras.webp" alt="Escudo do Palmeiras" width="64" height="64" loading="lazy" decoding="async" />
+                        <h3>Palmeiras</h3>
+                    </div>
+                    <p>
+                        <strong>Provável time:</strong> Carlos Miguel; Giay, Gustavo Gómez, Murilo e Piquerez;
+                        Emiliano Martínez e Andreas Pereira; Jhon Arias, Lucas Evangelista (Maurício) e Flaco López;
+                        Vitor Roque.
+                    </p>
+                    <p>
+                        <strong>Desfalques:</strong> Barboza, expulso contra o Botafogo, e Marlon Freitas, que levou o
+                        terceiro amarelo, cumprem suspensão. Jefté, Ramón Sosa e Paulinho seguem no departamento
+                        médico.
+                    </p>
+                    <p><strong>Técnico:</strong> Abel Ferreira (presença no banco ainda não confirmada).</p>
+                </div>
+                <div class="team-lineup">
+                    <div class="team-head">
+                        <img src="/images/escudo-sao-paulo.webp" alt="Escudo do São Paulo" width="64" height="64" loading="lazy" decoding="async" />
+                        <h3>São Paulo</h3>
+                    </div>
+                    <p>
+                        <strong>Provável time:</strong> Rafael; Sabino, Arboleda e Domingos Duarte; Lucas Ramon,
+                        Pablo Maia, Marcos Antônio e Iago Borduchi; Ferreirinha, Gustavo Santana e Calleri.
+                    </p>
+                    <p>
+                        <strong>Desfalques:</strong> Luciano é dúvida por causa de uma lesão na coxa esquerda e a
+                        tendência é que seja poupado. Artur também preocupa pelo desgaste. Nicolas, Lucas, Lucca,
+                        Bobadilla e Buta estão no departamento médico.
+                    </p>
+                    <p><strong>Técnico:</strong> Dorival Júnior.</p>
+                </div>
+            </div>
+            <p>
+                Do lado do Palmeiras, Andreas Pereira volta depois de cumprir suspensão, e Gustavo Gómez, que está
+                suspenso para a volta com a LDU, em Quito, joga o clássico. No São Paulo, Calleri entra em campo, mas
+                já está fora da partida de volta contra o Boca Juniors, na próxima terça.
+            </p>
+
+            <h2>Como as duas equipes chegam</h2>
+            <p>
+                O Palmeiras é o <strong>2º colocado, com 53 pontos</strong>, um atrás do Flamengo. O time venceu a LDU
+                por 1 a 0 na última quarta, pela ida das quartas da Libertadores, mas oscila no Brasileirão: são apenas
+                duas vitórias nas últimas sete rodadas, com três empates e duas derrotas. A sequência pesa — depois do
+                Choque-Rei, o Verdão viaja a Quito para decidir a vaga na competição continental.
+            </p>
+            <p>
+                O São Paulo, por sua vez, ocupa o <strong>10º lugar, com 33 pontos</strong>, e finalmente respira:
+                emendou vitórias sobre Atlético-MG e Bragantino, as duas por 2 a 1, antes de perder para o Boca por
+                1 a 0 na Bombonera.
+                O Tricolor decide a vaga na Sul-Americana na terça, no Morumbis, precisando ganhar por dois gols. Com
+                esse calendário, poupar titulares no clássico é uma tentação real para Dorival Júnior.
+            </p>
+
+            <h2>Retrospecto do Choque-Rei</h2>
+            <p>
+                O Palmeiras não perde para o São Paulo há 12 clássicos, com oito vitórias e quatro empates, e venceu os
+                últimos seis. A última vitória tricolor foi em julho de 2023, por 2 a 1, pela Copa do Brasil. No
+                Brasileirão, o São Paulo não vence o rival fora de casa desde novembro de 2021, quando fez 2 a 0 no
+                então Allianz Parque.
+            </p>
+            <p>
+                No retrospecto geral, são 365 jogos do Choque-Rei, com 125 vitórias palmeirenses, 120 empates e 120
+                vitórias são-paulinas. O Palmeiras marcou 473 gols contra 457 do São Paulo.
+            </p>
+
+            <h2>Ingressos</h2>
+            <p>
+                A expectativa é de casa cheia. Com a redução de capacidade e a forte procura, os setores liberados
+                podem esgotar antes de sábado. A venda segue pelos canais oficiais do Palmeiras, dono do mando de
+                campo — a
+                <a href="https://www.palmeiras.com.br/ingressos" rel="noopener noreferrer">página de ingressos do clube</a>
+                é o caminho mais seguro para conferir setores, preços e meia-entrada.
+            </p>
+        </section>
+
+        <section class="match-faq" aria-labelledby="perguntas-frequentes">
+            <h2 id="perguntas-frequentes">Perguntas frequentes</h2>
+            {faq.map((item) => (
+                <div class="faq-item">
+                    <h3>{item.question}</h3>
+                    <p>{item.answer}</p>
+                </div>
+            ))}
+        </section>
+
+        <footer class="match-footer">
+            <p>
+                Fontes: <a href="https://ge.globo.com/futebol/times/palmeiras/" rel="noopener noreferrer">ge</a>,
+                <a href="https://www.palmeiras.com.br/calendario/" rel="noopener noreferrer">site oficial do Palmeiras</a>,
+                <a href="https://www.flashscore.com.br/noticias/futebol-brasileirao-betano-palmeiras-x-sao-paulo-onde-assistir-previa-e-provaveis-escalacoes/4jK5nGIq/" rel="noopener noreferrer">Flashscore</a>
+                e <a href="https://portaldopalestra.com.br/arbitragem-palmeiras-sao-paulo-brasileirao-27a-rodada/" rel="noopener noreferrer">Portal do Palestra</a>.
+            </p>
+            <p>Este guia pode ser atualizado se houver mudança oficial de horário, local ou transmissão.</p>
+            <a href="/futebol/coritiba-palmeiras-onde-assistir/">Veja também: Coritiba x Palmeiras</a>
+            <a href="/futebol/">← Ver todos os jogos e notícias de futebol</a>
+        </footer>
+    </article>
+</MainLayout>
+
+<style>
+    .match-article { max-width: 900px; margin: 0 auto; }
+    .match-hero { margin-bottom: 1.5rem; }
+    .match-kicker { margin: 0 0 0.5rem; color: #2563eb; font-size: 0.85rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; }
+    .match-hero h1 { margin: 0 0 0.6rem; color: #111827; font-size: clamp(2rem, 5vw, 3rem); line-height: 1.15; }
+    .match-updated { margin: 0; color: #6b7280; font-size: 0.9rem; }
+    .match-cover { display: block; width: 100%; height: auto; margin-bottom: 1.5rem; border-radius: 12px; }
+    .match-lead { margin: 0 0 1.5rem; color: #374151; font-size: 1.15rem; line-height: 1.75; }
+    .match-summary { margin: 1.5rem 0 2rem; padding: 1.5rem; background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 12px; }
+    .match-summary h2 { margin-top: 0; color: #1f2937; }
+    .match-details { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 1rem; margin: 1.25rem 0 0; }
+    .match-details div { padding: 0.9rem; background: #fff; border-radius: 8px; }
+    .match-details dt { color: #6b7280; font-size: 0.85rem; font-weight: 700; }
+    .match-details dd { margin: 0.3rem 0 0; color: #111827; font-weight: 600; }
+    .match-content { color: #374151; font-size: 1.05rem; line-height: 1.8; }
+    .match-content h2 { margin: 2.25rem 0 0.75rem; color: #1f2937; font-size: 1.5rem; }
+    .match-content p { margin: 0 0 1rem; }
+    .lineups { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin: 1.25rem 0; }
+    .team-lineup { padding: 1.25rem; background: #f3f4f6; border-radius: 10px; }
+    .team-head { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem; }
+    .team-head img { width: 64px; height: 64px; object-fit: contain; }
+    .team-head h3 { margin: 0; color: #1f2937; font-size: 1.35rem; }
+    .team-lineup p { margin: 0 0 0.75rem; font-size: 0.98rem; line-height: 1.7; }
+    .match-faq { margin: 2.5rem 0 0; }
+    .match-faq h2 { color: #1f2937; }
+    .faq-item { padding: 1rem 0; border-bottom: 1px solid #e5e7eb; }
+    .faq-item h3 { margin: 0 0 0.4rem; color: #1f2937; font-size: 1.1rem; }
+    .faq-item p { margin: 0; color: #4b5563; line-height: 1.7; }
+    .match-footer { display: flex; flex-direction: column; gap: 0.6rem; margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid #e5e7eb; color: #6b7280; font-size: 0.95rem; }
+    .match-footer a { color: #1d4ed8; text-decoration: underline; text-underline-offset: 0.2em; }
+    @media (max-width: 640px) { .match-summary { padding: 1rem; } .match-content { font-size: 1rem; } }
+</style>

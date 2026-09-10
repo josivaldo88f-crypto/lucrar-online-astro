@@ -236,6 +236,7 @@ const breadcrumbJson = JSON.stringify({
 		{collectionJson && <script type="application/ld+json" set:html={collectionJson}></script>}
 		{articleJson && <script type="application/ld+json" set:html={articleJson}></script>}
 		{faqJson && <script type="application/ld+json" set:html={faqJson}></script>}
+		<slot name="head" />
 		<script type="text/partytown" async src="https://www.googletagmanager.com/gtag/js?id=G-7225X73JRY"></script>
 		<script type="text/partytown" is:inline>
 				window.dataLayer = window.dataLayer || [];
