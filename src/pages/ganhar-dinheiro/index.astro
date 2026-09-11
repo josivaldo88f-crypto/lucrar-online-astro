@@ -15,7 +15,8 @@ const categoryPosts = posts
             title && 
             post.url !== Astro.url.pathname && 
             post.url !== Astro.url.pathname + '/' &&
-            postCategoria === "GANHAR DINHEIRO"
+            postCategoria === "GANHAR DINHEIRO" &&
+            post.locale !== 'en'
         );
     })
     .sort((a, b) => {

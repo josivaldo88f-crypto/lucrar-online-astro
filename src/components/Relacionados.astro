@@ -1,7 +1,8 @@
 ---
 import { cardImage } from '../utils/image';
 
-const { categoria } = Astro.props;
+const { categoria, lang = 'pt-BR' } = Astro.props;
+const isEn = lang === 'en';
 const currentPath = Astro.url.pathname;
 
 const allPosts = await Astro.glob('../pages/**/*.astro');
@@ -18,13 +19,15 @@ const relacionados = allPosts.filter(post => {
     const isSameCategory = String(postCategoria ?? '').toLowerCase() === String(categoria ?? '').toLowerCase();
     const isNotCurrent = normalizePath(post.url) !== normalizePath(currentPath);
     const isNotIndex = post.url && !post.file.endsWith('index.astro');
-    return isSameCategory && isNotCurrent && postTitle && isNotIndex;
+    const postLocale = post.locale === 'en' ? 'en' : 'pt-BR';
+    const isSameLang = isEn ? postLocale === 'en' : postLocale !== 'en';
+    return isSameCategory && isSameLang && isNotCurrent && postTitle && isNotIndex;
 }).slice(0, 12);
 ---
 
 {relacionados.length > 0 && (
     <section class="relacionados-section">
-        <h2 class="relacionados-title">Veja também</h2>
+        <h2 class="relacionados-title">{isEn ? 'See also' : 'Veja também'}</h2>
         <div class="relacionados-grid" id="relacionados-container">
             {relacionados.map((post) => (
                 <article class="relacionado-card" style="display: none;">
@@ -33,7 +36,7 @@ const relacionados = allPosts.filter(post => {
                     </div>
                     <div class="relacionado-content">
                         <h3 class="relacionado-title-item">{post.frontmatter?.title || post.title}</h3>
-                        <a href={post.url} class="relacionado-link" aria-label={`Ler mais sobre ${post.frontmatter?.title || post.title}`}></a>
+                        <a href={post.url} class="relacionado-link" aria-label={isEn ? `Read more about ${post.frontmatter?.title || post.title}` : `Ler mais sobre ${post.frontmatter?.title || post.title}`}></a>
                     </div>
                 </article>
             ))}

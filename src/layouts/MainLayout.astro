@@ -10,6 +10,8 @@ interface Props {
 	preloadImage?: string;
 	preloadImageSrcset?: string;
 	preloadImageSizes?: string;
+	lang?: 'pt-BR' | 'en';
+	alternates?: { hreflang: string; href: string }[];
 }
 
 const { 
@@ -21,8 +23,15 @@ const {
 	showRelacionados = true,
 	preloadImage,
 	preloadImageSrcset,
-	preloadImageSizes
+	preloadImageSizes,
+	lang = 'pt-BR',
+	alternates = []
 } = Astro.props;
+
+const isEn = lang === 'en';
+const htmlLang = isEn ? 'en' : 'pt-BR';
+const ogLocale = isEn ? 'en_US' : 'pt_BR';
+const ogLocaleAlternate = isEn ? 'pt_BR' : 'en_US';
 
 const {
 	title,
@@ -37,22 +46,77 @@ const {
 	faq
 } = seo;
 
-const categoriaMap: Record<string, { nome: string; navUrl: string }> = {
-	home: { nome: "Início", navUrl: "/" },
-	noticias: { nome: "Notícias", navUrl: "/noticias/" },
-	futebol: { nome: "Futebol", navUrl: "/futebol/" },
-	comprar: { nome: "Comprar", navUrl: "/comprar/" },
-	"GANHAR DINHEIRO": { nome: "Ganhar Dinheiro", navUrl: "/ganhar-dinheiro/" },
-	ferramentas: { nome: "Ferramentas", navUrl: "/ferramentas/" },
-	blog: { nome: "Blog", navUrl: "/post/" },
-	post: { nome: "Blog", navUrl: "/post/" },
-	relacionamento: { nome: "Relacionamento", navUrl: "/relacionamento/" },
-	geral: { nome: "Lucrar Online", navUrl: "/" },
+const categoriaMap: Record<string, { nome: string; nomeEn: string; navUrl: string }> = {
+	home: { nome: "Início", nomeEn: "Home", navUrl: "/" },
+	noticias: { nome: "Notícias", nomeEn: "News", navUrl: "/noticias/" },
+	futebol: { nome: "Futebol", nomeEn: "Football", navUrl: "/futebol/" },
+	comprar: { nome: "Comprar", nomeEn: "Shopping", navUrl: "/comprar/" },
+	"GANHAR DINHEIRO": { nome: "Ganhar Dinheiro", nomeEn: "Make Money Online", navUrl: "/ganhar-dinheiro/" },
+	ferramentas: { nome: "Ferramentas", nomeEn: "Tools", navUrl: "/ferramentas/" },
+	blog: { nome: "Blog", nomeEn: "Blog", navUrl: "/post/" },
+	post: { nome: "Blog", nomeEn: "Blog", navUrl: "/post/" },
+	relacionamento: { nome: "Relacionamento", nomeEn: "Relationships", navUrl: "/relacionamento/" },
+	geral: { nome: "Lucrar Online", nomeEn: "Lucrar Online", navUrl: "/" },
 };
 
 const catInfo = categoriaMap[categoria] || categoriaMap["geral"];
-const nomeCategoria = catInfo.nome;
+const nomeCategoria = isEn ? catInfo.nomeEn : catInfo.nome;
 const navAtivo = catInfo.navUrl;
+
+const labels = isEn
+	? {
+		skip: "Skip to content",
+		navAria: "Main navigation",
+		home: "Home",
+		searchLabel: "Search the site",
+		searchPlaceholder: "Search",
+		searchButton: "Search",
+		menuOpen: "Open menu",
+		menuClose: "Close menu",
+		mobileNavAria: "Mobile navigation",
+		breadcrumbAria: "Breadcrumb",
+		notice: "campaigns, tasks, minimum amounts and withdrawal methods can change without notice. Earnings vary by user and are not guaranteed. Check the current rules in the app before taking part.",
+		footerDescription: "Guides, reviews and news for anyone looking for extra income online, with clear, up-to-date and responsible information.",
+		categoriesTitle: "Categories",
+		guidesTitle: "Guides",
+		aboutTitle: "About",
+		guidePix: "Apps that pay via Pix",
+		guideSurveys: "Paid survey sites",
+		guideInterest: "Compound interest",
+		guideHeadphones: "Affordable headphones",
+		aboutBlog: "Blog",
+		aboutRelationships: "Relationships",
+		aboutSearch: "Search",
+		rights: "All rights reserved.",
+	}
+	: {
+		skip: "Pular para o conteúdo",
+		navAria: "Navegação principal",
+		home: "Início",
+		searchLabel: "Pesquisar no site",
+		searchPlaceholder: "Pesquisar",
+		searchButton: "Buscar",
+		menuOpen: "Abrir menu",
+		menuClose: "Fechar menu",
+		mobileNavAria: "Navegação móvel",
+		breadcrumbAria: "Breadcrumb",
+		notice: "campanhas, tarefas, valores mínimos e formas de saque podem mudar sem aviso. Ganhos variam por usuário e não são garantidos. Confira as regras atuais no aplicativo antes de participar.",
+		footerDescription: "Guias, análises e notícias para quem busca renda extra na internet com informação clara, atualizada e responsável.",
+		categoriesTitle: "Categorias",
+		guidesTitle: "Guias",
+		aboutTitle: "Sobre",
+		guidePix: "Apps que pagam no Pix",
+		guideSurveys: "Sites de pesquisas",
+		guideInterest: "Juros compostos",
+		guideHeadphones: "Fones de ouvido",
+		aboutBlog: "Blog",
+		aboutRelationships: "Relacionamento",
+		aboutSearch: "Pesquisar",
+		rights: "Todos os direitos reservados.",
+	};
+
+const primaryNav = ["home", "noticias", "futebol", "comprar", "GANHAR DINHEIRO", "ferramentas"];
+const mobileNav = [...primaryNav, "post"];
 
 const tituloAba = title.replace(/\s*(?:-|\|)\s*Lucrar Online\s*$/i, '').trim();
 
@@ -85,8 +149,8 @@ const siteGraphJson = JSON.stringify({
 			"@id": "https://www.lucrar.link/#website",
 			"name": "Lucrar Online",
 			"url": "https://www.lucrar.link/",
-			"description": "Seu guia para renda extra na internet",
-			"inLanguage": "pt-BR",
+			"description": isEn ? "Your guide to extra income online" : "Seu guia para renda extra na internet",
+			"inLanguage": htmlLang,
 			"publisher": {
 				"@id": "https://www.lucrar.link/#organization"
 			},
@@ -110,7 +174,7 @@ const articleJson = isArticle ? JSON.stringify({
 	"image": [socialImageURL],
 	"datePublished": datePublished,
 	...(dateModified ? { "dateModified": dateModified } : {}),
-	"inLanguage": "pt-BR",
+	"inLanguage": htmlLang,
 	"isAccessibleForFree": true,
 	"articleSection": nomeCategoria,
 	"mainEntityOfPage": {
@@ -139,7 +203,7 @@ const collectionJson = isCategoryPage ? JSON.stringify({
 	"name": tituloAba,
 	"description": description,
 	"url": canonicalURL,
-	"inLanguage": "pt-BR",
+	"inLanguage": htmlLang,
 	"isPartOf": {
 		"@id": "https://www.lucrar.link/#website"
 	},
@@ -165,7 +229,7 @@ const breadcrumbItems = [
 	{
 		"@type": "ListItem",
 		"position": 1,
-		"name": "Início",
+		"name": labels.home,
 		"item": "https://www.lucrar.link/"
 	},
 	{
@@ -195,14 +259,14 @@ const breadcrumbJson = JSON.stringify({
 ---
 
 <!doctype html>
-<html lang="pt-BR">
+<html lang={htmlLang}>
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link rel="preconnect" href="https://www.googletagmanager.com" crossorigin />
 		<link rel="dns-prefetch" href="https://www.googletagmanager.com" />
 		<meta name="description" content={description} />
-		<meta name="keywords" content="lucrar online, renda extra, app para ganhar dinheiro" />
+		<meta name="keywords" content={isEn ? "does dramaspot pay, dramaspot review, make money online, reward apps" : "lucrar online, renda extra, app para ganhar dinheiro"} />
 		<meta name="robots" content={noindex ? "noindex, follow" : "index, follow, max-snippet:-1, max-image-preview:large"} />
 		<meta name="author" content="Lucrar Online" />
 		<meta name="theme-color" content="#2563eb" />
@@ -211,7 +275,8 @@ const breadcrumbJson = JSON.stringify({
 		<meta property="og:description" content={description} />
 		<meta property="og:url" content={canonicalURL} />
 		<meta property="og:site_name" content="Lucrar Online" />
-		<meta property="og:locale" content="pt_BR" />
+		<meta property="og:locale" content={ogLocale} />
+		<meta property="og:locale:alternate" content={ogLocaleAlternate} />
 		<meta property="og:image" content={socialImageURL} />
 		<meta property="og:image:alt" content={title} />
 		<meta property="og:image:width" content={String(imageWidth)} />
@@ -223,6 +288,9 @@ const breadcrumbJson = JSON.stringify({
 		<meta name="twitter:image:alt" content={title} />
 		<title>{tituloAba}</title>
 		<link rel="canonical" href={canonicalURL} />
+		{alternates.map((alt) => (
+			<link rel="alternate" hreflang={alt.hreflang} href={alt.href} />
+		))}
 		{preloadImageSrcset
 			? <link rel="preload" as="image" imagesrcset={preloadImageSrcset} imagesizes={preloadImageSizes} fetchpriority="high" />
 			: preloadImage && <link rel="preload" as="image" href={preloadImage} fetchpriority="high" />}
@@ -248,7 +316,7 @@ const breadcrumbJson = JSON.stringify({
 		</script>
 	</head>
 	<body class={categoria === "home" ? "is-home" : "is-inner"}>
-		<a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+		<a class="skip-link" href="#conteudo">{labels.skip}</a>
 
 		<header class="header" id="site-header">
 			<div class="container header-inner">
@@ -256,43 +324,44 @@ const breadcrumbJson = JSON.stringify({
 					<span class="logo-mark" aria-hidden="true">L</span>
 					<span class="logo-text">{categoria === "home" ? "Lucrar Online" : nomeCategoria}</span>
 				</a>
-				<nav class="nav" aria-label="Navegação principal">
+				<nav class="nav" aria-label={labels.navAria}>
 					<ul class="nav-list">
-						<li><a href="/" class={`nav-link ${navAtivo === '/' ? 'active' : ''}`} aria-current={navAtivo === '/' ? 'page' : undefined}>Início</a></li>
-						<li><a href="/noticias/" class={`nav-link ${navAtivo === '/noticias/' ? 'active' : ''}`} aria-current={navAtivo === '/noticias/' ? 'page' : undefined}>Notícias</a></li>
-						<li><a href="/futebol/" class={`nav-link ${navAtivo === '/futebol/' ? 'active' : ''}`} aria-current={navAtivo === '/futebol/' ? 'page' : undefined}>Futebol</a></li>
-						<li><a href="/comprar/" class={`nav-link ${navAtivo === '/comprar/' ? 'active' : ''}`} aria-current={navAtivo === '/comprar/' ? 'page' : undefined}>Comprar</a></li>
-						<li><a href="/ganhar-dinheiro/" class={`nav-link ${navAtivo === '/ganhar-dinheiro/' ? 'active' : ''}`} aria-current={navAtivo === '/ganhar-dinheiro/' ? 'page' : undefined}>Ganhar Dinheiro</a></li>
-						<li><a href="/ferramentas/" class={`nav-link ${navAtivo === '/ferramentas/' ? 'active' : ''}`} aria-current={navAtivo === '/ferramentas/' ? 'page' : undefined}>Ferramentas</a></li>
+						{primaryNav.map((key) => {
+							const item = categoriaMap[key];
+							const label = isEn ? item.nomeEn : item.nome;
+							return (
+								<li><a href={item.navUrl} class={`nav-link ${navAtivo === item.navUrl ? 'active' : ''}`} aria-current={navAtivo === item.navUrl ? 'page' : undefined}>{label}</a></li>
+							);
+						})}
 					</ul>
 				</nav>
 				<form class="header-search" action="/buscar/" method="get" role="search">
-					<label class="sr-only" for="header-search-input">Pesquisar no site</label>
-					<input id="header-search-input" name="q" type="search" placeholder="Pesquisar" required />
-					<button type="submit" aria-label="Pesquisar" formnovalidate>Buscar</button>
+					<label class="sr-only" for="header-search-input">{labels.searchLabel}</label>
+					<input id="header-search-input" name="q" type="search" placeholder={labels.searchPlaceholder} required />
+					<button type="submit" aria-label={labels.searchButton} formnovalidate>{labels.searchButton}</button>
 				</form>
-				<button class="menu-toggle" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobile-menu">
+				<button class="menu-toggle" type="button" aria-label={labels.menuOpen} data-open-label={labels.menuOpen} data-close-label={labels.menuClose} aria-expanded="false" aria-controls="mobile-menu">
 					<span class="menu-toggle-bar" aria-hidden="true"></span>
 					<span class="menu-toggle-bar" aria-hidden="true"></span>
 					<span class="menu-toggle-bar" aria-hidden="true"></span>
 				</button>
 			</div>
 			<div class="mobile-menu" id="mobile-menu">
-				<nav class="mobile-nav" aria-label="Navegação móvel">
+				<nav class="mobile-nav" aria-label={labels.mobileNavAria}>
 					<ul class="mobile-nav-list">
-						<li><a href="/" class={`mobile-nav-link ${navAtivo === '/' ? 'active' : ''}`} aria-current={navAtivo === '/' ? 'page' : undefined}>Início</a></li>
-						<li><a href="/noticias/" class={`mobile-nav-link ${navAtivo === '/noticias/' ? 'active' : ''}`} aria-current={navAtivo === '/noticias/' ? 'page' : undefined}>Notícias</a></li>
-						<li><a href="/futebol/" class={`mobile-nav-link ${navAtivo === '/futebol/' ? 'active' : ''}`} aria-current={navAtivo === '/futebol/' ? 'page' : undefined}>Futebol</a></li>
-						<li><a href="/comprar/" class={`mobile-nav-link ${navAtivo === '/comprar/' ? 'active' : ''}`} aria-current={navAtivo === '/comprar/' ? 'page' : undefined}>Comprar</a></li>
-						<li><a href="/ganhar-dinheiro/" class={`mobile-nav-link ${navAtivo === '/ganhar-dinheiro/' ? 'active' : ''}`} aria-current={navAtivo === '/ganhar-dinheiro/' ? 'page' : undefined}>Ganhar Dinheiro</a></li>
-						<li><a href="/ferramentas/" class={`mobile-nav-link ${navAtivo === '/ferramentas/' ? 'active' : ''}`} aria-current={navAtivo === '/ferramentas/' ? 'page' : undefined}>Ferramentas</a></li>
-						<li><a href="/post/" class={`mobile-nav-link ${navAtivo === '/post/' ? 'active' : ''}`} aria-current={navAtivo === '/post/' ? 'page' : undefined}>Blog</a></li>
+						{mobileNav.map((key) => {
+							const item = categoriaMap[key];
+							const label = isEn ? item.nomeEn : item.nome;
+							return (
+								<li><a href={item.navUrl} class={`mobile-nav-link ${navAtivo === item.navUrl ? 'active' : ''}`} aria-current={navAtivo === item.navUrl ? 'page' : undefined}>{label}</a></li>
+							);
+						})}
 					</ul>
 				</nav>
 				<form class="mobile-search" action="/buscar/" method="get" role="search">
-					<label class="sr-only" for="mobile-search-input">Pesquisar no site</label>
-					<input id="mobile-search-input" name="q" type="search" placeholder="Pesquisar no site" required />
-					<button type="submit" aria-label="Pesquisar" formnovalidate>Buscar</button>
+					<label class="sr-only" for="mobile-search-input">{labels.searchLabel}</label>
+					<input id="mobile-search-input" name="q" type="search" placeholder={labels.searchLabel} required />
+					<button type="submit" aria-label={labels.searchButton} formnovalidate>{labels.searchButton}</button>
 				</form>
 			</div>
 		</header>
@@ -300,9 +369,9 @@ const breadcrumbJson = JSON.stringify({
 		<main class="main" id="conteudo" tabindex="-1">
 			<div class="container">
 				{categoria !== "home" && categoria !== "geral" && (
-					<nav class="breadcrumb" aria-label="Breadcrumb">
+					<nav class="breadcrumb" aria-label={labels.breadcrumbAria}>
 						<ol class="breadcrumb-list">
-							<li class="breadcrumb-item"><a href="/">Início</a></li>
+							<li class="breadcrumb-item"><a href="/">{labels.home}</a></li>
 							{isArticle && (
 								<li class="breadcrumb-item"><a href={catInfo.navUrl}>{nomeCategoria}</a></li>
 							)}
@@ -312,11 +381,11 @@ const breadcrumbJson = JSON.stringify({
 				)}
 				<slot />
 				{isArticle && categoria === "GANHAR DINHEIRO" && (
-					<aside class="earnings-disclaimer" aria-label="Aviso sobre recompensas">
-						<strong>Aviso:</strong> campanhas, tarefas, valores mínimos e formas de saque podem mudar sem aviso. Ganhos variam por usuário e não são garantidos. Confira as regras atuais no aplicativo antes de participar.
+					<aside class="earnings-disclaimer" aria-label={isEn ? "Reward notice" : "Aviso sobre recompensas"}>
+						<strong>{isEn ? "Notice:" : "Aviso:"}</strong> {labels.notice}
 					</aside>
 				)}
-				{showRelacionados && <Relacionados categoria={categoria} />}
+				{showRelacionados && <Relacionados categoria={categoria} lang={lang} />}
 			</div>
 		</main>
 
@@ -328,39 +397,39 @@ const breadcrumbJson = JSON.stringify({
 							<span class="logo-mark" aria-hidden="true">L</span>
 							<span>Lucrar Online</span>
 						</a>
-						<p class="footer-description">Guias, análises e notícias para quem busca renda extra na internet com informação clara, atualizada e responsável.</p>
+						<p class="footer-description">{labels.footerDescription}</p>
 					</div>
 					<nav class="footer-column" aria-labelledby="footer-categorias">
-						<h2 class="footer-title" id="footer-categorias">Categorias</h2>
+						<h2 class="footer-title" id="footer-categorias">{labels.categoriesTitle}</h2>
 						<ul class="footer-links">
-							<li><a href="/ganhar-dinheiro/">Ganhar Dinheiro</a></li>
-							<li><a href="/noticias/">Notícias</a></li>
-							<li><a href="/futebol/">Futebol</a></li>
-							<li><a href="/comprar/">Comprar</a></li>
-							<li><a href="/ferramentas/">Ferramentas</a></li>
+							<li><a href="/ganhar-dinheiro/">{isEn ? categoriaMap["GANHAR DINHEIRO"].nomeEn : categoriaMap["GANHAR DINHEIRO"].nome}</a></li>
+							<li><a href="/noticias/">{isEn ? categoriaMap["noticias"].nomeEn : categoriaMap["noticias"].nome}</a></li>
+							<li><a href="/futebol/">{isEn ? categoriaMap["futebol"].nomeEn : categoriaMap["futebol"].nome}</a></li>
+							<li><a href="/comprar/">{isEn ? categoriaMap["comprar"].nomeEn : categoriaMap["comprar"].nome}</a></li>
+							<li><a href="/ferramentas/">{isEn ? categoriaMap["ferramentas"].nomeEn : categoriaMap["ferramentas"].nome}</a></li>
 						</ul>
 					</nav>
 					<nav class="footer-column" aria-labelledby="footer-guias">
-						<h2 class="footer-title" id="footer-guias">Guias</h2>
+						<h2 class="footer-title" id="footer-guias">{labels.guidesTitle}</h2>
 						<ul class="footer-links">
-							<li><a href="/ganhar-dinheiro/top-3-apps-que-pagam-no-pix/">Apps que pagam no Pix</a></li>
-							<li><a href="/sites-para-ganhar-dinheiro-respondendo-pesquisas/">Sites de pesquisas</a></li>
-							<li><a href="/ferramentas/calculadora-de-juros-compostos/">Juros compostos</a></li>
-							<li><a href="/comprar/melhores-fones-de-ouvido-baratos/">Fones de ouvido</a></li>
+							<li><a href="/ganhar-dinheiro/top-3-apps-que-pagam-no-pix/">{labels.guidePix}</a></li>
+							<li><a href="/sites-para-ganhar-dinheiro-respondendo-pesquisas/">{labels.guideSurveys}</a></li>
+							<li><a href="/ferramentas/calculadora-de-juros-compostos/">{labels.guideInterest}</a></li>
+							<li><a href="/comprar/melhores-fones-de-ouvido-baratos/">{labels.guideHeadphones}</a></li>
 						</ul>
 					</nav>
 					<nav class="footer-column" aria-labelledby="footer-sobre">
-						<h2 class="footer-title" id="footer-sobre">Sobre</h2>
+						<h2 class="footer-title" id="footer-sobre">{labels.aboutTitle}</h2>
 						<ul class="footer-links">
-							<li><a href="/">Início</a></li>
-							<li><a href="/post/">Blog</a></li>
-							<li><a href="/relacionamento/">Relacionamento</a></li>
-							<li><a href="/buscar/">Pesquisar</a></li>
+							<li><a href="/">{labels.home}</a></li>
+							<li><a href="/post/">{labels.aboutBlog}</a></li>
+							<li><a href="/relacionamento/">{labels.aboutRelationships}</a></li>
+							<li><a href="/buscar/">{labels.aboutSearch}</a></li>
 						</ul>
 					</nav>
 				</div>
 				<div class="footer-bottom">
-					<p>&copy; {new Date().getFullYear()} Lucrar Online. Todos os direitos reservados.</p>
+					<p>&copy; {new Date().getFullYear()} Lucrar Online. {labels.rights}</p>
 				</div>
 			</div>
 		</footer>
@@ -384,7 +453,7 @@ const breadcrumbJson = JSON.stringify({
 						mobileMenu.classList.remove('open');
 						document.body.classList.remove('menu-open');
 						menuToggle.setAttribute('aria-expanded', 'false');
-						menuToggle.setAttribute('aria-label', 'Abrir menu');
+						menuToggle.setAttribute('aria-label', menuToggle.dataset.openLabel || (document.documentElement.lang === 'en' ? 'Open menu' : 'Abrir menu'));
 					};
 
 					const openMenu = function() {
@@ -392,7 +461,7 @@ const breadcrumbJson = JSON.stringify({
 						mobileMenu.classList.add('open');
 						document.body.classList.add('menu-open');
 						menuToggle.setAttribute('aria-expanded', 'true');
-						menuToggle.setAttribute('aria-label', 'Fechar menu');
+						menuToggle.setAttribute('aria-label', menuToggle.dataset.closeLabel || (document.documentElement.lang === 'en' ? 'Close menu' : 'Fechar menu'));
 					};
 
 					menuToggle.addEventListener('click', function(event) {

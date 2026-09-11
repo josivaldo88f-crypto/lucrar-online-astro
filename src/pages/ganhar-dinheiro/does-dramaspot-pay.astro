@@ -1,0 +1,182 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+
+export const title = 'Does DramaSpot Pay? Honest Drama App Review';
+export const description = 'Does DramaSpot pay real money? We reviewed the app, its wallet, tasks and ₱1,000 payout goal and found no proof of a completed withdrawal.';
+export const categoria = 'GANHAR DINHEIRO';
+export const date = '2026-07-30';
+export const image = '/images/dramaspot-google-play.webp';
+export const locale = 'en';
+export const faq = [
+  { question: 'Does DramaSpot pay real money?', answer: 'The screenshots we reviewed show a balance and tasks, but no completed withdrawal. There is not enough proof to say that DramaSpot pays.' },
+  { question: 'Does the DramaSpot app pay through Pix?', answer: 'There is no Pix payment receipt in the screenshots we reviewed. The currency symbol shown is ₱, and the withdrawal method was not verified.' },
+  { question: 'Is DramaSpot legit and safe to use?', answer: 'A store listing or a displayed balance cannot confirm that an app is trustworthy. Check its permissions, privacy policy and real withdrawal reports before using it.' },
+  { question: 'Does DramaSpot really pay you to watch dramas?', answer: 'The app promises rewards for watching, but a promise is not a payment. Until there is a verifiable transaction, treat the earnings as unproven.' },
+];
+
+const smallImg = (p: string) => p.replace(/\.[^.]+$/, '-480.webp');
+const midImg = (p: string) => p.replace(/\.[^.]+$/, '-720.webp');
+const bigImg = (p: string) => p.replace(/\.[^.]+$/, '-900.webp');
+const heroSizes = '(max-width: 860px) 92vw, 900px';
+const heroSrcset = (p: string) => `${smallImg(p)} 480w, ${midImg(p)} 720w, ${bigImg(p)} 900w, ${p} 1200w`;
+const shotSrcset = (p: string) => `${smallImg(p)} 480w, ${midImg(p)} 720w, ${bigImg(p)} 900w`;
+const shotSizes = '(max-width: 680px) 92vw, 30vw';
+
+const alternates = [
+    { hreflang: 'pt-BR', href: 'https://www.lucrar.link/ganhar-dinheiro/dramaspot-paga-mesmo/' },
+    { hreflang: 'en', href: 'https://www.lucrar.link/ganhar-dinheiro/does-dramaspot-pay/' },
+    { hreflang: 'x-default', href: 'https://www.lucrar.link/ganhar-dinheiro/dramaspot-paga-mesmo/' },
+];
+
+const screenshots = [
+    {
+        src: '/images/dramaspot-inicio.webp',
+        alt: 'DramaSpot home screen showing dramas and an in-app balance',
+        caption: 'Home screen with a drama catalog, tasks and the balance displayed inside the app.',
+        width: 1220,
+        height: 2712,
+    },
+    {
+        src: '/images/dramaspot-carteira.webp',
+        alt: 'DramaSpot wallet showing tasks to watch episodes',
+        caption: 'The wallet lists tasks to watch episodes, but shows no completed withdrawal.',
+        width: 1220,
+        height: 2712,
+    },
+    {
+        src: '/images/dramaspot-episodio.webp',
+        alt: 'DramaSpot playing an episode and showing a coin balance',
+        caption: 'While an episode plays, the app shows the balance and reward progress.',
+        width: 1220,
+        height: 2712,
+    },
+];
+---
+
+<MainLayout lang="en" alternates={alternates} seo={{ title, description, image, imageWidth: 1200, imageHeight: 573, datePublished: date, dateModified: date, faq }} categoria={categoria} preloadImage={bigImg(image)} preloadImageSrcset={heroSrcset(image)} preloadImageSizes={heroSizes}>
+    <article class="review-article">
+        <header class="review-header">
+            <p class="eyebrow">App review · extra income</p>
+            <h1>{title}</h1>
+            <p class="review-meta"><time datetime={date}>Updated on July 30, 2026</time></p>
+            <p class="lead">DramaSpot is a short-video and drama app that promises rewards for watching episodes. In this review, we look at what appears in the store listing and on the app screens, and what has not been proven yet.</p>
+        </header>
+
+        <figure class="hero-figure">
+            <img src={bigImg(image)} srcset={heroSrcset(image)} sizes={heroSizes} alt="DramaSpot listing on Google Play" width="900" height="430" loading="eager" fetchpriority="high" decoding="async" />
+            <figcaption>DramaSpot Google Play listing details submitted for this review.</figcaption>
+        </figure>
+
+        <div class="verdict" role="note">
+            <strong>Quick verdict:</strong> the materials show a rewards promise but no withdrawal receipt. So it is not possible to say that DramaSpot really pays; treat the app as unproven and do not deposit money to try to unlock earnings.
+        </div>
+
+        <nav class="toc" aria-label="Table of contents">
+            <strong>In this review</strong>
+            <a href="#how-it-works">How it works</a>
+            <a href="#does-it-pay">Does DramaSpot pay?</a>
+            <a href="#screenshots">What the screenshots show</a>
+            <a href="#is-it-legit">Is it legit?</a>
+            <a href="#faq">FAQ</a>
+        </nav>
+
+        <section id="how-it-works" class="content-section">
+            <h2>What is DramaSpot and how does it promise to pay?</h2>
+            <p>DramaSpot is presented as an entertainment app with dramas, short series and ads. In the screens submitted, the user watches episodes and opens a tasks area called “My Wallet”. The reward appears as a balance inside the app.</p>
+            <p>That explains why people search for “does DramaSpot pay” or “DramaSpot app”. A balance screen, however, is only an internal promise from the app: it does not prove that the amount can be withdrawn and received in a real account.</p>
+
+            <div class="facts-grid">
+                <div><strong>Developer</strong><span>Nabuild 254 Inc.</span></div>
+                <div><strong>Listed downloads</strong><span>500 thousand or more</span></div>
+                <div><strong>Content</strong><span>Contains ads</span></div>
+                <div><strong>Version shown</strong><span>2.1.7.260615</span></div>
+            </div>
+        </section>
+
+        <section id="does-it-pay" class="content-section">
+            <h2>Does DramaSpot actually pay or not?</h2>
+            <p>Based on the screenshots submitted, <strong>there is no proof that DramaSpot pays</strong>. The images show a balance of ₱0.00 and ₱20.00, plus a ₱1,000 requirement to unlock withdrawals. They do not show a bank transfer, Pix payment, digital wallet, receipt, transaction ID or payment confirmation.</p>
+            <p>It is also important to note that the symbol shown is <strong>₱</strong>, linked to the Philippine peso, and not the Brazilian real (R$). So this balance should not be read as money available in reais.</p>
+            <div class="evidence-table" role="table" aria-label="Evidence found in the screenshots">
+                <div class="table-row table-head" role="row"><strong role="columnheader">What appears</strong><strong role="columnheader">What does not appear</strong></div>
+                <div class="table-row" role="row"><span role="cell">In-app balance and coins</span><span role="cell">Completed withdrawal</span></div>
+                <div class="table-row" role="row"><span role="cell">Tasks to watch episodes</span><span role="cell">Transfer receipt</span></div>
+                <div class="table-row" role="row"><span role="cell">₱1,000 goal</span><span role="cell">Verified deadline and payment method</span></div>
+            </div>
+        </section>
+
+        <section id="screenshots" class="content-section">
+            <h2>What do the app screenshots reveal?</h2>
+            <p>The screenshots point to a reward loop based on watching content: the user opens a drama, follows episodes and sees progress in the wallet. The interface is enough to show how the promise works, but not to validate payment.</p>
+            <div class="screenshots-grid">
+                {screenshots.map((shot) => (
+                    <figure class="screenshot-card">
+                        <img src={smallImg(shot.src)} srcset={shotSrcset(shot.src)} sizes={shotSizes} alt={shot.alt} width={shot.width} height={shot.height} loading="lazy" decoding="async" />
+                        <figcaption>{shot.caption}</figcaption>
+                    </figure>
+                ))}
+            </div>
+        </section>
+
+        <section id="is-it-legit" class="content-section">
+            <h2>Is DramaSpot legit and trustworthy?</h2>
+            <p>The safest answer is: <strong>there is not enough data to consider the app reliable as an income source</strong>. Being listed in a store, having many downloads or a polished interface does not guarantee that a withdrawal will be approved.</p>
+            <ul class="check-list">
+                <li>Do not pay a fee, deposit or “activation” charge to unlock rewards.</li>
+                <li>Do not share documents, bank details or SMS codes without understanding why they are needed.</li>
+                <li>Read the store policies and check the permissions the app requests.</li>
+                <li>If you test it, spend only time you can afford to lose and record any withdrawal attempt.</li>
+            </ul>
+            <p>To compare other reviews on this site, see the <a href="/ganhar-dinheiro/">Make Money Online</a> category and check the precautions before using reward apps.</p>
+        </section>
+
+        <section id="faq" class="faq-section">
+            <h2>Frequently asked questions about DramaSpot</h2>
+            {faq.map((item) => (
+                <details>
+                    <summary>{item.question}</summary>
+                    <p>{item.answer}</p>
+                </details>
+            ))}
+        </section>
+
+        <aside class="method-note"><strong>How this review was made:</strong> we used the <a href="https://play.google.com/store/search?q=DramaSpot&c=apps" target="_blank" rel="noopener">Google Play listing</a>, the “About this app” screen and the usage screenshots provided by a reader. The conclusions reflect only the available evidence and may change if a verifiable withdrawal receipt appears.</aside>
+    </article>
+</MainLayout>
+
+<style>
+    .review-article { max-width: 900px; margin: 0 auto; color: #374151; }
+    .review-header { margin-bottom: 1.5rem; }
+    .eyebrow { margin: 0 0 .5rem; color: #2563eb; font-size: .82rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
+    .review-header h1 { margin: 0 0 .6rem; color: #111827; font-size: clamp(2rem, 5vw, 3rem); line-height: 1.12; }
+    .review-meta { margin: 0 0 1.2rem; color: #6b7280; font-size: .9rem; }
+    .lead { font-size: 1.15rem; line-height: 1.75; }
+    .hero-figure { margin: 0 0 1.5rem; }
+    .hero-figure img { display: block; width: 100%; height: auto; border-radius: 12px; }
+    figcaption { margin-top: .55rem; color: #6b7280; font-size: .86rem; line-height: 1.5; }
+    .verdict { margin: 1.5rem 0; padding: 1.2rem 1.35rem; background: #fff7ed; border-left: 4px solid #ea580c; border-radius: 8px; line-height: 1.7; }
+    .toc { display: flex; flex-wrap: wrap; gap: .65rem; align-items: center; margin: 2rem 0; padding: 1rem; background: #f8fafc; border: 1px solid #e5e7eb; border-radius: 10px; }
+    .toc strong { flex-basis: 100%; color: #111827; }
+    .toc a, .content-section a { color: #1d4ed8; text-decoration: underline; text-underline-offset: .18em; }
+    .toc a { padding: .35rem .65rem; background: #fff; border-radius: 6px; font-size: .92rem; }
+    .content-section { margin: 2.5rem 0; }
+    .content-section h2, .faq-section h2 { margin-bottom: .8rem; color: #1f2937; font-size: 1.65rem; }
+    .content-section p, .faq-section p { line-height: 1.8; }
+    .facts-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: .75rem; margin-top: 1.3rem; }
+    .facts-grid div { display: flex; flex-direction: column; gap: .25rem; padding: 1rem; background: #f8fafc; border-radius: 8px; }
+    .facts-grid strong { color: #111827; font-size: .85rem; }
+    .facts-grid span { color: #4b5563; }
+    .evidence-table { margin-top: 1.25rem; border: 1px solid #e5e7eb; border-radius: 8px; overflow: hidden; }
+    .table-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; padding: .85rem 1rem; border-top: 1px solid #e5e7eb; }
+    .table-row:first-child { border-top: 0; }
+    .table-head { background: #f3f4f6; color: #111827; }
+    .screenshots-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 1.25rem; }
+    .screenshot-card { margin: 0; }
+    .screenshot-card img { display: block; width: 100%; height: 520px; object-fit: cover; object-position: top; border-radius: 10px; background: #111827; }
+    .check-list { padding-left: 1.35rem; line-height: 1.9; }
+    .faq-section { margin: 2.5rem 0; }
+    details { padding: 1rem 0; border-top: 1px solid #e5e7eb; }
+    summary { cursor: pointer; color: #111827; font-weight: 700; }
+    .method-note { margin: 2rem 0; padding: 1rem 1.2rem; background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 8px; line-height: 1.7; font-size: .92rem; }
+    @media (max-width: 680px) { .screenshots-grid { grid-template-columns: 1fr; } .screenshot-card img { height: auto; max-height: 720px; object-fit: contain; } .table-row { grid-template-columns: 1fr; gap: .35rem; } }
+</style>

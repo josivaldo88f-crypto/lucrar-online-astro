@@ -13,8 +13,9 @@ const latestPosts = posts
         if (!url || !title) return false;
 
         const isIndexFile = post.file.endsWith('index.astro');
+        const isEnglish = post.locale === 'en';
 
-        return !isIndexFile;
+        return !isIndexFile && !isEnglish;
     })
     .sort((a, b) => {
         const dateA = new Date(a.date || a.frontmatter?.date || '0').getTime();

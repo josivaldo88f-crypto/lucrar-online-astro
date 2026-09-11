@@ -17,6 +17,12 @@ const smallImg = (p: string) => p.replace(/\.[^.]+$/, '-480.webp');
 const bigImg = (p: string) => p.replace(/\.[^.]+$/, '-900.webp');
 const heroSizes = '(max-width: 860px) 92vw, 900px';
 
+const alternates = [
+    { hreflang: 'pt-BR', href: 'https://www.lucrar.link/ganhar-dinheiro/dramaspot-paga-mesmo/' },
+    { hreflang: 'en', href: 'https://www.lucrar.link/ganhar-dinheiro/does-dramaspot-pay/' },
+    { hreflang: 'x-default', href: 'https://www.lucrar.link/ganhar-dinheiro/dramaspot-paga-mesmo/' },
+];
+
 const screenshots = [
     {
         src: '/images/dramaspot-inicio.webp',
@@ -42,7 +48,7 @@ const screenshots = [
 ];
 ---
 
-<MainLayout seo={{ title, description, image, imageWidth: 1200, imageHeight: 573, datePublished: date, dateModified: date, faq }} categoria={categoria} preloadImage={bigImg(image)} preloadImageSrcset={`${smallImg(image)} 480w, ${bigImg(image)} 900w`} preloadImageSizes={heroSizes}>
+<MainLayout alternates={alternates} seo={{ title, description, image, imageWidth: 1200, imageHeight: 573, datePublished: date, dateModified: date, faq }} categoria={categoria} preloadImage={bigImg(image)} preloadImageSrcset={`${smallImg(image)} 480w, ${bigImg(image)} 900w`} preloadImageSizes={heroSizes}>
     <article class="review-article">
         <header class="review-header">
             <p class="eyebrow">Análise de aplicativo · renda extra</p>
