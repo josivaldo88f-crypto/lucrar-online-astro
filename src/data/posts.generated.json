@@ -1,6 +1,17 @@
 {
-  "count": 45,
+  "count": 46,
   "posts": [
+    {
+      "file": "futebol/flamengo-x-bragantino-onde-assistir.astro",
+      "url": "/futebol/flamengo-x-bragantino-onde-assistir/",
+      "isIndex": false,
+      "title": "Flamengo x Bragantino: Onde Assistir, Horário e Escalações (Brasileirão)",
+      "description": "Saiba onde assistir Flamengo x Red Bull Bragantino ao vivo neste domingo (20/9), às 18h30, no Maracanã, pela 28ª rodada do Brasileirão 2026. Transmissão, desfalques e escalações.",
+      "categoria": "futebol",
+      "image": "/images/flamengo-x-bragantino-onde-assistir.webp",
+      "date": "2026-09-15",
+      "locale": "pt-BR"
+    },
     {
       "file": "futebol/flamengo-x-independiente-del-valle-onde-assistir.astro",
       "url": "/futebol/flamengo-x-independiente-del-valle-onde-assistir/",
