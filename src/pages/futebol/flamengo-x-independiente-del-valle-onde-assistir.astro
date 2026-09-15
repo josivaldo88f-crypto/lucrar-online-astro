@@ -1,0 +1,270 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+
+export const title = 'Flamengo x Independiente del Valle: Onde Assistir (Libertadores)';
+export const description = 'Flamengo x Independiente del Valle decidem vaga na semifinal da Libertadores nesta quinta (17/9), às 21h30, no Maracanã. Veja onde assistir.';
+export const categoria = 'futebol';
+export const date = '2026-09-15';
+export const image = '/images/flamengo-x-independiente-del-valle-onde-assistir.webp';
+
+const startDate = '2026-09-17T21:30:00-03:00';
+const endDate = '2026-09-17T23:30:00-03:00';
+const cover720 = image.replace(/\.webp$/, '-720.webp');
+const cover900 = image.replace(/\.webp$/, '-900.webp');
+
+const faq = [
+    {
+        question: 'Onde assistir Flamengo x Independiente del Valle ao vivo?',
+        answer: 'A partida terá transmissão ao vivo dos canais ESPN na TV por assinatura e da plataforma de streaming Disney+ para todo o Brasil. O portal ge.globo e o ESPN.com.br acompanham o jogo em tempo real, lance a lance.',
+    },
+    {
+        question: 'Que horas começa o jogo Flamengo x Independiente del Valle?',
+        answer: 'O confronto tem início marcado para 21h30 (horário de Brasília) desta quinta-feira, 17 de setembro de 2026.',
+    },
+    {
+        question: 'Onde será a partida entre Flamengo e Independiente del Valle?',
+        answer: 'O jogo de volta será disputado no Estádio Jornalista Mário Filho, o Maracanã, no Rio de Janeiro (RJ). A ida aconteceu em Quito, no Equador.',
+    },
+    {
+        question: 'Qual é o resultado da ida entre Independiente del Valle e Flamengo?',
+        answer: 'O Flamengo venceu o jogo de ida por 2 a 0, em Quito, com gols de Bruno Henrique e Léo Pereira. Com isso, o Rubro-Negro avança com vitória, empate ou derrota por um gol de diferença no Maracanã.',
+    },
+    {
+        question: 'Quem o vencedor enfrenta na semifinal da Libertadores?',
+        answer: 'Quem avançar entre Flamengo e Independiente del Valle enfrenta o vencedor do confronto entre Corinthians e Estudiantes, que também decidem a outra vaga na semifinal.',
+    },
+    {
+        question: 'Quem é o árbitro de Flamengo x Independiente del Valle?',
+        answer: 'A Conmebol designou o árbitro uruguaio Andrés Matonte para o duelo no Maracanã, com os assistentes Carlos Barreiro e Mathias Muniz, também do Uruguai.',
+    },
+];
+
+const eventJson = JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'SportsEvent',
+    name: 'Flamengo x Independiente del Valle pela Libertadores 2026',
+    description,
+    startDate,
+    endDate,
+    sport: 'Futebol',
+    eventStatus: 'https://schema.org/EventScheduled',
+    eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
+    image: [new URL(image, Astro.site ?? 'https://www.lucrar.link/').href],
+    location: {
+        '@type': 'Place',
+        name: 'Estádio Jornalista Mário Filho (Maracanã)',
+        address: {
+            '@type': 'PostalAddress',
+            addressLocality: 'Rio de Janeiro',
+            addressRegion: 'RJ',
+            addressCountry: 'BR',
+        },
+    },
+    competitor: [
+        { '@type': 'SportsTeam', name: 'Flamengo' },
+        { '@type': 'SportsTeam', name: 'Independiente del Valle' },
+    ],
+    homeTeam: {
+        '@type': 'SportsTeam',
+        name: 'Flamengo',
+    },
+    awayTeam: {
+        '@type': 'SportsTeam',
+        name: 'Independiente del Valle',
+    },
+    organizer: {
+        '@type': 'Organization',
+        name: 'Confederação Sul-Americana de Futebol',
+        url: 'https://www.conmebol.com/',
+    },
+});
+---
+
+<MainLayout
+    seo={{ title, description, image, datePublished: date, dateModified: date, faq }}
+    categoria={categoria}
+    preloadImage={image}
+    preloadImageSrcset={`${cover720} 720w, ${cover900} 900w, ${image} 1200w`}
+    preloadImageSizes="(max-width: 900px) 92vw, 900px"
+>
+    <script slot="head" type="application/ld+json" set:html={eventJson}></script>
+
+    <article class="match-article">
+        <header class="match-hero">
+            <p class="match-kicker">Copa Libertadores 2026 · Quartas de final · Jogo de volta</p>
+            <h1>{title}</h1>
+            <p class="match-updated">Por Redação · Publicado em <time datetime={date}>15 de setembro de 2026</time></p>
+        </header>
+
+        <img
+            class="match-cover"
+            src={image}
+            srcset={`${cover720} 720w, ${cover900} 900w, ${image} 1200w`}
+            sizes="(max-width: 900px) 92vw, 900px"
+            alt="Flamengo x Independiente del Valle pela volta das quartas da Libertadores 2026 no Maracanã"
+            width="1200"
+            height="630"
+            loading="eager"
+            fetchpriority="high"
+            decoding="async"
+        />
+
+        <p class="match-lead">
+            Flamengo e Independiente del Valle decidem nesta quinta-feira (17), às 21h30 (horário de Brasília), no Maracanã, quem avança às semifinais da Copa Libertadores 2026. O Rubro-Negro, atual campeão e invicto na competição, construiu vantagem de 2 a 0 no jogo de ida, em Quito, e joga por um empate diante de sua torcida. A transmissão ao vivo fica por conta dos canais ESPN, na TV por assinatura, e do Disney+, no streaming.
+        </p>
+
+        <section class="match-summary" aria-labelledby="ficha-do-jogo">
+            <h2 id="ficha-do-jogo">Ficha do jogo</h2>
+            <dl class="match-details">
+                <div><dt>Data</dt><dd>Quinta-feira, 17 de setembro de 2026</dd></div>
+                <div><dt>Horário</dt><dd>21h30 (horário de Brasília)</dd></div>
+                <div><dt>Estádio</dt><dd>Maracanã</dd></div>
+                <div><dt>Local</dt><dd>Rio de Janeiro (RJ)</dd></div>
+                <div><dt>Transmissão</dt><dd>ESPN e Disney+</dd></div>
+                <div><dt>Tempo Real</dt><dd>ge.globo e ESPN.com.br</dd></div>
+                <div><dt>Jogo de ida</dt><dd>Del Valle 0 x 2 Flamengo</dd></div>
+                <div><dt>Árbitro</dt><dd>Andrés Matonte (URU)</dd></div>
+            </dl>
+        </section>
+
+        <section class="match-content">
+            <h2>Onde assistir Flamengo x Independiente del Valle ao vivo</h2>
+            <p>
+                O torcedor tem duas opções para acompanhar a decisão da vaga na semifinal nesta quinta-feira à noite:
+            </p>
+            <ul>
+                <li>
+                    <strong>ESPN:</strong> transmite o jogo ao vivo na TV por assinatura, com pré-jogo, narração e comentários. O canal está disponível nas principais operadoras de TV paga do país (Claro TV, Sky, Vivo e Oi TV).
+                </li>
+                <li>
+                    <strong>Disney+:</strong> exibe o confronto ao vivo no streaming para os assinantes que contam com o pacote com esportes. É a alternativa para quem acompanha pelo celular, tablet, computador ou Smart TV.
+                </li>
+                <li>
+                    <strong>ge.globo e ESPN.com.br:</strong> fazem a cobertura minuto a minuto em tempo real, com vídeos dos gols, lances polêmicos, estatísticas e a avaliação da arbitragem após a partida.
+                </li>
+            </ul>
+
+            <h2>O que está em jogo no Maracanã</h2>
+            <p>
+                Como venceu a ida por 2 a 0 em Quito, o Flamengo tem uma situação confortável: avança às semifinais com vitória, empate ou até uma derrota por um gol de diferença. Se perder por dois gols, a decisão vai para os pênaltis; uma derrota por três ou mais gols classifica o Independiente del Valle.
+            </p>
+            <p>
+                Quem passar encara o vencedor de <strong>Corinthians x Estudiantes</strong>, que também decide a outra vaga na semifinal. O apoio da torcida no Maracanã e a vantagem construída fora de casa colocam o Rubro-Negro como favorito, mas o time equatoriano já mostrou força na competição e precisa de um resultado expressivo para seguir vivo.
+            </p>
+
+            <h2>Como chegam as duas equipes</h2>
+            <p>
+                O Flamengo é o único brasileiro invicto na Libertadores 2026, com sete vitórias e dois empates em nove jogos. No fim de semana, com time misto, venceu o <a href="/futebol/flamengo-x-corinthians-onde-assistir/">Corinthians por 2 a 1</a> no Maracanã e retomou a liderança do Brasileirão. O técnico não terá o lateral Alex Sandro, com lesão na panturrilha direita, nem o volante Evertton Araújo, com problema na coxa esquerda.
+            </p>
+            <p>
+                O Independiente del Valle, comandado por Joaquín Papa, eliminou o Tolima nas oitavas e tem no atacante Carlos González, com sete gols na competição, sua principal arma ofensiva. Em Quito, porém, o time equatoriano não conseguiu furar a defesa rubro-negra.
+            </p>
+
+            <h2>Retrospecto do confronto</h2>
+            <p>
+                Flamengo e Independiente del Valle já se enfrentaram sete vezes, com quatro vitórias do Rubro-Negro, um empate e duas vitórias dos equatorianos. O duelo mais lembrado é a Recopa Sul-Americana de 2023: o Del Valle venceu em casa, o Flamengo devolveu o placar no Maracanã e o título ficou com os equatorianos nos pênaltis.
+            </p>
+            <p>
+                Na fase de grupos de 2020, os equatorianos aplicaram 5 a 0 no Flamengo em Quito, a maior goleada sofrida pelo clube brasileiro na história da Libertadores. No duelo de ida de 2026, os gols de Bruno Henrique e Léo Pereira deram ao Flamengo a vantagem que agora administra em casa.
+            </p>
+
+            <h2>Prováveis escalações</h2>
+            <p>
+                As escalações abaixo são prováveis e podem sofrer alterações até a confirmação oficial, perto do apito inicial:
+            </p>
+            <div class="lineups">
+                <div class="team-lineup">
+                    <div class="team-head">
+                        <img src="/images/escudo-flamengo.webp" alt="Escudo do Flamengo" width="64" height="64" loading="lazy" decoding="async" />
+                        <h3>Flamengo</h3>
+                    </div>
+                    <p>
+                        <strong>Provável escalação:</strong> Rossi; Emerson Royal, Léo Ortiz, Léo Pereira e Ayrton Lucas; Pulgar, Jorginho e Arrascaeta; Carrascal, Samuel Lino e Pedro.
+                    </p>
+                    <p>
+                        <strong>Desfalques:</strong> Alex Sandro (lesão na panturrilha direita) e Evertton Araújo (problema na coxa esquerda).
+                    </p>
+                    <p><strong>Técnico:</strong> Leonardo Jardim.</p>
+                </div>
+                <div class="team-lineup">
+                    <div class="team-head">
+                        <img src="/images/escudo-independiente-del-valle.webp" alt="Escudo do Independiente del Valle" width="64" height="64" loading="lazy" decoding="async" />
+                        <h3>Independiente del Valle</h3>
+                    </div>
+                    <p>
+                        <strong>Provável escalação:</strong> Aldair Quintana; Daykol Romero, Carabajal, Viacava e Cortéz; Méndez; Arón Rodríguez, Sornoza, Briones e Emerson Pata; Carlos González.
+                    </p>
+                    <p>
+                        <strong>Destaque:</strong> o atacante Carlos González é o principal nome do time, com sete gols nesta edição da Libertadores.
+                    </p>
+                    <p><strong>Técnico:</strong> Joaquín Papa.</p>
+                </div>
+            </div>
+
+            <h2>Arbitragem</h2>
+            <p>
+                A Conmebol definiu uma equipe de arbitragem uruguaia para o duelo decisivo no Maracanã:
+            </p>
+            <ul>
+                <li><strong>Árbitro principal:</strong> Andrés Matonte (URU)</li>
+                <li><strong>Assistente 1:</strong> Carlos Barreiro (URU)</li>
+                <li><strong>Assistente 2:</strong> Mathias Muniz (URU)</li>
+            </ul>
+        </section>
+
+        <section class="match-faq" aria-labelledby="perguntas-frequentes">
+            <h2 id="perguntas-frequentes">Perguntas frequentes</h2>
+            {faq.map((item) => (
+                <div class="faq-item">
+                    <h3>{item.question}</h3>
+                    <p>{item.answer}</p>
+                </div>
+            ))}
+        </section>
+
+        <footer class="match-footer">
+            <p>
+                Fontes oficiais: <a href="https://ge.globo.com/futebol/times/flamengo/" rel="noopener noreferrer">ge Flamengo</a>, <a href="https://www.conmebol.com/" rel="noopener noreferrer">Conmebol</a> e <a href="https://www.espn.com.br/futebol/libertadores/" rel="noopener noreferrer">ESPN Libertadores</a>.
+            </p>
+            <p>Este guia informativo é atualizado conforme novas informações sobre escalações ou transmissão forem divulgadas.</p>
+            <a href="/futebol/flamengo-x-corinthians-onde-assistir/">Veja também: Flamengo x Corinthians pelo Brasileirão</a>
+            <a href="/futebol/">← Ver todos os jogos e notícias de futebol</a>
+        </footer>
+    </article>
+</MainLayout>
+
+<style>
+    .match-article { max-width: 900px; margin: 0 auto; }
+    .match-hero { margin-bottom: 1.5rem; }
+    .match-kicker { margin: 0 0 0.5rem; color: #2563eb; font-size: 0.85rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; }
+    .match-hero h1 { margin: 0 0 0.6rem; color: #111827; font-size: clamp(2rem, 5vw, 3rem); line-height: 1.15; }
+    .match-updated { margin: 0; color: #6b7280; font-size: 0.9rem; }
+    .match-cover { display: block; width: 100%; height: auto; margin-bottom: 1.5rem; border-radius: 12px; }
+    .match-lead { margin: 0 0 1.5rem; color: #374151; font-size: 1.15rem; line-height: 1.75; }
+    .match-summary { margin: 1.5rem 0 2rem; padding: 1.5rem; background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 12px; }
+    .match-summary h2 { margin-top: 0; color: #1f2937; }
+    .match-details { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 1rem; margin: 1.25rem 0 0; }
+    .match-details div { padding: 0.9rem; background: #fff; border-radius: 8px; }
+    .match-details dt { color: #6b7280; font-size: 0.85rem; font-weight: 700; }
+    .match-details dd { margin: 0.3rem 0 0; color: #111827; font-weight: 600; }
+    .match-content { color: #374151; font-size: 1.05rem; line-height: 1.8; }
+    .match-content h2 { margin: 2.25rem 0 0.75rem; color: #1f2937; font-size: 1.5rem; }
+    .match-content h3 { margin: 1.5rem 0 0.5rem; color: #1f2937; font-size: 1.25rem; }
+    .match-content p { margin: 0 0 1rem; }
+    .match-content ul { margin: 0 0 1.25rem; padding-left: 1.25rem; }
+    .match-content li { margin-bottom: 0.5rem; }
+    .lineups { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin: 1.25rem 0; }
+    .team-lineup { padding: 1.25rem; background: #f3f4f6; border-radius: 10px; }
+    .team-head { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem; }
+    .team-head img { width: 64px; height: 64px; object-fit: contain; }
+    .team-head h3 { margin: 0; color: #1f2937; font-size: 1.35rem; }
+    .team-lineup p { margin: 0 0 0.75rem; font-size: 0.98rem; line-height: 1.7; }
+    .match-faq { margin: 2.5rem 0 0; }
+    .match-faq h2 { color: #1f2937; }
+    .faq-item { padding: 1rem 0; border-bottom: 1px solid #e5e7eb; }
+    .faq-item h3 { margin: 0 0 0.4rem; color: #1f2937; font-size: 1.1rem; }
+    .faq-item p { margin: 0; color: #4b5563; line-height: 1.7; }
+    .match-footer { display: flex; flex-direction: column; gap: 0.6rem; margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid #e5e7eb; color: #6b7280; font-size: 0.95rem; }
+    .match-footer a { color: #1d4ed8; text-decoration: underline; text-underline-offset: 0.2em; }
+    @media (max-width: 640px) { .match-summary { padding: 1rem; } .match-content { font-size: 1rem; } }
+</style>

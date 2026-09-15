@@ -1,7 +1,8 @@
 ---
 import MainLayout from '../layouts/MainLayout.astro';
+import { allPosts } from '../utils/posts';
 
-const pages = await Astro.glob('./**/*.astro');
+const pages = allPosts;
 const normalize = (value: string) => value
     .normalize('NFD')
     .replace(/[\u0300-\u036f]/g, '')
@@ -9,10 +10,10 @@ const normalize = (value: string) => value
 
 const searchablePages = pages
     .map((page) => ({
-        title: page.title || page.frontmatter?.title,
-        description: page.description || page.frontmatter?.description || '',
-        image: page.image || page.frontmatter?.image || '/images/default-post.webp',
-        date: page.date || page.frontmatter?.date,
+        title: page.title,
+        description: page.description || '',
+        image: page.image || '/images/default-post.webp',
+        date: page.date,
         url: page.url,
     }))
     .filter((page) => page.url && page.title && page.date)

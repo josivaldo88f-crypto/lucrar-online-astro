@@ -15,6 +15,6 @@ export default defineConfig({
   compressHTML: true,
   build: {
     format: 'directory',
-    inlineStylesheets: 'always'
+    inlineStylesheets: 'never'
   }
 });

@@ -1,11 +1,10 @@
 ---
 import { cardImage } from '../utils/image';
+import { allPosts as postMeta } from '../utils/posts';
 
 const { categoria, lang = 'pt-BR' } = Astro.props;
 const isEn = lang === 'en';
 const currentPath = Astro.url.pathname;
-
-const allPosts = await Astro.glob('../pages/**/*.astro');
 
 const normalizePath = (path: string) => {
     if (!path) return '';
@@ -13,14 +12,13 @@ const normalizePath = (path: string) => {
     return path.endsWith('/') ? path.slice(0, -1) : path;
 };
 
-const relacionados = allPosts.filter(post => {
-    const postTitle = post.frontmatter?.title || post.title;
-    const postCategoria = post.frontmatter?.categoria || post.categoria;
+const relacionados = postMeta.filter(post => {
+    const postTitle = post.title;
+    const postCategoria = post.categoria;
     const isSameCategory = String(postCategoria ?? '').toLowerCase() === String(categoria ?? '').toLowerCase();
     const isNotCurrent = normalizePath(post.url) !== normalizePath(currentPath);
-    const isNotIndex = post.url && !post.file.endsWith('index.astro');
-    const postLocale = post.locale === 'en' ? 'en' : 'pt-BR';
-    const isSameLang = isEn ? postLocale === 'en' : postLocale !== 'en';
+    const isNotIndex = post.url && !post.isIndex;
+    const isSameLang = post.locale === 'en' ? isEn : !isEn;
     return isSameCategory && isSameLang && isNotCurrent && postTitle && isNotIndex;
 }).slice(0, 12);
 ---
@@ -32,11 +30,11 @@ const relacionados = allPosts.filter(post => {
             {relacionados.map((post) => (
                 <article class="relacionado-card" style="display: none;">
                     <div class="relacionado-image">
-                        <img src={cardImage(post.frontmatter?.image || post.image || '/images/default-post.webp')} alt={post.frontmatter?.title || post.title} width="400" height="250" loading="lazy" decoding="async" />
+                        <img src={cardImage(post.image || '/images/default-post.webp')} alt={post.title} width="400" height="250" loading="lazy" decoding="async" />
                     </div>
                     <div class="relacionado-content">
-                        <h3 class="relacionado-title-item">{post.frontmatter?.title || post.title}</h3>
-                        <a href={post.url} class="relacionado-link" aria-label={isEn ? `Read more about ${post.frontmatter?.title || post.title}` : `Ler mais sobre ${post.frontmatter?.title || post.title}`}></a>
+                        <h3 class="relacionado-title-item">{post.title}</h3>
+                        <a href={post.url} class="relacionado-link" aria-label={isEn ? `Read more about ${post.title}` : `Ler mais sobre ${post.title}`}></a>
                     </div>
                 </article>
             ))}

@@ -1,17 +1,18 @@
 ---
 import MainLayout from '../../layouts/MainLayout.astro';
 import PostCard from '../../components/PostCard.astro';
+import { allPosts } from '../../utils/posts';
 
-const posts = await Astro.glob('./*.astro');
+const posts = allPosts.filter(post => post.file.startsWith('futebol/'));
 const categoryPosts = posts
     .filter(post => {
-        const title = post.title || post.frontmatter?.title;
+        const title = post.title;
         // Ignora a própria página de índice e posts sem título
         return post.url && title && post.url !== Astro.url.pathname && post.url !== Astro.url.pathname + '/';
     })
     .sort((a, b) => {
-        const dateA = new Date(a.date || a.frontmatter?.date || '0').getTime();
-        const dateB = new Date(b.date || b.frontmatter?.date || '0').getTime();
+        const dateA = new Date(a.date || '0').getTime();
+        const dateB = new Date(b.date || '0').getTime();
         return dateB - dateA;
     });
 
@@ -31,6 +32,7 @@ const description = "Acompanhe jogos do Brasileirão, horários, onde assistir e
         <h2 id="match-agenda-title">Jogos do Brasileirão hoje e amanhã</h2>
         <p>Confira os guias atualizados com horário, local, transmissão e um destaque importante de cada partida.</p>
         <div class="agenda-grid">
+            <a href="/futebol/flamengo-x-independiente-del-valle-onde-assistir/"><strong>Quinta, 17/9:</strong> Flamengo x Independiente del Valle (Libertadores)</a>
             <a href="/futebol/santos-x-cruzeiro-onde-assistir/"><strong>Sábado, 12/9:</strong> Santos x Cruzeiro</a>
             <a href="/futebol/palmeiras-x-sao-paulo-onde-assistir/"><strong>Sábado, 12/9:</strong> Palmeiras x São Paulo</a>
             <a href="/futebol/flamengo-x-corinthians-onde-assistir/"><strong>Domingo, 13/9:</strong> Flamengo x Corinthians</a>
@@ -44,10 +46,10 @@ const description = "Acompanhe jogos do Brasileirão, horários, onde assistir e
     
     <div class="posts-grid">
         {categoryPosts.map((post, index) => {
-            const title = post.title || post.frontmatter?.title;
-            const description = post.description || post.frontmatter?.description;
-            const image = post.image || post.frontmatter?.image || '/images/default-post.webp';
-            const date = post.date || post.frontmatter?.date;
+            const title = post.title;
+            const description = post.description;
+            const image = post.image || '/images/default-post.webp';
+            const date = post.date;
             
             return (
                 <PostCard 

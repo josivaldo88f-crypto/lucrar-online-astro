@@ -2,12 +2,13 @@
 import MainLayout from '../layouts/MainLayout.astro';
 import PostCard from '../components/PostCard.astro';
 import { cardImage } from '../utils/image';
+import { allPosts } from '../utils/posts';
 
-const posts = await Astro.glob('./**/*.astro');
+const posts = allPosts;
 
 const latestPosts = posts
     .filter(post => {
-        const title = post.title || post.frontmatter?.title;
+        const title = post.title;
         const url = post.url;
 
         if (!url || !title) return false;
@@ -18,13 +19,13 @@ const latestPosts = posts
         return !isIndexFile && !isEnglish;
     })
     .sort((a, b) => {
-        const dateA = new Date(a.date || a.frontmatter?.date || '0').getTime();
-        const dateB = new Date(b.date || b.frontmatter?.date || '0').getTime();
+        const dateA = new Date(a.date || '0').getTime();
+        const dateB = new Date(b.date || '0').getTime();
         return dateB - dateA;
     })
     .slice(0, 12);
 
-const preloadImage = cardImage(latestPosts[0]?.image || latestPosts[0]?.frontmatter?.image || '/images/default-post.webp');
+const preloadImage = cardImage(latestPosts[0]?.image || '/images/default-post.webp');
 
 const title = "Seu Guia para Renda Extra na Internet";
 const description = "Conheça aplicativos, sites, jogos e ferramentas para avaliar oportunidades de renda extra na internet, com análises, comparativos e cuidados essenciais.";
@@ -58,10 +59,10 @@ const categoria = "home";
 
     <section class="posts-grid">
         {latestPosts.map((post, index) => {
-            const postTitle = post.title || post.frontmatter?.title;
-            const postDescription = post.description || post.frontmatter?.description;
-            const postImage = post.image || post.frontmatter?.image || '/images/default-post.webp';
-            const postDate = post.date || post.frontmatter?.date;
+            const postTitle = post.title;
+            const postDescription = post.description;
+            const postImage = post.image || '/images/default-post.webp';
+            const postDate = post.date;
             
             return (
                 <PostCard 

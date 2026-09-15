@@ -3,11 +3,12 @@
   "type": "module",
   "version": "0.0.1",
   "scripts": {
-    "dev": "astro dev",
-    "start": "astro dev",
-    "build": "astro build",
+    "dev": "npm run manifest && astro dev",
+    "start": "npm run manifest && astro dev",
+    "build": "npm run manifest && astro build",
     "preview": "astro preview",
     "astro": "astro",
+    "manifest": "node scripts/generate-posts-manifest.mjs",
     "generate:favicons": "node scripts/generate-favicons.mjs",
     "generate:responsive": "node scripts/generate-responsive-images.mjs",
     "optimize:images": "node scripts/optimize-images.mjs"
