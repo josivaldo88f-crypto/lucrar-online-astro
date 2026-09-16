@@ -1,6 +1,17 @@
 {
-  "count": 46,
+  "count": 47,
   "posts": [
+    {
+      "file": "futebol/corinthians-x-fluminense-onde-assistir.astro",
+      "url": "/futebol/corinthians-x-fluminense-onde-assistir/",
+      "isIndex": false,
+      "title": "Corinthians x Fluminense: Onde Assistir, Horário e Escalações",
+      "description": "Saiba onde assistir Corinthians x Fluminense ao vivo neste domingo (20), às 16h, pelo Brasileirão 2026. Veja escalações prováveis, arbitragem e transmissão.",
+      "categoria": "futebol",
+      "image": "/images/corinthians-x-fluminense-onde-assistir.webp",
+      "date": "2026-09-16",
+      "locale": "pt-BR"
+    },
     {
       "file": "futebol/flamengo-x-bragantino-onde-assistir.astro",
       "url": "/futebol/flamengo-x-bragantino-onde-assistir/",

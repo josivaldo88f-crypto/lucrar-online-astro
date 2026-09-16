@@ -1,0 +1,285 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+
+export const title = 'Corinthians x Fluminense: Onde Assistir, Horário e Escalações';
+export const description = 'Saiba onde assistir Corinthians x Fluminense ao vivo neste domingo (20), às 16h, pelo Brasileirão 2026. Veja escalações prováveis, arbitragem e transmissão.';
+export const categoria = 'futebol';
+export const date = '2026-09-16';
+export const image = '/images/corinthians-x-fluminense-onde-assistir.webp';
+
+const startDate = '2026-09-20T16:00:00-03:00';
+const endDate = '2026-09-20T18:00:00-03:00';
+const cover720 = image.replace(/\.webp$/, '-720.webp');
+
+const faq = [
+    {
+        question: 'Onde assistir Corinthians x Fluminense ao vivo?',
+        answer: 'A partida terá transmissão ao vivo da TV Globo em sinal aberto para a maior parte do Brasil e do canal Premiere no pay-per-view e no Globoplay. O portal ge.globo acompanha o confronto lance a lance em tempo real com vídeos dos gols.',
+    },
+    {
+        question: 'Que horas começa o jogo Corinthians x Fluminense?',
+        answer: 'O duelo tem início marcado para as 16h00 (horário de Brasília) deste domingo, 20 de setembro de 2026.',
+    },
+    {
+        question: 'Onde será disputada a partida entre Corinthians e Fluminense?',
+        answer: 'O confronto é válido pela 28ª rodada do Campeonato Brasileiro 2026 e será realizado na Neo Química Arena, em Itaquera, São Paulo (SP).',
+    },
+    {
+        question: 'Quais são os desfalques do Corinthians para a partida?',
+        answer: 'O Corinthians não terá o atacante Yuri Alberto, entregue ao departamento médico com lesão muscular na coxa, além de Labyad e Kayke Ferrari contundidos. O zagueiro André Ramalho segue em fase de transição física.',
+    },
+    {
+        question: 'Como terminou o jogo entre os times no primeiro turno?',
+        answer: 'No primeiro turno do Brasileirão 2026, o Fluminense venceu o Corinthians por 3 a 1 no Maracanã, com grande atuação coletiva sob a regência de Paulo Henrique Ganso.',
+    },
+    {
+        question: 'Quem apita o jogo entre Corinthians e Fluminense?',
+        answer: 'A arbitragem de campo será comandada pelo catarinense Ramon Abatti Abel (FIFA-SC), com auxílio de Daniel Nobre Bins (FIFA-RS) no comando da cabine do VAR.',
+    },
+];
+
+const eventJson = JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'SportsEvent',
+    name: 'Corinthians x Fluminense pelo Brasileirão 2026',
+    description,
+    startDate,
+    endDate,
+    sport: 'Futebol',
+    eventStatus: 'https://schema.org/EventScheduled',
+    eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
+    image: [new URL(image, Astro.site ?? 'https://www.lucrar.link/').href],
+    location: {
+        '@type': 'Place',
+        name: 'Neo Química Arena',
+        address: {
+            '@type': 'PostalAddress',
+            addressLocality: 'São Paulo',
+            addressRegion: 'SP',
+            addressCountry: 'BR',
+        },
+    },
+    competitor: [
+        { '@type': 'SportsTeam', name: 'Corinthians' },
+        { '@type': 'SportsTeam', name: 'Fluminense' },
+    ],
+    homeTeam: {
+        '@type': 'SportsTeam',
+        name: 'Corinthians',
+    },
+    awayTeam: {
+        '@type': 'SportsTeam',
+        name: 'Fluminense',
+    },
+    organizer: {
+        '@type': 'Organization',
+        name: 'Confederação Brasileira de Futebol',
+        url: 'https://www.cbf.com.br/',
+    },
+});
+---
+
+<MainLayout
+    seo={{ title, description, image, datePublished: date, dateModified: date, faq }}
+    categoria={categoria}
+    preloadImage={image}
+    preloadImageSrcset={`${cover720} 720w, ${image} 1200w`}
+    preloadImageSizes="(max-width: 900px) 92vw, 900px"
+>
+    <script slot="head" type="application/ld+json" set:html={eventJson}></script>
+
+    <article class="match-article">
+        <header class="match-hero">
+            <p class="match-kicker">Brasileirão 2026 · 28ª rodada · Neo Química Arena</p>
+            <h1>{title}</h1>
+            <p class="match-updated">Por Redação · Atualizado em <time datetime={date}>16 de setembro de 2026</time></p>
+        </header>
+
+        <img
+            class="match-cover"
+            src={image}
+            srcset={`${cover720} 720w, ${image} 1200w`}
+            sizes="(max-width: 900px) 92vw, 900px"
+            alt="Corinthians x Fluminense na Neo Química Arena pela 28ª rodada do Brasileirão 2026"
+            width="1200"
+            height="630"
+            loading="eager"
+            fetchpriority="high"
+            decoding="async"
+        />
+
+        <p class="match-lead">
+            Corinthians e Fluminense medem forças neste domingo (20), às 16h00 (horário de Brasília), na Neo Química Arena, em duelo válido pela 28ª rodada do Campeonato Brasileiro 2026. O confronto carrega enorme peso para ambos os lados: enquanto o Timão necessita do triunfo em casa para respirar longe da zona de perigo, o Tricolor carioca briga para se firmar no G-5 e manter o sonho do topo. De quebra, a partida marca o reencontro de Fernando Diniz com o clube onde conquistou a glória eterna na Libertadores.
+        </p>
+
+        <section class="match-summary" aria-labelledby="ficha-do-jogo">
+            <h2 id="ficha-do-jogo">Ficha do jogo</h2>
+            <dl class="match-details">
+                <div><dt>Data</dt><dd>Domingo, 20 de setembro de 2026</dd></div>
+                <div><dt>Horário</dt><dd>16h00 (horário de Brasília)</dd></div>
+                <div><dt>Estádio</dt><dd>Neo Química Arena</dd></div>
+                <div><dt>Local</dt><dd>São Paulo (SP)</dd></div>
+                <div><dt>Transmissão</dt><dd>TV Globo e Premiere</dd></div>
+                <div><dt>Tempo Real</dt><dd>ge.globo</dd></div>
+                <div><dt>Árbitro</dt><dd>Ramon Abatti Abel (FIFA-SC)</dd></div>
+                <div><dt>VAR</dt><dd>Daniel Nobre Bins (FIFA-RS)</dd></div>
+            </dl>
+        </section>
+
+        <section class="match-content">
+            <h2>Onde assistir Corinthians x Fluminense ao vivo na TV e online</h2>
+            <p>
+                O clássico interestadual terá ampla cobertura nacional e transmissão ao vivo em diferentes plataformas neste domingo à tarde:
+            </p>
+            <ul>
+                <li>
+                    <strong>TV Globo:</strong> transmite o clássico ao vivo na TV aberta para grande parte da rede nacional (incluindo SP e RJ), direto de Itaquera, a partir das 15h40, com pré-jogo, entrevistas nos vestiários e narração oficial.
+                </li>
+                <li>
+                    <strong>Premiere:</strong> disponibiliza a partida no sistema pay-per-view para todo o território nacional nas principais operadoras de TV a cabo, além de sinal simultâneo via streaming no aplicativo Premiere e pelo Globoplay (para assinantes do combo futebol).
+                </li>
+                <li>
+                    <strong>ge.globo:</strong> acompanha lance a lance em tempo real com vídeos instantâneos das jogadas de perigo, análises táticas no intervalo e o veredito da Central do Apito.
+                </li>
+            </ul>
+
+            <h2>O reencontro de Fernando Diniz com a história tricolor</h2>
+            <p>
+                Poucos personagens conhecem tão a fundo as virtudes e fragilidades do elenco tricolor quanto Fernando Diniz. Campeão da Copa Libertadores e do Campeonato Carioca pelas Laranjeiras, o atual comandante alvinegro revê o clube onde construiu a página mais laureada da sua carreira.
+            </p>
+            <p>
+                Desta vez, o técnico precisa encontrar respostas imediatas para o Corinthians. Ocupando a 13ª colocação com 32 pontos, o Timão atravessa momento turbulento no returno e precisa conter a perda de pontos para não ver o Z-4 se aproximar. O apoio em peso da Fiel em Itaquera — onde a equipe tradicionalmente cresce de rendimento — surge como o grande trunfo para afastar a má fase e reencontrar o caminho das vitórias.
+            </p>
+            <p>
+                No primeiro turno, disputado no Maracanã, o Fluminense impôs sua superioridade tática e bateu o Corinthians por 3 a 1. A revanche em solo paulista ganha peso vital para o planejamento de Diniz na reta final do campeonato. O torcedor alvinegro que acompanhou as rodadas anteriores, como o tenso clássico contra o líder no <a href="/futebol/flamengo-x-corinthians-onde-assistir/">duelo entre Flamengo e Corinthians</a>, sabe que a equipe precisa de solidez emocional durante os 90 minutos para não sucumbir nos contra-ataques.
+            </p>
+
+            <h2>Fluminense embalado no G-5 e Martinelli em alta</h2>
+            <p>
+                Do outro lado do gramado, o Fluminense de Marcão vive momento de afirmação na temporada. Quinto colocado com 45 pontos, o Tricolor vem com moral renovada após avançar de fase na Copa Libertadores e mantém o foco direcionado para ingressar no G-4 e garantir vaga direta na fase de grupos da competição continental em 2027.
+            </p>
+            <p>
+                A grande notícia da semana nas Laranjeiras foi a convocação do volante <strong>Martinelli</strong> para a Seleção Brasileira principal. O meio-campista vive o auge da maturidade física e técnica, oferecendo dinâmica de cobertura, desarme limpo e transição vertical com precisão cirúrgica. Ao seu lado, a genialidade de <strong>Paulo Henrique Ganso</strong> dita o ritmo dos passes em profundidade, acionando a velocidade de <strong>Soteldo</strong> e o fôlego incessante do uruguaio <strong>Agustín Canobbio</strong> pelas pontas.
+            </p>
+            <p>
+                Na defesa, a liderança incontestável de <strong>Thiago Silva</strong> confere serenidade ao setor diante do ímpeto inicial dos donos da casa. A rodada 28 promete mexer na parte alta da tabela, uma vez que mais tarde o vice-líder também entra em ação no Rio de Janeiro contra o <a href="/futebol/flamengo-x-bragantino-onde-assistir/">Red Bull Bragantino</a>.
+            </p>
+
+            <h2>Duelo tático: a pressão corintiana em Itaquera contra a cadência tricolor</h2>
+            <p>
+                O confronto promete um contraste refinado de propostas. Conhecedor das linhas de passe que ele próprio ajudou a lapidar no adversário, Fernando Diniz deve orientar o Corinthians a exercer pressão agressiva no meio de campo, forçando erros na saída de bola carioca com a combatividade de Raniele e Breno Bidon.
+            </p>
+            <p>
+                Sem o centroavante Yuri Alberto, vetado pelos médicos por problema muscular na coxa, a responsabilidade do ataque alvinegro recai sobre o talento internacional do holandês <strong>Memphis Depay</strong>. Depay terá a missão de circular fora da área, atrair a marcação de Thiago Silva e abrir corredores para as infiltrações de Rodrigo Garro e André Carrillo.
+            </p>
+            <p>
+                Já o Fluminense de Marcão não deve abdicar de trocar passes pacientes desde os pés do goleiro Fábio. Quando o Corinthians adiantar o bloco de marcação, o perigo residirá nos lançamentos açucarados de Ganso para explorar o mano a mano de Soteldo contra a linha de zaga corintiana.
+            </p>
+
+            <h2>Desfalques e prováveis escalações</h2>
+            <div class="lineups">
+                <div class="team-lineup">
+                    <div class="team-head">
+                        <img src="/images/escudo-corinthians.webp" alt="Escudo do Corinthians" width="64" height="64" loading="lazy" decoding="async" />
+                        <h3>Corinthians</h3>
+                    </div>
+                    <p>
+                        <strong>Provável escalação:</strong> Hugo Souza; Fagner (ou Matheuzinho), Gustavo Henrique, Cacá (ou Félix Torres) e Matheus Bidu; Raniele, Breno Bidon, Rodrigo Garro e André Carrillo; Ángel Romero e Memphis Depay.
+                    </p>
+                    <p>
+                        <strong>Desfalques:</strong> Yuri Alberto trata contusão na coxa esquerda no departamento médico. Zakaria Labyad e Kayke Ferrari também são ausências confirmadas por lesão. O defensor André Ramalho permanece entregue à preparação física para transição aos gramados.
+                    </p>
+                    <p>
+                        <strong>Pendurados:</strong> Fagner, Rodrigo Garro e Raniele somam dois amarelos acumulados e precisam dosar as divididas.
+                    </p>
+                    <p><strong>Técnico:</strong> Fernando Diniz.</p>
+                </div>
+                <div class="team-lineup">
+                    <div class="team-head">
+                        <img src="/images/escudo-fluminense.webp" alt="Escudo do Fluminense" width="64" height="64" loading="lazy" decoding="async" />
+                        <h3>Fluminense</h3>
+                    </div>
+                    <p>
+                        <strong>Provável escalação:</strong> Fábio; Samuel Xavier, Thiago Silva, Thiago Santos (ou Freytes) e Diogo Barbosa; Martinelli, Facundo Bernal e Ganso; Canobbio, Soteldo e Kauã Elias (ou Germán Cano).
+                    </p>
+                    <p>
+                        <strong>Desfalques:</strong> O Tricolor conta com elenco quase completo, administrando apenas a recuperação de atletas com desgaste decorrente da maratona da Libertadores.
+                    </p>
+                    <p>
+                        <strong>Destaque:</strong> O volante Martinelli chega com status de Seleção Brasileira após o anúncio da convocação da CBF.
+                    </p>
+                    <p><strong>Técnico:</strong> Marcão.</p>
+                </div>
+            </div>
+
+            <h2>Arbitragem escalada pela CBF</h2>
+            <p>
+                A comissão de arbitragem da Confederação Brasileira de Futebol escalou uma equipe com chancela internacional para arbitrar o embate na Neo Química Arena:
+            </p>
+            <ul>
+                <li><strong>Árbitro principal:</strong> Ramon Abatti Abel (FIFA-SC)</li>
+                <li><strong>Assistente 1:</strong> Alex dos Santos (SC)</li>
+                <li><strong>Assistente 2:</strong> Thiaggo Americano Labes (SC)</li>
+                <li><strong>Quarto árbitro:</strong> Gustavo Holanda Souza (SP)</li>
+                <li><strong>Árbitro de vídeo (VAR):</strong> Daniel Nobre Bins (FIFA-RS)</li>
+                <li><strong>Assistente de VAR (AVAR):</strong> Lúcio Beiersdorf Flor (RS)</li>
+            </ul>
+        </section>
+
+        <section class="match-faq" aria-labelledby="perguntas-frequentes">
+            <h2 id="perguntas-frequentes">Perguntas frequentes sobre Corinthians x Fluminense</h2>
+            {faq.map((item) => (
+                <div class="faq-item">
+                    <h3>{item.question}</h3>
+                    <p>{item.answer}</p>
+                </div>
+            ))}
+        </section>
+
+        <footer class="match-footer">
+            <p>
+                Fontes consultadas: <a href="https://ge.globo.com/futebol/times/corinthians/" rel="noopener noreferrer">ge Corinthians</a>, <a href="https://ge.globo.com/futebol/times/fluminense/" rel="noopener noreferrer">ge Fluminense</a> e <a href="https://www.cbf.com.br/" rel="noopener noreferrer">Confederação Brasileira de Futebol (CBF)</a>.
+            </p>
+            <p>Este guia pré-jogo é atualizado continuamente até a divulgação das súmulas e escalações oficiais uma hora antes de a bola rolar.</p>
+            <a href="/futebol/flamengo-x-bragantino-onde-assistir/">Confira também: Flamengo x Bragantino pela 28ª rodada do Brasileirão</a>
+            <a href="/futebol/flamengo-x-corinthians-onde-assistir/">Relembre: Flamengo x Corinthians pelo primeiro turno</a>
+            <a href="/futebol/">← Ver todos os jogos e coberturas de futebol</a>
+        </footer>
+    </article>
+</MainLayout>
+
+<style>
+    .match-article { max-width: 900px; margin: 0 auto; }
+    .match-hero { margin-bottom: 1.5rem; }
+    .match-kicker { margin: 0 0 0.5rem; color: #2563eb; font-size: 0.85rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; }
+    .match-hero h1 { margin: 0 0 0.6rem; color: #111827; font-size: clamp(2rem, 5vw, 3rem); line-height: 1.15; }
+    .match-updated { margin: 0; color: #6b7280; font-size: 0.9rem; }
+    .match-cover { display: block; width: 100%; height: auto; margin-bottom: 1.5rem; border-radius: 12px; }
+    .match-lead { margin: 0 0 1.5rem; color: #374151; font-size: 1.15rem; line-height: 1.75; }
+    .match-summary { margin: 1.5rem 0 2rem; padding: 1.5rem; background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 12px; }
+    .match-summary h2 { margin-top: 0; color: #1f2937; }
+    .match-details { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 1rem; margin: 1.25rem 0 0; }
+    .match-details div { padding: 0.9rem; background: #fff; border-radius: 8px; }
+    .match-details dt { color: #6b7280; font-size: 0.85rem; font-weight: 700; }
+    .match-details dd { margin: 0.3rem 0 0; color: #111827; font-weight: 600; }
+    .match-content { color: #374151; font-size: 1.05rem; line-height: 1.8; }
+    .match-content h2 { margin: 2.25rem 0 0.75rem; color: #1f2937; font-size: 1.5rem; }
+    .match-content h3 { margin: 1.5rem 0 0.5rem; color: #1f2937; font-size: 1.25rem; }
+    .match-content p { margin: 0 0 1rem; }
+    .match-content ul { margin: 0 0 1.25rem; padding-left: 1.25rem; }
+    .match-content li { margin-bottom: 0.5rem; }
+    .lineups { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin: 1.25rem 0; }
+    .team-lineup { padding: 1.25rem; background: #f3f4f6; border-radius: 10px; }
+    .team-head { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem; }
+    .team-head img { width: 64px; height: 64px; object-fit: contain; }
+    .team-head h3 { margin: 0; color: #1f2937; font-size: 1.35rem; }
+    .team-lineup p { margin: 0 0 0.75rem; font-size: 0.98rem; line-height: 1.7; }
+    .match-faq { margin: 2.5rem 0 0; }
+    .match-faq h2 { color: #1f2937; }
+    .faq-item { padding: 1rem 0; border-bottom: 1px solid #e5e7eb; }
+    .faq-item h3 { margin: 0 0 0.4rem; color: #1f2937; font-size: 1.1rem; }
+    .faq-item p { margin: 0; color: #4b5563; line-height: 1.7; }
+    .match-footer { display: flex; flex-direction: column; gap: 0.6rem; margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid #e5e7eb; color: #6b7280; font-size: 0.95rem; }
+    .match-footer a { color: #1d4ed8; text-decoration: underline; text-underline-offset: 0.2em; }
+    @media (max-width: 640px) { .match-summary { padding: 1rem; } .match-content { font-size: 1rem; } }
+</style>
