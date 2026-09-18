@@ -1,6 +1,17 @@
 {
-  "count": 47,
+  "count": 48,
   "posts": [
+    {
+      "file": "futebol/gremio-x-palmeiras-onde-assistir.astro",
+      "url": "/futebol/gremio-x-palmeiras-onde-assistir/",
+      "isIndex": false,
+      "title": "Grêmio x Palmeiras: Onde Assistir, Horário e Escalações (Brasileirão)",
+      "description": "Saiba onde assistir Grêmio x Palmeiras ao vivo domingo (20/9), às 11h, pela 28ª rodada do Brasileirão 2026. Confira transmissão, arbitragem e escalações prováveis.",
+      "categoria": "futebol",
+      "image": "/images/gremio-x-palmeiras-onde-assistir.webp",
+      "date": "2026-09-18",
+      "locale": "pt-BR"
+    },
     {
       "file": "futebol/corinthians-x-fluminense-onde-assistir.astro",
       "url": "/futebol/corinthians-x-fluminense-onde-assistir/",
